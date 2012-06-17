@@ -1,6 +1,6 @@
 {
   "name": "lactate",
-    "version": "0.6.2",
+    "version": "0.6.4",
     "description": "Simple assets server",
     "keywords": ["static", "assets", "cache"],
     "repository": "git://github.com/Weltschmerz/Lactate.git",
