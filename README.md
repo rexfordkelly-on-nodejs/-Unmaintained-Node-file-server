@@ -21,17 +21,8 @@ Just pass three arguments to the serve function `path` [optional], `request`, `r
 var express = require('express')
 var app = express.createServer()
 
-var lactate = require('lactate').Lactate()
-
-app.get('/', function(req, res) {
-  return lactate.serve('pages/land.html', req, res)
-})
-
-lactate.set('root', 'files')
-
-app.get('/files/*', function(req, res) {
-  return lactate.serve(req, res)
-})
+var Lactate = require('lactate')
+var lactate = Lactate.Lactate()
 
 lactate.set({
   root:process.cwd(),
@@ -39,10 +30,17 @@ lactate.set({
   debug:true
 })
 
-app.get('/images/:img', function(req, res) {
-  var img = req.params.img
-  return lactate.serve('thumbs/'+img, req, res)
+app.get('/', function(req, res) {
+  return lactate.serve('pages/land.html', req, res)
 })
+
+var files = Lactate.dir('files', {
+  root:'files',
+  public:'files',
+  expires:'ten years'
+}).toMiddleware()
+
+app.get('/files/*', files)
 
 app.listen(8080)
 
