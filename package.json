@@ -6,9 +6,9 @@
     "repository": "git://github.com/Weltschmerz/Lactate.git",
     "author": "Weltschmerz <chlavois@gmail.com>",
     "dependencies": {
-      "mime": ">= 1.2.6",
-      "suckle": ">= 0.1.1",
-      "expire": ">= 0.2.0"
+      "mime": "1.2.6",
+      "suckle": "0.1.1",
+      "expire": "0.2.0"
     },
     "main": "lib/lactate.js",
     "scripts": { "test" : "node test/test.js" },
