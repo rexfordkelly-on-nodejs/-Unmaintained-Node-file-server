@@ -2,15 +2,15 @@
 
 Very simple static file handler, with a few electives.
 
+`npm install lactate`
+
+`npm test lactate`
+
 * Automaic gzipping
 * In-memory caching
 * Robust Expires settings
 * Directory namespacing
 * Middleware
-
-`npm install lactate`
-
-`npm test lactate`
 
 ## Benchmark
 
