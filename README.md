@@ -198,3 +198,5 @@ lactate.set({debug:false})
 ## License
 
 MIT
+
+*Lactate is used internally by [Transmit](https://github.com/Weltschmerz/Transmit)*
