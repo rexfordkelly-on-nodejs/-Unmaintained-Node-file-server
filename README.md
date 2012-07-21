@@ -177,4 +177,4 @@ lactate.set({debug:false})
 
 ## License
 
-**MIT**
+MIT
