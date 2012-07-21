@@ -26,16 +26,14 @@ var lactate = Lactate.Lactate()
 
 lactate.set({
   root:process.cwd(),
-  expires:'one day and 12 minutes',
-  debug:true
+  expires:'one day and 12 minutes'
 })
 
 app.get('/', function(req, res) {
-  return lactate.serve('pages/land.html', req, res)
+  lactate.serve('pages/land.html', req, res)
 })
 
 var files = Lactate.dir('files', {
-  root:'files',
   public:'files',
   expires:'ten years'
 }).toMiddleware()
@@ -58,7 +56,7 @@ To serve an individual file, use the `file` method.
   var Lactate = require('lactate')
 
   app.get('*', function(req, res) {
-    return Lactate.file('images/somn.jpg', req, res)
+    Lactate.file('images/somn.jpg', req, res)
   })
 ```
 
@@ -71,7 +69,7 @@ var Lactate = require('lactate')
 var images = Lactate.dir('images', {expires:'one day'})
 
 app.get('/images/:image', function(req, res) {
-  return images.serve(req.params.image, req, res)
+  images.serve(req.params.image, req, res)
 })
 ```
 
@@ -177,8 +175,6 @@ lactate.set({debug:false})
 
 ```
 
-##TODO
+## License
 
-+ ~~Express middleware~~
-+ ~~Expiration defaults, e.g. 'two days,' 'one month'~~
-+ External (Redis) caching ability
+**MIT**
