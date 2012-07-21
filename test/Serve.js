@@ -5,15 +5,19 @@ var Lactate = require('../lib/lactate')
 var http = require('./utils/http_utils')
 var files = require('./utils/get_files')
 
+var DIR = __dirname + '/files/'
+
 describe('Serve', function() {
     afterEach(function(done) {
         http.stopServer(done)
     })
     describe('#serve(jquery.min.js)', function() {
         it('Should not err', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/jquery.min.js', req, res)
+                lactate.serve('jquery.min.js', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -21,9 +25,11 @@ describe('Serve', function() {
             })
         })
         it('Should have status 200', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/jquery.min.js', req, res)
+                lactate.serve('jquery.min.js', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -32,9 +38,11 @@ describe('Serve', function() {
             })
         })
         it('Should have appropriate content-type header', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/jquery.min.js', req, res)
+                lactate.serve('jquery.min.js', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -44,9 +52,11 @@ describe('Serve', function() {
             })
         })
         it('Should serve complete data', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/jquery.min.js', req, res)
+                lactate.serve('jquery.min.js', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -57,9 +67,11 @@ describe('Serve', function() {
     })
     describe('#serve(font-awesome.css)', function() {
         it('Should not err', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/font-awesome.css', req, res)
+                lactate.serve('font-awesome.css', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -67,9 +79,11 @@ describe('Serve', function() {
             })
         })
         it('Should have status 200', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/font-awesome.css', req, res)
+                lactate.serve('font-awesome.css', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -78,9 +92,11 @@ describe('Serve', function() {
             })
         })
         it('Should have appropriate content-type header', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/font-awesome.css', req, res)
+                lactate.serve('font-awesome.css', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -90,9 +106,11 @@ describe('Serve', function() {
             })
         })
         it('Should serve complete data', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/font-awesome.css', req, res)
+                lactate.serve('font-awesome.css', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -103,9 +121,11 @@ describe('Serve', function() {
     })
     describe('#serve(nodejs.jpeg)', function() {
         it('Should not err', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/nodejs.jpeg', req, res)
+                lactate.serve('nodejs.jpeg', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -113,9 +133,11 @@ describe('Serve', function() {
             })
         })
         it('Should have status 200', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/nodejs.jpeg', req, res)
+                lactate.serve('nodejs.jpeg', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -124,9 +146,11 @@ describe('Serve', function() {
             })
         })
         it('Should have appropriate content-type header', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/nodejs.jpeg', req, res)
+                lactate.serve('nodejs.jpeg', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -136,9 +160,11 @@ describe('Serve', function() {
             })
         })
         it('Should serve complete data', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/nodejs.jpeg', req, res)
+                lactate.serve('nodejs.jpeg', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }
@@ -149,9 +175,11 @@ describe('Serve', function() {
     })
     describe('#serve(asdf)', function() {
         it('Should return status code 404', function(done) {
-            var lactate = Lactate.Lactate()
+            var lactate = Lactate.Lactate({
+                root:DIR
+            })
             http.server(function(req, res) {
-                lactate.serve('files/asdf', req, res)
+                lactate.serve('asdf', req, res)
             })
             http.client('/', function(err, res, data) {
                 if (err) { return done(err) }

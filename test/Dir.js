@@ -5,13 +5,15 @@ var Lactate = require('../lib/lactate')
 var http = require('./utils/http_utils')
 var files = require('./utils/get_files')
 
+var DIR = __dirname + '/files/'
+
 describe('Dir', function() {
     afterEach(function(done) {
         http.stopServer(done)
     })
     describe('#serve(jquery.min.js)', function() {
         it('Should not err', function(done) {
-            var dir = Lactate.dir('files')
+            var dir = Lactate.dir(DIR)
             http.server(function(req, res) {
                 dir.serve('jquery.min.js', req, res)
             })
@@ -21,7 +23,7 @@ describe('Dir', function() {
             })
         })
         it('Should have status 200', function(done) {
-            var dir = Lactate.dir('files')
+            var dir = Lactate.dir(DIR)
             http.server(function(req, res) {
                 dir.serve('jquery.min.js', req, res)
             })
@@ -32,7 +34,7 @@ describe('Dir', function() {
             })
         })
         it('Should have appropriate content-type header', function(done) {
-            var dir = Lactate.dir('files')
+            var dir = Lactate.dir(DIR)
             http.server(function(req, res) {
                 dir.serve('jquery.min.js', req, res)
             })
@@ -44,7 +46,7 @@ describe('Dir', function() {
             })
         })
         it('Should serve complete data', function(done) {
-            var dir = Lactate.dir('files')
+            var dir = Lactate.dir(DIR)
             http.server(function(req, res) {
                 dir.serve('jquery.min.js', req, res)
             })
@@ -57,7 +59,7 @@ describe('Dir', function() {
     })
     describe('#serve()', function() {
         it('Should not err', function(done) {
-            var lactate = Lactate.dir('files')
+            var lactate = Lactate.dir(DIR)
             http.server(function(req, res) {
                 lactate.serve(req, res)
             })
@@ -67,7 +69,7 @@ describe('Dir', function() {
             })
         })
         it('Should have status 200', function(done) {
-            var lactate = Lactate.dir('files')
+            var lactate = Lactate.dir(DIR)
             http.server(function(req, res) {
                 lactate.serve(req, res)
             })
@@ -78,7 +80,7 @@ describe('Dir', function() {
             })
         })
         it('Should have appropriate content-type header', function(done) {
-            var lactate = Lactate.dir('files')
+            var lactate = Lactate.dir(DIR)
             http.server(function(req, res) {
                 lactate.serve(req, res)
             })
@@ -90,7 +92,7 @@ describe('Dir', function() {
             })
         })
         it('Should serve complete data', function(done) {
-            var lactate = Lactate.dir('files')
+            var lactate = Lactate.dir(DIR)
             http.server(function(req, res) {
                 lactate.serve(req, res)
             })
@@ -103,7 +105,7 @@ describe('Dir', function() {
     })
     describe('#serve() with public dir', function() {
         it('Should not err', function(done) {
-            var lactate = Lactate.dir('files', {
+            var lactate = Lactate.dir(DIR, {
                 public:'files'
             })
             http.server(function(req, res) {
@@ -115,7 +117,7 @@ describe('Dir', function() {
             })
         })
         it('Should have status 200', function(done) {
-            var lactate = Lactate.dir('files', {
+            var lactate = Lactate.dir(DIR, {
                 public:'files'
             })
             http.server(function(req, res) {
@@ -128,7 +130,7 @@ describe('Dir', function() {
             })
         })
         it('Should have appropriate content-type header', function(done) {
-            var lactate = Lactate.dir('files', {
+            var lactate = Lactate.dir(DIR, {
                 public:'files'
             })
             http.server(function(req, res) {
@@ -142,7 +144,7 @@ describe('Dir', function() {
             })
         })
         it('Should serve complete data', function(done) {
-            var lactate = Lactate.dir('files', {
+            var lactate = Lactate.dir(DIR, {
                 public:'files'
             })
             http.server(function(req, res) {
@@ -157,7 +159,7 @@ describe('Dir', function() {
     })
     describe('#toMiddleware()', function() {
         it('Should not err', function(done) {
-            var middleware = Lactate.dir('files').toMiddleware()
+            var middleware = Lactate.dir(DIR).toMiddleware()
             http.server(middleware)
             http.client('/jquery.min.js', function(err, res, data) {
                 if (err) { return done(err) }
@@ -165,7 +167,7 @@ describe('Dir', function() {
             })
         })
         it('Should have status 200', function(done) {
-            var middleware = Lactate.dir('files').toMiddleware()
+            var middleware = Lactate.dir(DIR).toMiddleware()
             http.server(middleware)
             http.client('/jquery.min.js', function(err, res, data) {
                 if (err) { return done(err) }
@@ -174,7 +176,7 @@ describe('Dir', function() {
             })
         })
         it('Should have appropriate content-type header', function(done) {
-            var middleware = Lactate.dir('files').toMiddleware()
+            var middleware = Lactate.dir(DIR).toMiddleware()
             http.server(middleware)
             http.client('/jquery.min.js', function(err, res, data) {
                 if (err) { return done(err) }
@@ -184,7 +186,7 @@ describe('Dir', function() {
             })
         })
         it('Should serve complete data', function(done) {
-            var middleware = Lactate.dir('files').toMiddleware()
+            var middleware = Lactate.dir(DIR).toMiddleware()
             http.server(middleware)
             http.client('/jquery.min.js', function(err, res, data) {
                 if (err) { return done(err) }
