@@ -9,7 +9,7 @@
 var fs = require('fs')
 ,   map = module.exports
 
-fs.readdirSync('files')
+fs.readdirSync('../files')
 .filter(function(file) {
     return /\.gz$/.test(file)
 })
