@@ -2,6 +2,12 @@
 
 Very simple static file handler, with a few electives.
 
+* Automaic gzipping
+* In-memory caching
+* Robust Expires settings
+* Directory namespacing
+* Middleware
+
 `npm install lactate`
 
 `npm test lactate`
@@ -14,7 +20,7 @@ Very simple static file handler, with a few electives.
 
 ## Example
 
-Just pass three arguments to the serve function `path` [optional], `request`, `response`. Lactate will stream your file to the client in the most efficient way, by piping: readFile > gZip > response.
+Just pass three arguments to the serve function `path` [optional], `request`, `response`. Lactate will stream your file to the client in the most efficient way, by piping node's readStream to gzip, and finally to the response.
 
 ```js
 
@@ -57,6 +63,20 @@ To serve an individual file, use the `file` method.
 
   app.get('*', function(req, res) {
     Lactate.file('images/somn.jpg', req, res)
+  })
+```
+
+An optional fourth argument is for Lactate settings.
+
+```js
+  var Lactate = require('lactate')
+  var options = {
+    cache:true,
+    expires:'two days'
+  }
+
+  app.get('*', function(req, res) {
+    Lactate.file('images/somn.jpg', req, res, options)
   })
 ```
 
