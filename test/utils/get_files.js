@@ -15,7 +15,7 @@ fs.readdirSync('../files')
 })
 .forEach(function(file) {
     var fileName = file.substring(0, file.length-3)
-    var file = fs.readFileSync('files/'+file)
+    var file = fs.readFileSync('../files/'+file)
     map[fileName] = file.toString()
 })
 
