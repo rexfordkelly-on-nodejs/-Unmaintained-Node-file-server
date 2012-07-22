@@ -14,9 +14,11 @@ Very simple static file handler, with a few electives.
 
 ## Benchmark
 
+![Bench](http://i.imgur.com/MbXJH.jpg)
+
 [Preliminary benchmarks](https://github.com/Weltschmerz/Lactate/blob/master/benchmark/results.md) show that Lactate has a significant advantage over  most worthy competitors on the [node modules wiki](https://github.com/joyent/node/wiki/Modules#wiki-web-frameworks-static)
 
-*See /benchmarks for details*
+*See /benchmark for details*
 
 ## Example
 
