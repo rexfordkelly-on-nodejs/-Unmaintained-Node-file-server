@@ -1,10 +1,10 @@
 # Lactate
 
-Very simple static file handler, with a few electives.
-
 `npm install lactate`
 
 `npm test lactate`
+
+An exceedingly fast static file handler, with a few electives.
 
 * Automaic gzipping
 * In-memory caching
@@ -14,9 +14,20 @@ Very simple static file handler, with a few electives.
 
 ## Benchmark
 
-![Bench](http://i.imgur.com/MbXJH.jpg)
+[Preliminary benchmarks](https://github.com/Weltschmerz/Lactate/blob/master/benchmark/new/results.md) show that Lactate has a significant advantage over  most worthy competitors on the [node modules wiki](https://github.com/joyent/node/wiki/Modules#wiki-web-frameworks-static)
 
-[Preliminary benchmarks](https://github.com/Weltschmerz/Lactate/blob/master/benchmark/results.md) show that Lactate has a significant advantage over  most worthy competitors on the [node modules wiki](https://github.com/joyent/node/wiki/Modules#wiki-web-frameworks-static)
+*node version v0.8.0*
+
+* `Lactate`
+* `node-static`
+* `connect`
+
+Two files
+
+* `jquery.min.js` ~100kb
+* `santamonica.jpg` ~1mb
+
+![Bench](http://i.imgur.com/MbXJH.jpg)
 
 *See /benchmark for details*
 
