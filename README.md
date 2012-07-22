@@ -151,6 +151,10 @@ Local directory from which to serve files. By default, the current working direc
 
 Public directory exposed to clients. If set, only requests from /*directory* will complete.
 
++ `subdirs` **boolean**
+
+By default subdirectories are served. To disable this, set `subdirs` to false.
+
 + `cache` **boolean**
 
 Keep files in-memory. Enabled by default, and no great reason to disable.
