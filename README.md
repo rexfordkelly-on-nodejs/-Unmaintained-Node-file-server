@@ -18,16 +18,10 @@ An exceedingly fast static file handler, with a few electives.
 
 *node version v0.8.0*
 
-* `Lactate`
-* `node-static`
-* `connect`
-
-Two files
+![Bench](http://i.imgur.com/MbXJH.jpg)
 
 * `jquery.min.js` ~100kb
 * `santamonica.jpg` ~1mb
-
-![Bench](http://i.imgur.com/MbXJH.jpg)
 
 *See /benchmark for details*
 
