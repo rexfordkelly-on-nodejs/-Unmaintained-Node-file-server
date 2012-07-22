@@ -1,15 +1,21 @@
 
 2012.7.22
 
-Benchmark of three static file servers
+## Static file server comparison
 
 *node version v0.8.0*
 
-* `Lactate`
-* `node-static`
-* `connect`
+Three runs of `ab -n 1000 -c 100` for each test
 
-Two files
+Headers discovered using `curl -I`
+
+Modules tested
+
+* `Lactate` v0.8.1
+* `node-static` v0.6.0
+* `connect` v2.3.9
+
+Files tested
 
 * `jquery.min.js` ~100kb
 * `santamonica.jpg` ~1mb
