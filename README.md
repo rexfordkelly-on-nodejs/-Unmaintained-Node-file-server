@@ -2,8 +2,6 @@
 
 `npm install lactate`
 
-`npm test lactate`
-
 An exceedingly fast static file handler, with a few electives.
 
 * Automaic gzipping
