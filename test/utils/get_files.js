@@ -9,13 +9,15 @@
 var fs = require('fs')
 ,   map = module.exports
 
-fs.readdirSync('../files')
+var dir = __dirname + '/../files/'
+
+fs.readdirSync(dir)
 .filter(function(file) {
     return /\.gz$/.test(file)
 })
 .forEach(function(file) {
     var fileName = file.substring(0, file.length-3)
-    var file = fs.readFileSync('../files/'+file)
+    var file = fs.readFileSync(dir+file)
     map[fileName] = file.toString()
 })
 
