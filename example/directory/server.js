@@ -12,14 +12,6 @@ var files = lactate.dir('files', {
     //expires:'one day'
 })
 
-/*
- * Without a string as first argument,
- * Lactate will use req.url to determine
- * file path. In this case, the file 
- * 'index.html' may be reached from 
- * http://localhost:8080/index.html
- */
-
 var server = http.createServer(function(req, res) {
     var url = req.url
     if (url === '/') {
