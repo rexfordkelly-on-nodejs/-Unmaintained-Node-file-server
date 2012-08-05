@@ -7,7 +7,7 @@ An exceedingly fast static file handler, with a few electives.
 * Automaic gzipping
 * In-memory caching
 * Robust Expires settings
-* Directory namespacing
+* Custom 404 pages
 * Middleware
 
 ## Benchmark
@@ -126,6 +126,25 @@ var middleware = images.toMiddleware({
 app.use(middleware)
 ```
 
+###Custom 404 pages
+
+Use the `on404` option for defining custom 404 pages or functions.
+
+Strings will be treated as ordinary file paths, and as such will abide rules for gzipping and in-memory caching. Note that on404 paths will be relative to the `root` setting (by default process.cwd()).
+
+```js
+var lactate = require('lactate').Lactate({
+    on404:'pages/404.html'
+})
+
+Functions allow you to fully customize your 404 handling.
+
+lactate.set('on404', function(res) {
+    res.writeHead(404)
+    res.end('My custom 404 thingy')
+})
+```
+
 ##Options
 
 Options can be passed to the initialization function or using the `set` method.
@@ -180,6 +199,10 @@ lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 
 ```
 
++ `on404` **string or function**
+
+Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
+
 + `debug` **boolean** (*optional*) **number** (*optional*) **function** (*optional*) 
 
 Debugging in Lactate is level-based (*bases: `0`, `1`*). Level `0` logs completed request information, status codes, etc.. Level `1` provides more details along the service. You may override the default debug function (*console.log*) with your own.
@@ -208,4 +231,4 @@ lactate.set({debug:false})
 
 MIT
 
-*Lactate is used internally by [Transmit](https://github.com/Weltschmerz/Transmit)*
+*This module is used internally by [Transmit](https://github.com/Weltschmerz/Transmit)*
