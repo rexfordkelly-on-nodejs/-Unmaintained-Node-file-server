@@ -136,9 +136,11 @@ Strings will be treated as ordinary file paths, and as such will abide rules for
 var lactate = require('lactate').Lactate({
     on404:'pages/404.html'
 })
+```
 
 Functions allow you to fully customize your 404 handling.
 
+```js
 lactate.set('on404', function(res) {
     res.writeHead(404)
     res.end('My custom 404 thingy')
