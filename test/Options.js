@@ -104,34 +104,3 @@ describe('Options', function() {
     })
 
 })
-
-describe('Set Invalid', function() {
-
-    describe('#set("asdf", "asdf")', function() {
-        it('Should return an error', function() {
-            var lactate = Lactate.Lactate()
-            lactate.set('asdf', 'asdf')
-            var opt = lactate.get('asdf')
-            opt.should.be.an.instanceOf(Error)
-        })
-    })
-
-    describe('#set("asdf")', function() {
-        it('Should return an error', function() {
-            var lactate = Lactate.Lactate()
-            lactate.set('asdf')
-            var opt = lactate.get('asdf')
-            opt.should.be.an.instanceOf(Error)
-        })
-    })
-
-    describe('#set()', function() {
-        it('Should return an error', function() {
-            var lactate = Lactate.Lactate()
-            lactate.set()
-            var opt = lactate.get('asdf')
-            opt.should.be.an.instanceOf(Error)
-        })
-    })
-
-})
