@@ -33,7 +33,6 @@ module.exports.client = function(path, cb, times) {
     var hasExpiresHeaders = function(headers) {
         return [
             'last-modified',
-            'expires',
             'cache-control'
         ].every(function(header) {
             return headers[header]
