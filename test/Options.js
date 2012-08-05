@@ -2,9 +2,9 @@
 var Lactate = require('../lib/lactate')
 var should = require('should')
 
-describe('Constructor', function() {
+describe('Options', function() {
 
-    describe('#Lactate({"root", "public", "cache", "expires"})', function() {
+    describe('Constructor', function() {
 
         var lactate = Lactate.Lactate({
             'root':'files',
@@ -35,12 +35,7 @@ describe('Constructor', function() {
 
     })
 
-})
-
-describe('Set Object', function() {
-
-
-    describe('#set({"root", "public", "cache", "expires"})', function() {
+    describe('#set(object)', function() {
 
         var lactate = Lactate.Lactate()
         lactate.set({
@@ -71,10 +66,6 @@ describe('Set Object', function() {
         })
 
     })
-
-})
-
-describe('Set K/V', function() {
 
     describe('#set("root", "files")', function() {
         it('Should have root option "files"', function() {
