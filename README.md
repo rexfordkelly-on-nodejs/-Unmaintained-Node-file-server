@@ -10,16 +10,15 @@ An exceedingly fast static file handler, with a few electives.
 * Custom 404 pages
 * Middleware
 
-## Benchmark
+## Comparison
 
+Lactate caches files in memory without hitting the file system, watches files for efficient udpates, and streams gzipped files directly to the response.
 [Preliminary benchmarks](https://github.com/Weltschmerz/Lactate/blob/master/benchmark/new/results.md) show that Lactate has a significant advantage over  most worthy competitors on the [node modules wiki](https://github.com/joyent/node/wiki/Modules#wiki-web-frameworks-static)
 
-*node version v0.8.0*
+![Bench](http://i.imgur.com/b3xJU.jpg)
 
-![Bench](http://i.imgur.com/MbXJH.jpg)
-
+* `node` v0.8.7
 * `jquery.min.js` ~100kb
-* `santamonica.jpg` ~1mb
 
 *See /benchmark for details*
 
