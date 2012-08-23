@@ -16,6 +16,7 @@ Lactate caches files in memory without hitting the file system for each request,
 
 ![Bench](http://i.imgur.com/b3xJU.jpg)
 
+* requests per second
 * `ab -c 100 -n 10000`
 * `node` v0.8.7
 * `jquery.min.js` ~100kb
