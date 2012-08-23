@@ -207,8 +207,6 @@ For custom 404 handling. Functions are supplied the response for 100% custom res
 
 + `debug` **boolean**
 
-```
-
 ## License
 
 MIT
