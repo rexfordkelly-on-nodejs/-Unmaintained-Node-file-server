@@ -1,4 +1,4 @@
 test:
-	./node_modules/.bin/mocha --reporter spec ./test/*.js
+	./node_modules/.bin/mocha ./test/*.js
 
 .PHONY: test
