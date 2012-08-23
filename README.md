@@ -134,14 +134,14 @@ Strings will be treated as ordinary file paths, and as such will abide rules for
 
 ```js
 var lactate = require('lactate').Lactate({
-    on404:'pages/404.html'
+    notFound:'pages/404.html'
 })
 ```
 
 Functions allow you to fully customize your 404 handling.
 
 ```js
-lactate.set('on404', function(res) {
+lactate.set('notFound', function(res) {
     res.writeHead(404)
     res.end('My custom 404 thingy')
 })
@@ -201,31 +201,11 @@ lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 
 ```
 
-+ `on404` **string or function**
++ `notFound` **string or function**
 
-Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
+For custom 404 handling. Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
 
-+ `debug` **boolean** (*optional*) **number** (*optional*) **function** (*optional*) 
-
-Debugging in Lactate is level-based (*bases: `0`, `1`*). Level `0` logs completed request information, status codes, etc.. Level `1` provides more details along the service. You may override the default debug function (*console.log*) with your own.
-
-```js
-
-var lactate = require('lactate')({
-  debug:true // Will use console.log to debug all events
-})
-
-lactate.set('debug', 0, function(level, msg, path, statusCode) {
-  /* 
-    Captures all level 0 events
-
-    Note however that statusCode arguments are only
-    given for level 0 listeners
-  */
-})
-
-lactate.set('debug', 1, console.log)
-lactate.set({debug:false})
++ `debug` **boolean**
 
 ```
 
