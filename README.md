@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/Weltschmerz/Lactate.png)](http://travis-ci.org/Weltschmerz/Lactate)
 # Lactate
 
 `npm install lactate`
