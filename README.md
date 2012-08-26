@@ -1,6 +1,6 @@
 # Lactate
 
-`npm install lactate`
+`npm install -g lactate`
 
 An exceedingly fast static file handler, with a few electives.
 
@@ -16,8 +16,7 @@ Lactate caches files in memory without hitting the file system for each request,
 
 ![Bench](http://i.imgur.com/b3xJU.jpg)
 
-* requests per second
-* `ab -c 100 -n 10000`
+* `ab -c 100 -n 10000` - requests per second
 * `node` v0.8.7
 * `jquery.min.js` ~100kb
 
@@ -54,6 +53,17 @@ app.get('/files/*', files)
 app.listen(8080)
 
 ```
+
+##Global executable
+
+If lactate is installed globally with `npm install -g` then you will have the 'lactate' command available to you. Issuing an empty 'lactate' will serve the current working directory. This can be convenient for testing and so on. Options are:
+
++ `--port`, `-p`
++ `--public`
++ `--expires`
++ `--no-cache`, `-nc`
+
+More on this later
 
 ##The varieties of Lactate experience
 
@@ -204,8 +214,6 @@ lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 + `notFound` **string or function**
 
 For custom 404 handling. Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
-
-+ `debug` **boolean**
 
 ## License
 
