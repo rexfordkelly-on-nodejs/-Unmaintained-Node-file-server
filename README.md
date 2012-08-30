@@ -215,6 +215,10 @@ lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 
 For custom 404 handling. Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
 
++`debug` **boolean**
+
+Colored status / msg / path logging, for debugging purposes.
+
 ## License
 
 MIT
