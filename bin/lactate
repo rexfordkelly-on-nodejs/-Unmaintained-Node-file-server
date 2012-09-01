@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var options = getOpts();
+options.debug = true;
 
 var Lactate = require(__dirname+'/../lib/lactate');
 var dir     = Lactate.dir(process.cwd(), options);
