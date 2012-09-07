@@ -1,13 +1,13 @@
 {
     "name": "lactate",
-    "version": "0.9.8",
+    "version": "0.9.10",
     "description": "Simple assets server",
     "keywords": ["static", "assets", "cache"],
     "repository": "git://github.com/Weltschmerz/Lactate.git",
     "author": "Weltschmerz <chlavois@gmail.com>",
     "dependencies": {
         "mime": "1.2.7",
-        "suckle": "0.3.4",
+        "suckle": "0.3.6",
         "expire": "0.4.4"
     },
     "devDependencies": {
