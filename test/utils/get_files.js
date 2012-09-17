@@ -6,17 +6,17 @@
  * in ./files directory.
  */
 
-var fs = require('fs')
-,   map = module.exports
+var fs  = require('fs')
+var map = module.exports
 
 var dir = __dirname + '/../files/'
 
-fs.readdirSync(dir)
-.filter(function(file) {
-    return /\.gz$/.test(file)
-})
-.forEach(function(file) {
-    var fileName = file.substring(0, file.length-3)
+var files = [
+    'nodejs.jpeg',
+    'font-awesome.css.gz',
+    'jquery.min.js.gz'
+].forEach(function(file) {
+    var fileName = file.replace(/\.gz$/, '');
     var file = fs.readFileSync(dir+file)
     map[fileName] = file.toString()
 })
