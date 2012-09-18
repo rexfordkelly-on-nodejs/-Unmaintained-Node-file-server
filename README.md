@@ -238,7 +238,7 @@ For custom 404 handling. Functions are supplied the response for 100% custom res
 
 Optional headers.
 
-+`debug` **boolean**
++ `debug` **boolean**
 
 Colored status / msg / path logging, for debugging purposes.
 
