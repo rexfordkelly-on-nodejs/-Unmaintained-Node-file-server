@@ -205,6 +205,10 @@ Local directory from which to serve files. By default, the current working direc
 
 + `public` **string**
 
+Deprecated. Use `pub` instead.
+
++ `pub`
+
 Public directory exposed to clients. If set, only requests from /*directory* will complete.
 
 + `subdirs` **boolean**
