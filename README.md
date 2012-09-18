@@ -4,11 +4,12 @@
 
 An exceedingly fast static file handler, with a few electives.
 
-* Automaic gzipping
+* Automatic gzipping
 * In-memory caching
-* Robust Expires settings
+* Robust cache-control setting
 * Custom 404 pages
-* Middleware
+* Custom response headers
+* Middleware export
 
 ## Comparison
 
@@ -214,6 +215,10 @@ lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 + `notFound` **string or function**
 
 For custom 404 handling. Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
+
++ `headers` **object**
+
+Optional headers.
 
 +`debug` **boolean**
 
