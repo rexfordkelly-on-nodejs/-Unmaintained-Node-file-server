@@ -158,6 +158,24 @@ lactate.set('notFound', function(res) {
 })
 ```
 
+###Custom headers
+
+Extend response headers with `headers` option.
+
+```js
+var options = {
+    headers: {
+        server:'Lactate'
+    }
+};
+
+var lactate = require('lactate').Lactate(options);
+//lactate.set('headers', options.headers);
+var landingPage = lactate.serve.bind('pages/land.html');
+
+app.get('/', landingPage);
+```
+
 ##Options
 
 Options can be passed to the initialization function or using the `set` method.
