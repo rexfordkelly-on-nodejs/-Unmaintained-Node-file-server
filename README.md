@@ -203,11 +203,11 @@ lactate.set('expires', null)
 
 Local directory from which to serve files. By default, the current working directory.
 
-+ `public` **string**
++ `public`
 
-Deprecated. Use `pub` instead.
+*Deprecated. Use `pub` instead.*
 
-+ `pub`
++ `pub` **string**
 
 Public directory exposed to clients. If set, only requests from /*directory* will complete.
 
