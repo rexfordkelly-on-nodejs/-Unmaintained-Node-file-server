@@ -171,7 +171,7 @@ var options = {
 
 var lactate = require('lactate').Lactate(options);
 //lactate.set('headers', options.headers);
-var landingPage = lactate.serve.bind('pages/land.html');
+var landingPage = lactate.serve.bind(lactate, 'pages/land.html');
 
 app.get('/', landingPage);
 ```
