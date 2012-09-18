@@ -171,9 +171,10 @@ var options = {
 
 var lactate = require('lactate').Lactate(options);
 //lactate.set('headers', options.headers);
-var landingPage = lactate.serve.bind(lactate, 'pages/land.html');
 
-app.get('/', landingPage);
+app.get('/', function(req, res) {
+    lactate.serve('pages/land.html', req, res);
+});
 ```
 
 ##Options
@@ -213,6 +214,10 @@ By default subdirectories are served. To disable this, set `subdirs` to false.
 + `cache` **boolean**
 
 Keep files in-memory. Enabled by default, and no great reason to disable.
+
++ `gzip` **boolean**
+
+If false, disables automatic gzipping for text files (HTML, JS, CSS).
 
 + `expires` **number** or **string**
 
