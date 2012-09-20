@@ -275,13 +275,13 @@ If false, disables automatic gzipping for text files (HTML, JS, CSS).
 
 If true, will automatically minify JavaScript using uglify-js.
 
-+ `expires` **number** or **string**
-
-Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
-
 + `headers` **object**
 
 Optional headers.
+
++ `expires` **number** or **string**
+
+Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
 
 ```code
 lactate.set('expires', 87500)
