@@ -15,20 +15,19 @@ An exceedingly fast static file handler, with a few electives.
 Lactate can be used with either plain node http/https server, or with most frameworks that support the node request handler API e.g. Express. The examples below use Express 2.x API for simplicity. See the [example](https://github.com/Weltschmerz/Lactate/tree/master/example) directory.
 
 ```js
-var lactate = require('lactate').dir('files');
+var files = require('lactate').dir('files');
 
 // Plain node
 require('http').createServer(function(req, res) {
     if (/^\/files/.test(req.url)) {
-        lactate.serve(req, res);
+        files.serve(req, res);
     };
 });
 
 // Express
-var lactate = require('lactate').dir('files');
 var express = require('express');
 var app = express.createServer();
-app.get('/files/*', dir.toMiddleware());
+app.get('/files/*', files.toMiddleware());
 ```
 
 ## Running tests
