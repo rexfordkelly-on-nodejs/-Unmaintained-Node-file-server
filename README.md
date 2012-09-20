@@ -271,9 +271,17 @@ Keep files in-memory. Enabled by default, and no great reason to disable.
 
 If false, disables automatic gzipping for text files (HTML, JS, CSS).
 
++ `minify` **bolean**
+
+If true, will automatically minify JavaScript using uglify-js.
+
 + `expires` **number** or **string**
 
 Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
+
++ `headers` **object**
+
+Optional headers.
 
 ```code
 lactate.set('expires', 87500)
@@ -290,10 +298,6 @@ lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 + `notFound` **string or function**
 
 For custom 404 handling. Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
-
-+ `headers` **object**
-
-Optional headers.
 
 + `debug` **boolean**
 
