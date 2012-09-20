@@ -10,6 +10,36 @@ An exceedingly fast static file handler, with a few electives.
 * Custom 404 pages
 * Custom response headers
 * Middleware export
++ Script combinator
+
+Lactate can be used with either plain node http/https server, or with most frameworks that support the node request handler API e.g. Express. The examples below use Express 2.x API for simplicity. See the [example](https://github.com/Weltschmerz/Lactate/tree/master/example) directory.
+
+```js
+var lactate = require('lactate').dir('files');
+
+// Plain node
+require('http').createServer(function(req, res) {
+    if (/^\/files/.test(req.url)) {
+        lactate.serve(req, res);
+    };
+});
+
+// Express
+var lactate = require('lactate').dir('files');
+var express = require('express');
+var app = express.createServer();
+app.get('/files/*', dir.toMiddleware());
+```
+
+## Running tests
+
+If installed locally (without -g flag to npm install):
+
+1. `cd` into `~/node_modules/lactate`
+2. `npm install ./` to install devDependencies
+3. `make test` to run mocha test
+
+If installed globally, simply run `npm test lactate`.
 
 ## Comparison
 
@@ -176,6 +206,24 @@ app.get('/', function(req, res) {
     lactate.serve('pages/land.html', req, res);
 });
 ```
+
+###Combining scripts for request optimization
+
+Lactate directories have an additional method for combining and minifying scripts, to reduce the number of requests.
+
+```js
+var lactate = require('lactate');
+var scripts = lactate.dir('assets/scripts', {
+    pub:'scripts'
+});
+
+scripts.combineScripts('common.js');
+
+var app = require('express').createServer();
+app.get('/scripts/*', scripts.toMiddleware());
+```
+
+Now, requesting `/scripts/common.js` will result with a combined and minified (and by default gzipped) script. This is a synchronous function and it does actually write the combined file to disk, in the assigned directory.
 
 ##Options
 
