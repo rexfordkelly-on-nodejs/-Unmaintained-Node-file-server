@@ -4,13 +4,14 @@
 
 An exceedingly fast static file handler, with a few electives.
 
-* Automatic gzipping
 * In-memory caching
 * Robust cache-control setting
+* Automatic gzipping
+* Automatic minification
 * Custom 404 pages
 * Custom response headers
 * Middleware export
-+ Script combinator
+* Script combinator
 
 Lactate can be used with either plain node http/https server, or with most frameworks that support the node request handler API e.g. Express. The examples below use Express 2.x API for simplicity. See the [example](https://github.com/Weltschmerz/Lactate/tree/master/example) directory.
 
