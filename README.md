@@ -11,24 +11,30 @@ An exceedingly fast static file handler, with a few electives.
 * Custom 404 pages
 * Custom response headers
 * Middleware export
-* Script combinator
 
 Lactate can be used with either plain node http/https server, or with most frameworks that support the node request handler API e.g. Express. The examples below use Express 2.x API for simplicity. See the [example](https://github.com/Weltschmerz/Lactate/tree/master/example) directory.
 
 ```js
-var files = require('lactate').dir('files');
+//Serve the root directory 'files'
+var lactate = require('lactate');
+var files = lactate.dir('files');
+```
 
+```js
 // Plain node
-require('http').createServer(function(req, res) {
+var http = require('http');
+http.createServer(function(req, res) {
     if (/^\/files/.test(req.url)) {
         files.serve(req, res);
     };
 });
+```
 
+```js
 // Express
 var express = require('express');
 var app = express.createServer();
-app.get('/files/*', files.toMiddleware());
+app.use(lactate.static(__dirname + '/files'));
 ```
 
 ## Running tests
@@ -265,15 +271,15 @@ By default subdirectories are served. To disable this, set `subdirs` to false.
 
 + `cache` **boolean**
 
-Keep files in-memory. Enabled by default, and no great reason to disable.
+Keep files in-memory. Enabled by default, and no great reason to disable, unless you are serving fairly large files or run a low-traffic operation.
 
 + `gzip` **boolean**
 
-If false, disables automatic gzipping for text files (HTML, JS, CSS).
+If false, disables automatic gzipping for text files (HTML, JS, CSS). Enabled by default.
 
-+ `minify` **bolean**
++ `minify` **boolean**
 
-If true, will automatically minify JavaScript using uglify-js.
+If true, will automatically minify JavaScript and CSS using [Abridge](https://github.com/Weltschmerz/Abridge). Disabled by default.
 
 + `headers` **object**
 
