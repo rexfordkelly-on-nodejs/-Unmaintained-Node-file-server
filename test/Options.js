@@ -2,6 +2,8 @@
 var Lactate = require('../lib/lactate')
 var should = require('should')
 
+var path = require('path');
+
 describe('Options', function() {
 
     describe('Constructor', function() {
@@ -15,7 +17,8 @@ describe('Options', function() {
 
         it('Should have root option "files"', function() {
             var opt = lactate.get('root')
-            opt.should.equal('files')
+            var root_path = path.resolve('files');
+            opt.should.equal(root_path);
         })
 
         it('Should have public option "files"', function() {
@@ -47,7 +50,8 @@ describe('Options', function() {
 
         it('Should have root option "files"', function() {
             var opt = lactate.get('root')
-            opt.should.equal('files')
+            var root_path = path.resolve('files');
+            opt.should.equal(root_path);
         })
 
         it('Should have public option "files"', function() {
@@ -71,8 +75,9 @@ describe('Options', function() {
         it('Should have root option "files"', function() {
             var lactate = Lactate.Lactate()
             lactate.set('root', 'files')
+            var root_path = path.resolve('files');
             var opt = lactate.get('root')
-            opt.should.equal('files')
+            opt.should.equal(root_path);
         })
     })
 
