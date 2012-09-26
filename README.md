@@ -27,7 +27,7 @@ Lactate caches files in memory without hitting the file system for each request,
 
 *See /benchmark for details*
 
-### Using Lactate
+## Using Lactate
 
 Lactate can be used with either plain node, or with Express. With Express, Lactate is a drop-in replacement for `static` middleware, but with far more ability. The examples below use Express 2.x API for simplicity. See the [examples](https://github.com/Weltschmerz/Lactate/tree/master/example) for various examples.
 
@@ -53,7 +53,7 @@ If installed globally, simply run `npm test lactate`.
 
 In the general case, the `Lactate` method returns an object with the methods `serve` `set` and `get`, importantly. However, there are more convenient methods exported by Lactate. They follow.
 
-###Serving an individual file
+###Serving individual files
 
 To serve an individual file, use the `file` method.
 
@@ -78,7 +78,7 @@ An optional fourth argument is for Lactate settings.
   })
 ```
 
-###Serving a directory
+###Serving directories
 
 The `dir` method allows you to namespace a directory, for convenience.
 
@@ -98,7 +98,7 @@ var images = Lactate.dir('assets/images', options);
 images.maxAge('five days');
 ```
 
-###Middleware
+###Middleware export
 
 For maximum convenience, you may use the `toMiddleware` method on directories.
 
@@ -153,7 +153,7 @@ lactate.set('notFound', function(res) {
 })
 ```
 
-###Custom headers
+###Custom response headers
 
 Extend response headers with `headers` option.
 
@@ -261,15 +261,19 @@ If false, disables automatic gzipping for text files (HTML, JS, CSS). Enabled by
 
 If true, will automatically minify JavaScript and CSS using [Abridge](https://github.com/Weltschmerz/Abridge). Disabled by default.
 
-+ `headers` **object**
++ `watchFiles` **boolean**
 
-Optional headers.
+Determines whether Lactate will watch files to update its cache. If this is disabled, then your file cache will not update automatically as files are modified on the server.
+
++ `headers` **object** or **string** or **function**
+
+Sets custom response headers. If the option value is a function, it is a callback which is give (req, res) arguments. This function should return the header value; it is a mapping function.
 
 + `expires` **number** or **string**
 
 Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
 
-```code
+```js
 lactate.set('expires', 87500)
 //87500 seconds
 lactate.set('expires', 'two days')
@@ -278,10 +282,9 @@ lactate.set'expires', 'five weeks and one minute and ten seconds')
 //3024070 seconds
 lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 //41050028 seconds
-
 ```
 
-+ `notFound` **string or function**
++ `notFound` **string** or **function**
 
 For custom 404 handling. Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
 
