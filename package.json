@@ -13,8 +13,8 @@
         "lessen":"0.0.3"
     },
     "devDependencies": {
-        "mocha": "1.4.1",
-        "should": "1.1.0"
+        "mocha": "1.5.0",
+        "should": "1.2.0"
     },
     "main": "lib/lactate.js",
     "bin":  "bin/lactate",
