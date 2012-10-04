@@ -73,8 +73,8 @@ An optional fourth argument is for Lactate settings.
     pub:'scripts'
   }
 
-  app.get('/scripts/*', function(req, res) {
-    Lactate.file(req, res);
+  app.get('/', function(req, res) {
+    Lactate.file('land.html', req, res, options);
   })
 ```
 
