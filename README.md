@@ -70,7 +70,7 @@ An optional fourth argument is for Lactate settings.
   var options = {
     max_age:'two days',
     minify:true,
-    pub:'scripts'
+    from:'scripts'
   }
 
   app.get('/', function(req, res) {
@@ -104,6 +104,7 @@ For maximum convenience, you may use the `toMiddleware` method on directories.
 
 ```js
 var images = Lactate.dir('images', {
+  from:'images',
   cache:false,
   max_age:'two years',
   debug:true
@@ -119,7 +120,7 @@ var images = Lactate.dir('images');
 images.set('cache', false);
 
 var middleware = images.toMiddleware({
-  pub:'images'
+  from:'images'
 })
 
 app.use(middleware)
@@ -188,7 +189,7 @@ Lactate directories have an additional method for combining and minifying text a
 
 ```js
 var assets = lactate.dir('assets', {
-    pub:'assets',
+    from:'assets',
     minify:true
 });
 
@@ -237,13 +238,9 @@ lactate.set('max_age', null)
 
 Local directory from which to serve files. By default, the current working directory.
 
-+ `public`
++ `from` **string**
 
-*Deprecated. Use `pub` instead.*
-
-+ `pub` **string**
-
-Public directory exposed to clients. If set, only requests from /*directory* will complete.
+Public directory exposed to clients. If set, only requests from /*directory* will complete. Contrast this with the `root` option which is the location of files on the serving machine, not necessarily the requested path.
 
 + `subdirs` **boolean**
 
@@ -274,13 +271,13 @@ Sets custom response headers. If the option value is a function, it is a callbac
 Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
 
 ```js
-lactate.set('expires', 87500)
+lactate.set('max_age', 87500)
 //87500 seconds
-lactate.set('expires', 'two days')
+lactate.set('max_age', 'two days')
 //172800 seconds
-lactate.set'expires', 'five weeks and one minute and ten seconds')
+lactate.set'max_age', 'five weeks and one minute and ten seconds')
 //3024070 seconds
-lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
+lactate.set('max_age', 'one year and 2 months and seven weeks and 16 seconds')
 //41050028 seconds
 ```
 
