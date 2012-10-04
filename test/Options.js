@@ -10,7 +10,7 @@ describe('Options', function() {
 
     var lactate = Lactate.Lactate({
       'root':'files',
-      'public':'files',
+      'from':'files',
       'cache':false,
       'max_age':'one hour'
     })
@@ -21,8 +21,8 @@ describe('Options', function() {
       opt.should.equal(root_path);
     })
 
-    it('Should have public option "files"', function() {
-      var opt = lactate.get('public')
+    it('Should have public option "from"', function() {
+      var opt = lactate.get('from')
       opt.should.equal('files')
     })
 
@@ -43,7 +43,7 @@ describe('Options', function() {
     var lactate = Lactate.Lactate()
     lactate.set({
       'root':'files',
-      'public':'files',
+      'from':'files',
       'cache':false,
       'max_age':'one hour'
     })
@@ -55,7 +55,7 @@ describe('Options', function() {
     })
 
     it('Should have public option "files"', function() {
-      var opt = lactate.get('public')
+      var opt = lactate.get('from')
       opt.should.equal('files')
     })
 
@@ -81,11 +81,11 @@ describe('Options', function() {
     })
   })
 
-  describe('#set("public", "files")', function() {
-    it('Should have public option "files"', function() {
+  describe('#set("from", "files")', function() {
+    it('Should have from option "files"', function() {
       var lactate = Lactate.Lactate()
-      lactate.set('public', 'files')
-      var opt = lactate.get('public')
+      lactate.set('from', 'files')
+      var opt = lactate.get('from')
       opt.should.equal('files')
     })
   })
