@@ -5,66 +5,61 @@ var port = 7279
 var _server = null
 
 module.exports.stopServer = function(cb) {
-    if (_server) {
-        _server.close(cb)
-    }else {
-        cb()
-    }
-}
+  if (_server) {
+    _server.close(cb);
+  }else {
+    cb();
+  };
+};
 
 module.exports.server = function(cb) {
-    _server = new http.Server()
-    _server.addListener('request', cb)
-    _server.listen(port)
-}
+  _server = new http.Server();
+  _server.addListener('request', cb);
+  _server.listen(port);
+};
 
 module.exports.client = function(path, cb, times) {
+  times = times || 1;
 
-    times = times || 1
+  var options = {
+    host:'localhost',
+    port:port,
+    path:path,
+    method:'GET',
+    headers:{}
+  };
 
-    var options = {
-        host:'localhost',
-        port:port,
-        path:path,
-        method:'GET',
-        headers:{}
-    }
+  var cacheHeaders = [ 
+    'last-modified',
+    'cache-control'
+  ];
 
-    var hasExpiresHeaders = function(headers) {
-        return [
-            'last-modified',
-            'cache-control'
-        ].every(function(header) {
-            return headers[header]
-        })
-    }
+  var hasCacheHeaders = function(headers) {
+    return cacheHeaders.every(function(header) {
+      return !!headers[header];
+    });
+  };
 
-    ;(function next(i) {
+  ;(function next(i) {
+    var req = http.request(options, function(res) {
+      var headers = res.headers;
+      if (hasCacheHeaders(headers)) {
+        var lm = headers['last-modified'];
+        options.headers['if-modified-since'] = lm;
+      };
 
-        var req = http.request(options, function(res) {
+      var suckle = new Suckle(function(data) {
+        ++i;
+        if (i === times) {
+          cb(null, res, data.toString());
+        }else {
+          next(i);
+        };
+      })
 
-            var headers = res.headers
-
-            if (hasExpiresHeaders(headers)) {
-                var lm = headers['last-modified']
-                options.headers['if-modified-since'] = lm
-            }
-
-            var suckle = new Suckle(function(data) {
-                ++i
-                if (i === times) {
-                    return cb(null, res, data.toString())
-                }else {
-                    return next(i)
-                }
-            })
-
-            res.pipe(suckle)
-            res.on('error', cb)
-
-        })
-
-        req.end()
-    })(0)
-
-}
+      res.pipe(suckle);
+      res.on('error', cb);
+    });
+    req.end();
+  })(0);
+};
