@@ -119,7 +119,7 @@ var images = Lactate.dir('images');
 images.set('cache', false);
 
 var middleware = images.toMiddleware({
-  public:'images'
+  pub:'images'
 })
 
 app.use(middleware)
@@ -127,7 +127,7 @@ app.use(middleware)
 
 ###Custom 404 pages
 
-Use the `notFound` option for defining custom 404 pages or handler functions.
+Use the `not_found` option for defining custom 404 pages or handler functions.
 
 Strings will be treated as ordinary file paths, and as such will abide rules for gzipping and in-memory caching. Note that `notFound` paths will be relative to the `root` setting (by default `process.cwd()`).
 
