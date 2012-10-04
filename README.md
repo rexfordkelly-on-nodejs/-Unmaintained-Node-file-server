@@ -68,7 +68,7 @@ An optional fourth argument is for Lactate settings.
 
 ```js
   var options = {
-    expires:'two days',
+    max_age:'two days',
     minify:true,
     pub:'scripts'
   }
@@ -105,7 +105,7 @@ For maximum convenience, you may use the `toMiddleware` method on directories.
 ```js
 var images = Lactate.dir('images', {
   cache:false,
-  expires:0,
+  max_age:'two years',
   debug:true
 }).toMiddleware()
 
@@ -133,21 +133,21 @@ Strings will be treated as ordinary file paths, and as such will abide rules for
 
 ```js
 var lactate = Lactate.Lactate({
-    notFound:'pages/404.html'
+    not_found:'pages/404.html'
 })
 
-lactate.set('notFound', 'pages/not_found.html');
+lactate.set('not_found', 'pages/not_found.html');
 lactate.set('gzip', false);
 lactate.set({
   cache:false,
-  watchFiles:false
+  watch_files:false
 });
 ```
 
 Functions allow you to fully customize your 404 handling.
 
 ```js
-lactate.set('notFound', function(res) {
+lactate.set('not_found', function(res) {
     res.writeHead(404)
     res.end('My custom 404 thingy')
 })
@@ -193,8 +193,8 @@ var assets = lactate.dir('assets', {
 });
 
 assets.bundle('js', 'common.js', function(err, data) { });
-//assets.bundleScripts('common.js', function(){});
-assets.bundleStyles('common.css');
+//assets.bundleJS('common.js', function(){});
+assets.bundleCSS('common.css');
 app.use(assets.toMiddleware());
 ```
 
@@ -206,7 +206,7 @@ If lactate is installed globally with `npm install -g` then you will have the 'l
 
 + `--port`, `-p`
 + `--public`
-+ `--expires`
++ `--max_age`
 + `--no-cache`, `-nc`
 
 More on this later
@@ -221,11 +221,11 @@ Options can be passed to the initialization function or using the `set` method.
 
 //Passing to initialization function
 var lactate = require('lactate').Lactate({
-  expires:'two days'
+  max_age:'two days'
 })
 
 //Set method
-lactate.set('expires', null)
+lactate.set('max_age', null)
 
 //Either function accepts (key, value) or an object.
 
@@ -261,7 +261,7 @@ If false, disables automatic gzipping for text files (HTML, JS, CSS). Enabled by
 
 If true, will automatically minify JavaScript and CSS using [Abridge](https://github.com/Weltschmerz/Abridge). Disabled by default.
 
-+ `watchFiles` **boolean**
++ `watch_files` **boolean**
 
 Determines whether Lactate will watch files to update its cache. If this is disabled, then your file cache will not update automatically as files are modified on the server.
 
@@ -269,7 +269,7 @@ Determines whether Lactate will watch files to update its cache. If this is disa
 
 Sets custom response headers. If the option value is a function, it is a callback which is give (req, res) arguments. This function should return the header value; it is a mapping function.
 
-+ `expires` **number** or **string**
++ `max_age` **number** or **string**
 
 Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
 
@@ -284,7 +284,7 @@ lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 //41050028 seconds
 ```
 
-+ `notFound` **string** or **function**
++ `not_found` **string** or **function**
 
 For custom 404 handling. Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
 
@@ -303,7 +303,7 @@ lactate.maxAge('two days');
 is equivalent to:
 
 ```js
-lactate.set('expires', 'two days');
+lactate.set('max_age', 'two days');
 ```
 
 Similarly, the `headers` method is for setting custom response headers.
