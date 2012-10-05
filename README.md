@@ -138,17 +138,20 @@ var lactate = Lactate.Lactate({
 })
 
 lactate.set('not_found', 'pages/not_found.html');
-lactate.set('gzip', false);
-lactate.set({
-  cache:false,
-  watch_files:false
-});
 ```
 
 Functions allow you to fully customize your 404 handling.
 
 ```js
-lactate.set('not_found', function(res) {
+var lactate = Lactate.Lactate({
+  not_found:function(req, res) { }
+});
+```
+
+A special configuration method is provided:
+
+```js
+lactate.notFound(function(req, res) {
     res.writeHead(404)
     res.end('My custom 404 thingy')
 })
