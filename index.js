@@ -1,1 +1,1 @@
-module.exports = require(__dirname + '/lactate');
+module.exports = require(__dirname + '/lib/lactate');
