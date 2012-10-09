@@ -1,63 +1,79 @@
 #!/usr/bin/env node
 
-var options = getOpts();
-options.debug = true;
+var optimist = require('optimist')
 
-var Lactate = require(__dirname+'/../lib/lactate');
-var dir     = Lactate.dir(process.cwd(), options);
+optimist.usage('Usage: $0 [options]');
 
-var http   = require('http');
-var server = http.createServer(dir.toMiddleware());
+var argv = optimist
+  .options('from', {
+    describe:'Public path',
+    default:'',
+    alias:'f'
+  })
+  .options('cache', {
+    describe:'Store assets in-memory',
+    default:true,
+    alias:'c'
+  })
+  .options('watch_files', {
+    describe:'Update memory cache on modification',
+    default:true,
+    alias:['watch-files', 'w']
+  })
+  .options('subdirs', {
+    describe:'Serve subdirectories',
+    default:true,
+    alias:'s'
+  })
+  .options('max_age', {
+    describe:'Client-side caching max-age',
+    default:172800,
+    alias:['max-age', 'm']
+  })
+  .options('gzip', {
+    describe:'Gzip text assets',
+    default:true,
+    alias:'g'
+  })
+  .options('minify', {
+    describe:'Minify text assets',
+    default:false,
+    alias:'m'
+  })
+  .options('bundle', {
+    describe:'Bundle text assets',
+    default:false,
+    alias:'b'
+  })
+  .options('rebundle', {
+    describe:'Rebundle assets if modified',
+    default:true,
+    alias:'r'
+  })
+  .options('headers', {
+    describe:'Response headers JSON string',
+    default:'{}',
+    alias:'h'
+  })
+  .options('debug', {
+    describe:'Log HTTP info',
+    default:true,
+    alias:'d'
+  }).argv;
 
-server.listen(options.port, function() {
-    var optStr = '';
-    for (key in options) {
-        optStr += '\n' + key+': '+options[key];
-    };
-    console.log('Serving directory', dir.opts.root, 'on port', options.port);
-    console.log('Using options', optStr);
-});
+if (argv.help) return optimist.showHelp()
 
-function getOpts() {
-    var args = process.argv.slice(2);
-    var len = args.length;
-    var ret = {
-        port:8080
-    };
-
-    function indOf(str) {
-        for (var i=0;i<len;i++) {
-            var item = args[i];
-            if (item === str) {
-                return i;
-            };
-        };
-        return -1;
-    };
-
-    function contains(str) {
-        return indOf(str) !== -1;
-    };
-
-    if (contains('--no-cache') || contains('-nc')) {
-        ret.cache = false;
-    };
-
-    var port = indOf('--port');
-    if (port !== -1 || (port=indOf('-p')) !== -1) {
-        ret.port = Number(args[port+1]) || 8080;
-    };
-
-    var expires = indOf('--expires');
-    if (expires !== -1) {
-        ret.expires = args[expires+1];
-    };
-
-    var public = indOf('--public');
-    if (public !== -1) {
-        ret.public = args[public+1];
-    };
-
-    return ret;
+if (!!argv.headers) {
+  argv.headers = JSON.parse(argv.headers);
 };
 
+var Lactate = require('lactate');
+var dir = Lactate.dir(process.cwd(), argv);
+
+var http = require('http');
+var server = http.createServer(dir.toMiddleware());
+
+var port = argv.port || 8080;
+server.listen(port, console.log.bind(this, 'Listening on port', port));
+
+console.log('Using options', dir.opts);
