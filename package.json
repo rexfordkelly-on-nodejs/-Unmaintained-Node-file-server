@@ -1,6 +1,6 @@
 {
     "name": "lactate",
-    "version": "0.10.20",
+    "version": "0.10.0",
     "description": "Simple assets server",
     "keywords": ["static", "assets", "cache"],
     "repository": "git://github.com/Weltschmerz/Lactate.git",
@@ -9,8 +9,7 @@
         "mime": "1.2.7",
         "suckle": "0.5.0",
         "expire": "0.4.5",
-        "abridge":"0.2.9",
-        "lessen":"0.0.4"
+        "abridge":"0.2.9"
     },
     "devDependencies": {
         "mocha": "1.5.0",
