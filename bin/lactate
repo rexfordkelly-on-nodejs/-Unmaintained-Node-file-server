@@ -28,7 +28,7 @@ var argv = optimist
   .options('max_age', {
     describe:'Client-side caching max-age',
     default:172800,
-    alias:['max-age', 'm']
+    alias:['max-age', 'M']
   })
   .options('gzip', {
     describe:'Gzip text assets',
@@ -51,9 +51,9 @@ var argv = optimist
     alias:'r'
   })
   .options('headers', {
-    describe:'Response headers JSON string',
-    default:'{}',
-    alias:'h'
+    describe:'Custom response headers',
+    default:'',
+    alias:'H'
   })
   .options('debug', {
     describe:'Log HTTP info',
@@ -64,7 +64,7 @@ var argv = optimist
 if (argv.help) return optimist.showHelp()
 
 if (!!argv.headers) {
-  argv.headers = JSON.parse(argv.headers);
+  argv.headers = require('querystring').parse(argv.headers);
 };
 
 var Lactate = require('lactate');
@@ -76,4 +76,4 @@ var server = http.createServer(dir.toMiddleware());
 var port = argv.port || 8080;
 server.listen(port, console.log.bind(this, 'Listening on port', port));
 
-console.log('Using options', dir.opts);
+console.log('Using options\n', JSON.stringify(dir.opts, null, 2));
