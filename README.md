@@ -29,6 +29,31 @@ Lactate caches files in memory without hitting the file system for each request,
 
 ## Using Lactate
 
+### Global executable
+
+If installed globally with `npm install -g lactate`, you will have the `lactate` command at your disposal. This will run lactate static file server in the current working directory, utilizing the `cluster` module for multiple CPU cores. All [options](https://github.com/Weltschmerz/Lactate#options) are available.
+
+```code
+wltsmrz@home:~$ lactate --help
+Usage: lactate [options]
+
+Options:
+--from, -f                        Public path                   [default: ""]
+--cache, -c                       Store assets in-memory        [default: true]
+--watch_files, --watch-files, -w  Watch files for cache update  [default: true]
+--subdirs, -s                     Serve subdirectories          [default: true]
+--max_age, --max-age, -M          Client-side caching max-age   [default: 172800]
+--gzip, -g                        Gzip text assets              [default: true]
+--minify, -m                      Minify text assets            [default: false]
+--bundle, -b                      Bundle text assets            [default: false]
+--rebundle, -r                    Rebundle assets if modified   [default: true]
+--headers, -H                     Custom response headers       [default: ""]
+--debug, -d                       Log HTTP info                 [default: true]
+--quiet, -q                       Prevent all log output        [default: false]
+```
+
+### Programmatic lactating
+
 Lactate can be used with either plain node, or with Express. With Express, Lactate is a drop-in replacement for `static` middleware, but with far more ability. The examples below use Express 2.x API for simplicity. See the [examples](https://github.com/Weltschmerz/Lactate/tree/master/example) for various examples.
 
 ```js
@@ -203,15 +228,6 @@ app.use(assets.toMiddleware());
 ```
 
 Now, requesting `/assets/common.js` will result with a combined and minified (and by default gzipped) script of all the scripts contained in that directory. This function does actually write the bundled files to disk.
-
-##Global executable
-
-If lactate is installed globally with `npm install -g` then you will have the 'lactate' command available to you. Issuing an empty 'lactate' will serve the current working directory. This can be convenient for testing and so on. Options are:
-
-+ `--port`, `-p`
-+ `--public`
-+ `--max_age`
-+ `--no-cache`, `-nc`
 
 More on this later
 
