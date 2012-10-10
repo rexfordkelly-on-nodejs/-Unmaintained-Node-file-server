@@ -7,7 +7,7 @@
     "author": "Weltschmerz <chlavois@gmail.com>",
     "dependencies": {
         "mime": "1.2.7",
-        "suckle": "0.5.0",
+        "suckle": "0.5.1",
         "expire": "0.4.5",
         "abridge":"0.2.9",
         "optimist":"0.3.4"
