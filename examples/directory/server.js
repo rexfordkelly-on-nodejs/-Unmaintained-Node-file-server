@@ -7,9 +7,9 @@ var lactate = require('lactate')
 var pages = lactate.dir('pages')
 
 var files = lactate.dir('files', {
-    public:'files'
-    //cache:true,
-    //expires:'one day'
+    from:'files'
+    //cache:false,
+    //max_age:'one day'
 })
 
 var server = http.createServer(function(req, res) {
