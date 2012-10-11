@@ -231,6 +231,15 @@ Now, requesting `/assets/common.js` will result with a combined and minified (an
 
 More on this later
 
+###Caching options
+
+Pass an object to the `cache` option setting. The following fields are accepted and optional:
+
+* `expires` Seconds expiration for cache keys. Keys expire after they are untouched for this many seconds. Default is `15min`.
+* `max_keys` Maximum number of keys to keep in memory. After maximum is exceeded keys are removed randomly. Default is `1000`.
+* `max_size` Maximum size in MB to keep in cache. Default is `100mb`.
+* `seg_threshold` Determines the threshold for segmenting a file for streaming instead of calling a single write. Default is `200kb`.
+
 ##Options
 
 Options can be passed to the initialization function or using the `set` method.
