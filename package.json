@@ -10,6 +10,7 @@
         "suckle": "0.5.2",
         "expire": "0.4.5",
         "abridge":"0.2.9",
+        "fraction":"0.0.1",
         "optimist":"0.3.4"
     },
     "devDependencies": {
