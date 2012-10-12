@@ -27,6 +27,11 @@ var argv = optimist
     default:true,
     alias:'s'
   })
+  .options('hidden', {
+    describe:'Serve hidden files',
+    default:false,
+    alias:'h'
+  })
   .options('max_age', {
     describe:'Client-side caching max-age',
     default:172800,
