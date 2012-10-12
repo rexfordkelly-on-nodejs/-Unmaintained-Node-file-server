@@ -230,23 +230,46 @@ Now, requesting `/assets/common.js` will result with a combined and minified (an
 
 ##Options
 
-Options can be passed to the initialization function or using the `set` method.
-
 ### Setting options
 
-```js
+Boolean options may be set using `enable` and `disable` methods. Other options may be set using `set` method with either key/value or an options object.
 
-//Passing to initialization function
+**Passing to initialization function**
+
+```js
 var lactate = require('lactate').Lactate({
   max_age:'two days'
 })
-
-//Set method
-lactate.set('max_age', null)
-
-//Either function accepts (key, value) or an object.
-
 ```
+
+**Using `set` method**
+
+```js
+lactate.set('hidden', true)
+```
+
+**Using enable/disable:**
+
+```js
+lactate.disable('gzip');
+lactate.enable('minify');
+```
+
+**Special options methods**
+
+Lactate has some special methods to reduce visual clutter:
+
+```js
+lactate.maxAge('two days');
+```
+
+is equivalent to:
+
+```js
+lactate.set('max_age', 'two days');
+```
+
+Similarly, the `headers` method is for setting custom response headers.
 
 ### Options available
 
@@ -318,21 +341,6 @@ Pass an object to the `cache` option setting. The following fields are accepted 
 * `max_size` Maximum size in MB to keep in cache. Default is `100mb`.
 * `seg_threshold` Determines the threshold after which to segment a file for streaming instead of traditional writing. Default is `200kb`.
 
-###Special options methods
-
-Lactate has some special methods to reduce visual clutter:
-
-```js
-lactate.maxAge('two days');
-```
-
-is equivalent to:
-
-```js
-lactate.set('max_age', 'two days');
-```
-
-Similarly, the `headers` method is for setting custom response headers.
 
 ## License
 
