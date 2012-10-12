@@ -228,15 +228,6 @@ app.use(assets.toMiddleware());
 
 Now, requesting `/assets/common.js` will result with a combined and minified (and by default gzipped) script of all the scripts contained in that directory. This function does actually write the bundled files to disk.
 
-###Caching options
-
-Pass an object to the `cache` option setting. The following fields are accepted and optional:
-
-* `expires` Seconds expiration for cache keys. Keys expire after they are untouched for this many seconds. Default is `15min`.
-* `max_keys` Maximum number of keys to keep in memory. After maximum is exceeded keys are removed randomly. Default is `1000`.
-* `max_size` Maximum size in MB to keep in cache. Default is `100mb`.
-* `seg_threshold` Determines the threshold for segmenting a file for streaming instead of calling a single write. Default is `200kb`.
-
 ##Options
 
 Options can be passed to the initialization function or using the `set` method.
@@ -271,9 +262,13 @@ Public directory exposed to clients. If set, only requests from /*directory* wil
 
 By default subdirectories are served. To disable this, set `subdirs` to false.
 
-+ `cache` **boolean**
++ `hidden` **boolean**
 
-Keep files in-memory. Enabled by default, and no great reason to disable, unless you are serving fairly large files or run a low-traffic operation.
+Whether or not to serve hidden files. Default is false.
+
++ `cache` **boolean** or **object**
+
+Keep files in-memory. Enabled by default. For caching options and more information about caching strategy, see [Caching Options](https://github.com/Weltschmerz/Lactate#caching-options).
 
 + `gzip` **boolean**
 
@@ -313,6 +308,15 @@ For custom 404 handling. Functions are supplied the response for 100% custom res
 + `debug` **boolean**
 
 Colored status / msg / path logging, for debugging purposes.
+
+###Caching options
+
+Pass an object to the `cache` option setting. The following fields are accepted and optional:
+
+* `expires` Seconds expiration for cache keys. Keys expire after they are untouched for this many seconds. Default is `15min`.
+* `max_keys` Maximum number of keys to keep in memory. After maximum is exceeded keys are removed randomly. Default is `1000`.
+* `max_size` Maximum size in MB to keep in cache. Default is `100mb`.
+* `seg_threshold` Determines the threshold for segmenting a file for streaming instead of calling a single write. Default is `200kb`.
 
 ###Special options methods
 
