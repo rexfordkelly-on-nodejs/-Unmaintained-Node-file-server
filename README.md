@@ -84,23 +84,23 @@ To serve an individual file, use the `file` method.
 
 ```js
 
-  app.get('/', function(req, res) {
-    Lactate.file('land.html', req, res)
-  })
+app.get('/', function(req, res) {
+  Lactate.file('land.html', req, res)
+})
 ```
 
 An optional fourth argument is for Lactate settings.
 
 ```js
-  var options = {
-    max_age:'two days',
-    minify:true,
-    from:'scripts'
-  }
+var options = {
+  max_age:'two days',
+  minify:true,
+  from:'scripts'
+}
 
-  app.get('/', function(req, res) {
-    Lactate.file('land.html', req, res, options);
-  })
+app.get('/', function(req, res) {
+  Lactate.file('land.html', req, res, options);
+})
 ```
 
 ###Serving directories
@@ -206,9 +206,9 @@ app.get('/', function(req, res) {
 You may also use a function for dynamic header setting:
 
 ```js
-  lactate.setHeader('server', function(req, res) {
-    return 'lactate';
-  });
+lactate.setHeader('server', function(req, res) {
+  return 'lactate';
+});
 ```
 
 ###Bundling assets
@@ -282,7 +282,7 @@ If true, will automatically minify JavaScript and CSS using [Abridge](https://gi
 
 Determines whether Lactate will watch files to update its cache. If this is disabled, then your file cache will not update automatically as files are modified on the server.
 
-+ `headers` **object** or **string** or **function**
++ `headers` **object** or **function**
 
 Sets custom response headers. If the option value is a function, it is a callback which is give (req, res) arguments. This function should return the header value; it is a mapping function.
 
@@ -313,10 +313,10 @@ Colored status / msg / path logging, for debugging purposes.
 
 Pass an object to the `cache` option setting. The following fields are accepted and optional:
 
-* `expires` Seconds expiration for cache keys. Keys expire after they are untouched for this many seconds. Default is `15min`.
-* `max_keys` Maximum number of keys to keep in memory. After maximum is exceeded keys are removed randomly. Default is `1000`.
+* `expires` Seconds expiration for cache keys. Keys expire after they are untouched for x-seconds. Default is `15min`.
+* `max_keys` Maximum number of keys to keep in memory. Default is `1000`.
 * `max_size` Maximum size in MB to keep in cache. Default is `100mb`.
-* `seg_threshold` Determines the threshold for segmenting a file for streaming instead of calling a single write. Default is `200kb`.
+* `seg_threshold` Determines the threshold after which to segment a file for streaming instead of traditional writing. Default is `200kb`.
 
 ###Special options methods
 
