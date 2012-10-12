@@ -313,7 +313,7 @@ Colored status / msg / path logging, for debugging purposes.
 
 Pass an object to the `cache` option setting. The following fields are accepted and optional:
 
-* `expires` Seconds expiration for cache keys. Keys expire after they are untouched for x-seconds. Default is `15min`.
+* `expire` Seconds expiration for cache keys. Keys expire after they are untouched for x-seconds. Default is `15min`.
 * `max_keys` Maximum number of keys to keep in memory. Default is `1000`.
 * `max_size` Maximum size in MB to keep in cache. Default is `100mb`.
 * `seg_threshold` Determines the threshold after which to segment a file for streaming instead of traditional writing. Default is `200kb`.
