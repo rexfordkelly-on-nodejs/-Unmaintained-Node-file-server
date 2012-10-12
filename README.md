@@ -211,14 +211,13 @@ You may also use a function for dynamic header setting:
   });
 ```
 
-###Bundling assets for request optimization
+###Bundling assets
 
-Lactate directories have an additional method for combining and minifying text assets, to reduce the number of necessary requests.
+Lactate directories have an additional method for combining and minifying text assets, to reduce the number and size of requests.
 
 ```js
 var assets = lactate.dir('assets', {
-    from:'assets',
-    minify:true
+    from:'assets'
 });
 
 assets.bundle('js', 'common.js', function(err, data) { });
@@ -228,8 +227,6 @@ app.use(assets.toMiddleware());
 ```
 
 Now, requesting `/assets/common.js` will result with a combined and minified (and by default gzipped) script of all the scripts contained in that directory. This function does actually write the bundled files to disk.
-
-More on this later
 
 ###Caching options
 
