@@ -239,23 +239,37 @@ Now, requesting `/assets/common.js` will result with a combined and minified (an
 Lactate extends EventEmitter for emitting status events. Statuses Lactate is aware of are:
 
 +200 *OK*
+
 +304 *Not Modified*
+
 +400 *Bad Request*
+
 +403 *Forbidden*
+
 +404 *Not Found*
+
 +405 *Invalid Method*
+
 +500 *Internal Error*
 
 Callbacks are given a `ConData` instance which has the following properties:
 
 +filePath
+
 +status
+
 +msg
+
 +url
+
 +method
+
 +headers
+
 +address
+
 +port
+
 
 ```js
 var files = lactate.dir('files', {});
