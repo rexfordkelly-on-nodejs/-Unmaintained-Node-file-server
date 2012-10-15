@@ -12,12 +12,17 @@ An exceedingly fast static file handler, with a few electives.
 * Automatic minification
 * Custom 404 pages
 * Custom response headers
+* Asset bundling and minification
 * Middleware export
-* Asset bundling
+* Express.static replacement
+* Default error pages
+* on(status) listeners
+* Colored log output
+* Global executable
 
 ### Comparison
 
-Lactate caches files in memory without hitting the file system for each request, watches files for efficient udpates, and streams gzipped files directly to the response.  [Preliminary benchmarks](https://github.com/Weltschmerz/Lactate/blob/master/benchmark/new/results.md) show that Lactate has a significant advantage over  most worthy competitors on the [node modules wiki](https://github.com/joyent/node/wiki/Modules#wiki-web-frameworks-static)
+Lactate caches files in memory without hitting the file system for each request, watches files for efficient udpates, and streams gzipped files directly to the response. Preliminary benchmarks show that Lactate has a significant advantage over most worthy competitors on the [node modules wiki](https://github.com/joyent/node/wiki/Modules#wiki-web-frameworks-static).
 
 ![Bench](http://i.imgur.com/b3xJU.jpg)
 
@@ -42,6 +47,7 @@ Options:
 --cache, -c                       Store assets in-memory        [default: true]
 --watch_files, --watch-files, -w  Watch files for cache update  [default: true]
 --subdirs, -s                     Serve subdirectories          [default: true]
+--hidden, -h                      Serve hidden files            [default: false]
 --max_age, --max-age, -M          Client-side caching max-age   [default: 172800]
 --gzip, -g                        Gzip text assets              [default: true]
 --minify, -m                      Minify text assets            [default: false]
@@ -227,6 +233,35 @@ app.use(assets.toMiddleware());
 ```
 
 Now, requesting `/assets/common.js` will result with a combined and minified (and by default gzipped) script of all the scripts contained in that directory. This function does actually write the bundled files to disk.
+
+###Status listeners
+
+Lactate extends EventEmitter for emitting status events. Statuses Lactate is aware of are:
+
++200 *OK*
++304 *Not Modified*
++400 *Bad Request*
++403 *Forbidden*
++404 *Not Found*
++405 *Invalid Method*
++500 *Internal Error*
+
+Callbacks are given a `ConData` instance which has the following properties:
+
++filePath
++status
++msg
++url
++method
++headers
++address
++port
+
+```js
+var files = lactate.dir('files', {});
+files.on('404', function(req) {
+});
+```
 
 ##Options
 
