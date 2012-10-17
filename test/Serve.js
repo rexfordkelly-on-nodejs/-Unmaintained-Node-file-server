@@ -443,7 +443,8 @@ describe('Serve', function() {
   describe('#serve(.asdf) --no-hidden', function() {
     it('Should not err', function(done) {
       var lactate = Lactate.Lactate({
-        root:DIR
+        root:DIR,
+        hidden:false
       })
       http.server(function(req, res) {
         lactate.serve('.asdf', req, res)
@@ -453,7 +454,7 @@ describe('Serve', function() {
         done()
       })
     })
-    it('Should have status code 403', function(done) {
+    it('Should have status 403', function(done) {
       var lactate = Lactate.Lactate({
         root:DIR
       })
@@ -521,7 +522,7 @@ describe('Serve', function() {
         done()
       })
     })
-    it('Should have status code 403', function(done) {
+    it('Should have status 403', function(done) {
       var lactate = Lactate.Lactate({
         root:__dirname,
         subdirs:false
@@ -580,4 +581,74 @@ describe('Serve', function() {
     });
   });
 
+  describe('#serve(files/jquery.min.js) --using-POST', function() {
+    it('Should not err', function(done) {
+      var lactate = Lactate.Lactate({
+        root:__dirname
+      })
+      http.server(function(req, res) {
+        lactate.serve(req, res)
+      })
+      http.client('/files/jquery.min.js', 1, 'POST', function(err, res, data) {
+        should.not.exist(err);
+        done()
+      })
+    })
+    it('Should have status 405', function(done) {
+      var lactate = Lactate.Lactate({
+        root:__dirname
+      })
+      http.server(function(req, res) {
+        lactate.serve(req, res)
+      })
+      http.client('/files/jquery.min.js', 1, 'POST', function(err, res, data) {
+        should.not.exist(err);
+        res.should.have.status(405);
+        done();
+      })
+    })
+    it('Should have content-type header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:__dirname,
+        subdirs:false
+      })
+      http.server(function(req, res) {
+        lactate.serve(req, res)
+      })
+      http.client('/files/jquery.min.js', 1, 'POST', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('content-type');
+        res.headers['content-type'].should.equal('text/html');
+        done()
+      })
+    });
+    it('Should have content-length header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:__dirname,
+        subdirs:false
+      })
+      http.server(function(req, res) {
+        lactate.serve(req, res)
+      })
+      http.client('/files/jquery.min.js', 1, 'POST', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('content-length');
+        done()
+      })
+    });
+    it('Should have date header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:__dirname,
+        subdirs:false
+      })
+      http.server(function(req, res) {
+        lactate.serve(req, res)
+      })
+      http.client('/files/jquery.min.js', 1, 'POST', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('date');
+        done()
+      })
+    });
+  })
 });
