@@ -236,14 +236,14 @@ Now, requesting `/assets/common.js` will result with a combined and minified (an
 
 ###Status listeners
 
-Lactate extends EventEmitter for emitting status events. Statuses Lactate is aware of are:
+Lactate extends EventEmitter for emitting status code events. Codes Lactate is aware of are:
 
 * `200` *OK*
 * `304` *Not Modified*
 * `400` *Bad Request*
 * `403` *Forbidden*
 * `404` *Not Found*
-* `405` *Invalid Method*
+* `405` *Method Not Allowed*
 * `500` *Internal Error*
 
 Callbacks are given an object which has the following properties:
