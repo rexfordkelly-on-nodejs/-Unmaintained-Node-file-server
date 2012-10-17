@@ -64,7 +64,7 @@ describe('Serve', function() {
         done()
       })
     })
-    it('Should have last-modified header', function(done) {
+    it('Should have content-length header', function(done) {
       var lactate = Lactate.Lactate({
         root:DIR
       })
@@ -73,7 +73,7 @@ describe('Serve', function() {
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
-        res.headers.should.have.property('last-modified')
+        res.headers.should.have.property('content-length')
         done()
       })
     })
@@ -87,6 +87,19 @@ describe('Serve', function() {
       http.client('/', function(err, res, data) {
         should.not.exist(err);
         res.headers.should.have.property('date')
+        done()
+      })
+    })
+    it('Should have last-modified header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:DIR
+      })
+      http.server(function(req, res) {
+        lactate.serve('jquery.min.js', req, res)
+      })
+      http.client('/', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('last-modified')
         done()
       })
     })
@@ -172,7 +185,7 @@ describe('Serve', function() {
         done()
       })
     })
-    it('Should have last-modified header', function(done) {
+    it('Should have content-length header', function(done) {
       var lactate = Lactate.Lactate({
         root:DIR
       })
@@ -181,7 +194,7 @@ describe('Serve', function() {
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
-        res.headers.should.have.property('last-modified')
+        res.headers.should.have.property('content-length')
         done()
       })
     })
@@ -195,6 +208,19 @@ describe('Serve', function() {
       http.client('/', function(err, res, data) {
         should.not.exist(err);
         res.headers.should.have.property('date')
+        done()
+      })
+    })
+    it('Should have last-modified header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:DIR
+      })
+      http.server(function(req, res) {
+        lactate.serve('font-awesome.css', req, res)
+      })
+      http.client('/', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('last-modified')
         done()
       })
     })
@@ -279,7 +305,7 @@ describe('Serve', function() {
         done()
       })
     })
-    it('Should have last-modified header', function(done) {
+    it('Should have content-length header', function(done) {
       var lactate = Lactate.Lactate({
         root:DIR
       })
@@ -288,7 +314,7 @@ describe('Serve', function() {
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
-        res.headers.should.have.property('last-modified')
+        res.headers.should.have.property('content-length')
         done()
       })
     })
@@ -302,6 +328,19 @@ describe('Serve', function() {
       http.client('/', function(err, res, data) {
         should.not.exist(err);
         res.headers.should.have.property('date')
+        done()
+      })
+    })
+    it('Should have last-modified header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:DIR
+      })
+      http.server(function(req, res) {
+        lactate.serve('nodejs.jpeg', req, res)
+      })
+      http.client('/', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('last-modified')
         done()
       })
     })
@@ -359,7 +398,7 @@ describe('Serve', function() {
         done()
       })
     })
-    it('Should respond with default HTML page', function(done) {
+    it('Should have content-type header', function(done) {
       var lactate = Lactate.Lactate({
         root:DIR
       })
@@ -370,6 +409,32 @@ describe('Serve', function() {
         should.not.exist(err);
         res.headers.should.have.property('content-type');
         res.headers['content-type'].should.equal('text/html');
+        done()
+      })
+    });
+    it('Should have content-length header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:DIR
+      })
+      http.server(function(req, res) {
+        lactate.serve('asdf', req, res)
+      })
+      http.client('/', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('content-length');
+        done()
+      })
+    });
+    it('Should have date header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:DIR
+      })
+      http.server(function(req, res) {
+        lactate.serve('asdf', req, res)
+      })
+      http.client('/', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('date');
         done()
       })
     });
@@ -401,7 +466,7 @@ describe('Serve', function() {
         done()
       })
     })
-    it('Should respond with default HTML page', function(done) {
+    it('Should have content-type header', function(done) {
       var lactate = Lactate.Lactate({
         root:DIR
       })
@@ -415,35 +480,104 @@ describe('Serve', function() {
         done()
       })
     });
+    it('Should have content-length header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:DIR
+      })
+      http.server(function(req, res) {
+        lactate.serve('.asdf', req, res)
+      })
+      http.client('/', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('content-length');
+        done()
+      })
+    });
+    it('Should have date header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:DIR
+      })
+      http.server(function(req, res) {
+        lactate.serve('.asdf', req, res)
+      })
+      http.client('/', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('date');
+        done()
+      })
+    });
   });
 
-//  describe('#serve(files/jquery.min.js) --no-subdirs', function() {
-//    it('Should return status code 403', function(done) {
-//      var lactate = Lactate.Lactate({
-//        subdirs:false
-//      })
-//      http.server(function(req, res) {
-//        lactate.serve(req, res)
-//      })
-//      http.client('/files/jquery.min.js', function(err, res, data) {
-//        should.not.exist(err);
-//        res.should.have.status(403)
-//        done()
-//      })
-//    })
-//    it('Should respond with default HTML page', function(done) {
-//      var lactate = Lactate.Lactate({
-//        subdirs:false
-//      })
-//      http.server(function(req, res) {
-//        lactate.serve(req, res)
-//      })
-//      http.client('/files/jquery.min.js', function(err, res, data) {
-//        should.not.exist(err);
-//        res.headers.should.have.property('content-type');
-//        res.headers['content-type'].should.equal('text/html');
-//        done()
-//      })
-//    });
-//  });
-})
+  describe('#serve(files/jquery.min.js) --no-subdirs', function() {
+    it('Should not err', function(done) {
+      var lactate = Lactate.Lactate({
+        root:__dirname
+      })
+      http.server(function(req, res) {
+        lactate.serve(req, res)
+      })
+      http.client('/files/jquery.min.js', function(err, res, data) {
+        should.not.exist(err);
+        done()
+      })
+    })
+    it('Should have status code 403', function(done) {
+      var lactate = Lactate.Lactate({
+        root:__dirname,
+        subdirs:false
+      })
+      http.server(function(req, res) {
+        lactate.serve(req, res)
+      })
+      http.client('/files/jquery.min.js', function(err, res, data) {
+        should.not.exist(err);
+        res.should.have.status(403)
+        done()
+      })
+    })
+    it('Should have content-type header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:__dirname,
+        subdirs:false
+      })
+      http.server(function(req, res) {
+        lactate.serve(req, res)
+      })
+      http.client('/files/jquery.min.js', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('content-type');
+        res.headers['content-type'].should.equal('text/html');
+        done()
+      })
+    });
+    it('Should have content-length header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:__dirname,
+        subdirs:false
+      })
+      http.server(function(req, res) {
+        lactate.serve(req, res)
+      })
+      http.client('/files/jquery.min.js', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('content-length');
+        done()
+      })
+    });
+    it('Should have date header', function(done) {
+      var lactate = Lactate.Lactate({
+        root:__dirname,
+        subdirs:false
+      })
+      http.server(function(req, res) {
+        lactate.serve(req, res)
+      })
+      http.client('/files/jquery.min.js', function(err, res, data) {
+        should.not.exist(err);
+        res.headers.should.have.property('date');
+        done()
+      })
+    });
+  });
+
+});

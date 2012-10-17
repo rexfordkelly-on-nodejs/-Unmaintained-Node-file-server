@@ -18,14 +18,21 @@ module.exports.server = function(cb) {
   _server.listen(port);
 };
 
-module.exports.client = function(path, cb, times) {
-  times = times || 1;
+module.exports.client = function(path, cb, times, method) {
+  var args = Array.prototype.slice.call(arguments), cb;
+  var path = args.shift();
+  var lastArg = args[args.length-1];
+  if (typeof(lastArg) === 'function') {
+    cb = args.pop();
+  };
+  var times = args.shift() || 1;
+  var method = args.shift() || 'GET';
 
   var options = {
     host:'localhost',
     port:port,
     path:path,
-    method:'GET',
+    method:method,
     headers:{}
   };
 
@@ -49,11 +56,10 @@ module.exports.client = function(path, cb, times) {
       };
 
       var suckle = new Suckle(function(data) {
-        ++i;
-        if (i === times) {
-          cb(null, res, data.toString());
-        }else {
+        if (--i) {
           next(i);
+        } else {
+          cb(null, res, data.toString());
         };
       })
 
@@ -61,5 +67,5 @@ module.exports.client = function(path, cb, times) {
       res.on('error', cb);
     });
     req.end();
-  })(0);
+  })(times);
 };
