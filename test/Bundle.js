@@ -15,10 +15,23 @@ describe('Bundle', function() {
   describe('#bundle(js)', function() {
     it('Should bundle', function(done) {
       var dir = Lactate.dir(DIR);
+      dir.disable('max_age');
+      http.server(dir.toMiddleware());
       dir.bundle('js', 'common.js', function(err, data) {
         should.not.exist(err);
         should.exist(data.toString());
-        done();
+        http.client('/common.js', 2, function(err, res, data) {
+          should.not.exist(err);
+          should.exist(data);
+          res.should.have.status(200);
+          res.headers.should.have.property('content-type');
+          res.headers.should.have.property('content-encoding');
+          res.headers.should.have.property('content-length');
+          res.headers.should.have.property('date');
+          res.headers.should.have.property('last-modified');
+          res.headers.should.have.property('cache-control');
+          done();
+        });
       });
     })
   })

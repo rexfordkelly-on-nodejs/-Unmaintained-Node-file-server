@@ -66,4 +66,58 @@ describe('Options', function() {
       opt.should.equal(root_path);
     })
   })
+  describe('#enable(k)', function() {
+    var lactate = Lactate.Lactate()
+    lactate.enable('minify');
+    it('Should have minify option true', function() {
+      var opt = lactate.get('minify')
+      opt.should.equal(true);
+    })
+  });
+  describe('#disable(k)', function() {
+    var lactate = Lactate.Lactate()
+    lactate.disable('subdirs');
+    it('Should have subdirs option false', function() {
+      var opt = lactate.get('subdirs')
+      opt.should.equal(false);
+    })
+  });
+  describe('#header(k, v)', function() {
+    var lactate = Lactate.Lactate()
+    lactate.header('testh', 'testv');
+    it('Should have header property testh', function() {
+      var opt = lactate.get('headers')
+      opt.should.have.property('testh');
+      opt.testh.should.equal('testv');
+    })
+  });
+  describe('#header(k, v)', function() {
+    var lactate = Lactate.Lactate()
+    lactate.header('keya', 'vala');
+    it('Should have header property keya', function() {
+      var opt = lactate.get('headers')
+      opt.should.have.property('keya');
+    })
+    it('Should have header value "vala"', function() {
+      var opt = lactate.get('headers')
+      opt.keya.should.equal('vala');
+    })
+  });
+  describe('#headers(object)', function() {
+    var lactate = Lactate.Lactate()
+    lactate.headers({
+      'keya': 'vala',
+      'keyb': 'valb'
+    });
+    it('Should have header property keya "vala"', function() {
+      var opt = lactate.get('headers')
+      opt.should.have.property('keya');
+      opt.keya.should.equal('vala');
+    })
+    it('Should have header property keyb "valb"', function() {
+      var opt = lactate.get('headers')
+      opt.should.have.property('keyb');
+      opt.keyb.should.equal('valb');
+    })
+  });
 })
