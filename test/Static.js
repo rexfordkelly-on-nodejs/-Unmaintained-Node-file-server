@@ -7,7 +7,7 @@ var files = require('./utils/get_files')
 
 var DIR = __dirname + '/files/'
 
-describe('Dir', function() {
+describe('Static', function() {
 
   afterEach(http.stopServer);
 
