@@ -7,6 +7,11 @@ var optimist = require('optimist')
 optimist.usage('Usage: $0 [options]');
 
 var argv = optimist
+  .options('root', {
+    describe:'Local path',
+    default:process.cwd(),
+    alias:'r'
+  })
   .options('from', {
     describe:'Public path',
     default:'',
@@ -55,7 +60,7 @@ var argv = optimist
   .options('rebundle', {
     describe:'Rebundle assets if modified',
     default:true,
-    alias:'r'
+    alias:'rb'
   })
   .options('headers', {
     describe:'Custom response headers',
@@ -86,7 +91,7 @@ var log = (function() {
 })();
 
 var Lactate = require('lactate');
-var dir = Lactate.dir(process.cwd(), argv);
+var dir = Lactate.dir(argv.root, argv);
 var handler = dir.toMiddleware();
 
 var cluster = require('cluster');
@@ -98,7 +103,7 @@ if (!cluster.isMaster) {
   return http.createServer(handler).listen(port);
 };
 
-log('Using options\n', JSON.stringify(dir.opts, null, 2));
+log('Using options\n', JSON.stringify(dir.opts, null, 2).replace(/\{|\}/g, ''));
 
 for (var i=0;i<cpus;i++) {
   cluster.fork();
