@@ -17,16 +17,6 @@ var argv = optimist
     default:'',
     alias:'f'
   })
-  .options('cache', {
-    describe:'Store assets in-memory',
-    default:true,
-    alias:'c'
-  })
-  .options('watch_files', {
-    describe:'Watch files for cache update',
-    default:true,
-    alias:['watch-files', 'w']
-  })
   .options('subdirs', {
     describe:'Serve subdirectories',
     default:true,
@@ -36,6 +26,21 @@ var argv = optimist
     describe:'Serve hidden files',
     default:false,
     alias:'h'
+  })
+  .options('error_pages', {
+    describe:'Serve error pages',
+    default:true,
+    alias:['error-pages', 'ep']
+  })
+  .options('cache', {
+    describe:'Store assets in-memory',
+    default:true,
+    alias:'c'
+  })
+  .options('watch_files', {
+    describe:'Watch files for cache update',
+    default:true,
+    alias:['watch-files', 'w']
   })
   .options('max_age', {
     describe:'Client-side caching max-age',
@@ -84,10 +89,12 @@ if (argv.help) return optimist.showHelp()
 argv.headers = require('querystring').parse(argv.headers);
 
 var log = (function() {
-  if (!argv.quiet) 
+  if (!argv.quiet) {
     return console.log;
-  argv.debug = false;
-  return new(Function);
+  } else {
+    argv.debug = false;
+    return new(Function);
+  };
 })();
 
 var Lactate = require('lactate');
@@ -98,6 +105,7 @@ var cluster = require('cluster');
 var cpus = require('os').cpus().length;
 var http = require('http');
 var port = argv.port || 8080;
+var listening = 0;
 
 if (!cluster.isMaster) {
   return http.createServer(handler).listen(port);
@@ -110,7 +118,9 @@ for (var i=0;i<cpus;i++) {
 };
 
 cluster.on('listening', function(worker, address) {
-  log('Worker', worker.id, 'listening on port', address.port);
+  if (++listening === cpus) {
+    log(listening + ' workers listening on port ' + port);
+  };
 });
 
 
