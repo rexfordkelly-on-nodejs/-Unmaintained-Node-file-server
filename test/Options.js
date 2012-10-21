@@ -4,7 +4,7 @@ var path = require('path');
 
 describe('Options', function() {
   describe('Constructor', function() {
-    var lactate = Lactate.Lactate({
+    var lactate = Lactate.dir(process.cwd(), {
       'root':'files',
       'from':'files',
       'subdirs':false,
@@ -20,8 +20,7 @@ describe('Options', function() {
     })
     it('Should have root option "files"', function() {
       var opt = lactate.get('root')
-      var root_path = path.resolve('files');
-      opt.should.equal(root_path);
+      opt.should.equal(process.cwd());
     })
     it('Should have from option "files"', function() {
       var opt = lactate.get('from')
