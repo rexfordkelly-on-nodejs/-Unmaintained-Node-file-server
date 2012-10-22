@@ -93,6 +93,28 @@ describe('Not Found', function() {
     })
   })
 
+  describe('#set(not_found) --string --non-existent', function() {
+    it('Should not err', function(done) {
+      var dir = Lactate.dir(DIR);
+      dir.set('not_found', 'asdf.html');
+      http.server(dir.toMiddleware());
+      http.client('/', function(err, res, data) {
+        should.not.exist(err);
+        done()
+      })
+    })
+    it('Should have status 404', function(done) {
+      var dir = Lactate.dir(DIR);
+      dir.set('not_found', 'asdf.html');
+      http.server(dir.toMiddleware());
+      http.client('/', function(err, res, data) {
+        should.not.exist(err);
+        res.should.have.status(404);
+        done()
+      })
+    })
+  })
+
   describe('#set(not_found) --function', function() {
     it('Should not err', function(done) {
       var dir = Lactate.dir(DIR);
