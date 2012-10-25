@@ -2,7 +2,13 @@
   "name": "lactate",
   "version": "0.10.13",
   "description": "Simple and featureful assets server",
-  "keywords": ["static", "assets", "cache"],
+  "keywords": [
+    "static",
+    "file",
+    "server",
+    "assets",
+    "cache"
+  ],
   "repository": "git://github.com/Weltschmerz/Lactate.git",
   "author": "Weltschmerz <chlavois@gmail.com>",
   "dependencies": {
