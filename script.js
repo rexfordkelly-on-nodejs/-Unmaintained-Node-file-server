@@ -1,3 +1,4 @@
+console.log('asdf');
 
 var module = new (function() {
 
@@ -73,24 +74,55 @@ var module = new (function() {
     var sIndex = $(selected).index();
 
     if (sIndex !== index) {
+
+      $(self.sections).each(removeWaypoint);
+      function recreateWaypoints() {
+        $(self.sections).each(createWaypoint);
+      };
+
       updateHash(name, function(ev) {
         $(selected).removeClass('selected');
         $(parent).addClass('selected');
 
         var el = $('#' + name);
-        highlight(el);
-
         if (index > 0) {
           scrollTo(el, -60);
-        } else {
+        }else {
           scrollTo(self.lHeight);
         };
+
+        highlight(el);
+
+        setTimeout(recreateWaypoints, 200);
       });
     };
   };
 
-  function withinRange(height, range) {
-    return height > range[0] && height < range[1];
+  function createWaypoint() {
+    var name     = $(this).attr('id');
+    var selector = dataSelector(name);
+    var item     = $(self.list).children(selector);
+    var index    = $(item).index();
+
+    var waypointOpts = {
+      onlyScroll:true,
+      offset:80
+    };
+
+    function waypointCB() {
+      var selected = $(item).siblings('.selected');
+      var sInd = $(selected).index();
+      if (sInd !== index) {
+        $(selected).removeClass('selected');
+        $(item).addClass('selected');
+      };
+    };
+
+    $(this).waypoint(waypointCB, waypointOpts);
+  };
+
+  function removeWaypoint() {
+    $(this).waypoint('remove');
   };
 
   function scroll(ev) {
@@ -108,32 +140,11 @@ var module = new (function() {
     };
   };
 
-  function createWaypoint() {
-    var name     = $(this).attr('id');
-    var selector = dataSelector(name);
-    var item     = $(self.list).children(selector);
-    var index    = $(item).index();
-
-    var waypointOpts = {
-      offset:150,
-      onlyScroll:true
-    };
-
-    function waypointCB() {
-      var selected = $(item).siblings('.selected');
-      var sInd = $(selected).index();
-      if (sInd !== index) {
-        $(selected).removeClass('selected');
-        $(item).addClass('selected');
-      };
-    };
-
-    $(this).waypoint(waypointCB, waypointOpts);
-  };
 
   this.init = function() {
     var container = self.container = $('#container');
-    var list = self.list = $(container).children('ul');
+    var sections = self.sections = $('section');
+    var list = self.list = $('ul.feature_list');
 
     self.lHeight  = $(list).offset().top;
     self.lOffset  = $(list).offset().left;
@@ -144,7 +155,7 @@ var module = new (function() {
     $(document).on('click', '#forkme a', openLink);
     $(document).on('click', 'h2', updateHash);
     $(document).scroll(scroll);
-    $('section').each(createWaypoint);
+    $(sections).each(createWaypoint);
 
     checkHash();
   };
