@@ -11,6 +11,7 @@ var fs = require('fs');
 describe('Bundle', function() {
 
   afterEach(http.stopServer);
+  afterEach(fs.unlink.bind(this, DIR + 'common.js'));
 
   describe('#bundle(js)', function() {
     it('Should bundle', function(done) {
