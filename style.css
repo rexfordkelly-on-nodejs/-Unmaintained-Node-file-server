@@ -30,8 +30,8 @@ body {
 
 #forkme {
   position:absolute;
-  top:36px;
-  right:-94px;
+  top:28px;
+  right:-102px;
   z-index:99;
   width:300px;
   line-height:40px;
@@ -40,9 +40,10 @@ body {
   background-image:linear-gradient(top, #777, #555);
   background-image:-webkit-linear-gradient(top, #777, #555);
   background-image:-moz-linear-gradient(top, #777, #555);
-  box-shadow:0 0 8px #444;
-  -webkit-box-shadow:0 0 8px #444;
-  -moz-box-shadow:0 0 8px #444;
+  box-shadow:inset 0 0 8px #444;
+  -webkit-box-shadow:inset 0 0 8px #444;
+  -moz-box-shadow:inset 0 0 8px #444;
+  border:2px solid #ccc;
   transform:rotate(45deg);
   -webkit-transform:rotate(45deg);
   -moz-transform:rotate(45deg);
@@ -50,8 +51,8 @@ body {
 #forkme a {
   display:inline-block;
   text-decoration:none;
-  color:#eee;
-  font-size:14px;
+  color:#fafafa;
+  font-size:12px;
   transition:.2s all ease-in-out;
   -webkit-transition:.2s all ease-in-out;
   -moz-transition:.2s all ease-in-out;
@@ -195,7 +196,7 @@ section ol li {
 }
 
 h2.section_title {
-  margin:20px 0 20px -10px;
+  margin:20px 0 30px -10px;
   font-family:bebas;
   cursor:pointer;
   transition:.2s all ease-in-out;
