@@ -1,6 +1,7 @@
-var Lactate = require('../lib/lactate')
-var should = require('should')
-var path = require('path');
+var Lactate = require('../lib/lactate');
+var should  = require('should');
+var path    = require('path');
+var fs      = require('fs');
 
 describe('Options', function() {
   describe('Constructor', function() {
@@ -45,6 +46,12 @@ describe('Options', function() {
     it('Should have max_age option 3600', function() {
       var opt = lactate.get('max_age')
       opt.should.equal(3600)
+    })
+    it('Should have created common.js bundle', function(done) {
+      fs.unlink('common.js', done);
+    })
+    it('Should have created common.css bundle', function(done) {
+      fs.unlink('common.css', done);
     })
   })
   describe('#set(object)', function() {
@@ -119,4 +126,12 @@ describe('Options', function() {
       opt.keyb.should.equal('valb');
     })
   });
-})
+  describe('#maxAge(v)', function() {
+    var lactate = Lactate.Lactate()
+    lactate.maxAge('one hour');
+    it('Should have max age value 3600', function() {
+      var opt = lactate.get('max_age')
+      opt.should.equal(3600);
+    })
+  });
+});
