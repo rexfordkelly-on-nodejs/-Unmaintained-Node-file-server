@@ -1,4 +1,3 @@
-console.log('asdf');
 
 var module = new (function() {
 
