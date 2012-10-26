@@ -195,7 +195,7 @@ section ol li {
 }
 
 h2.section_title {
-  margin:20px 0 0 -10px;
+  margin:20px 0 40px -10px;
   font-family:bebas;
   cursor:pointer;
   transition:.2s all ease-in-out;
