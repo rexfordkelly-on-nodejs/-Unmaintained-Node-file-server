@@ -1,6 +1,6 @@
 {
   "name": "lactate",
-  "version": "0.10.14",
+  "version": "0.10.15",
   "description": "Simple and featureful assets server",
   "keywords": [
     "static",
@@ -20,7 +20,7 @@
     "optimist":"0.3.5"
   },
   "devDependencies": {
-    "mocha": "1.5.0",
+    "mocha": "1.6.0",
     "should": "1.2.0"
   },
   "main": "index.js",
