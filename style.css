@@ -83,7 +83,7 @@ h1 {
   margin:0;
 }
 h2.section_title {
-  margin:20px 0 30px -10px;
+  margin:0 0 30px -10px;
   font-family:'PT Sans Narrow';
   cursor:pointer;
   transition:.2s all ease-in-out;
