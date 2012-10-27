@@ -1,24 +1,29 @@
 
-/*
- * As zlib's functions are necessarily
- * asynchronous, I have pre-gzipped
- * all of the files and included them
- * in ./files directory.
- */
+var fs  = require('fs');
 
-var fs  = require('fs')
-var map = module.exports
+module.exports = (function getFiles() {
+  var DIR = __dirname + '/../files/';
 
-var dir = __dirname + '/../files/'
+  function gzipped(file) {
+    return /\.gz$/.test(file);
+  };
 
-var files = [
-    'nodejs.jpeg',
-    'font-awesome.css.gz',
-    'jquery.min.js.gz'
-].forEach(function(file) {
+  var map = {};
+  var files = [
+    'index.html.gz',
+    'landing page.html.gz',
+    'script.js.gz',
+    'style.css.gz',
+    'test.png'
+  ];
+  
+  files.forEach(function(file) {
     var fileName = file.replace(/\.gz$/, '');
-    var file = fs.readFileSync(dir+file)
-    map[fileName] = file.toString()
-})
+    var file = fs.readFileSync(DIR + file);
+    map[fileName] = file.length;
+  })
 
-return map
+  return map;
+})();
+
+//console.log(Object.keys(module.exports).map(function(k){return [k, module.exports[k]];}));

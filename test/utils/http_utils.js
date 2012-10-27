@@ -59,7 +59,7 @@ module.exports.client = function(path, cb, times, method) {
         if (--i) {
           next(i);
         } else {
-          cb(null, res, data.toString());
+          cb(null, res, data);
         };
       })
 

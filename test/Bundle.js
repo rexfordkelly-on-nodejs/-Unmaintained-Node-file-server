@@ -1,14 +1,13 @@
 
-var should = require('should')
-var Lactate = require('../lib/lactate')
-
-var http = require('./utils/http_utils')
-var files = require('./utils/get_files')
-
-var DIR = __dirname + '/files/'
-var fs = require('fs');
+var should  = require('should');
+var Lactate = require('../lib/lactate');
+var http    = require('./utils/http_utils');
+var files   = require('./utils/get_files');
+var fs      = require('fs');
 
 describe('Bundle', function() {
+
+  const DIR = __dirname + '/files/'
 
   afterEach(http.stopServer);
   afterEach(fs.unlink.bind(this, DIR + 'common.js'));

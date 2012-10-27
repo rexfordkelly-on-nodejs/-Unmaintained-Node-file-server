@@ -1,124 +1,124 @@
 
-var should = require('should')
-var Lactate = require('../lib/lactate')
-
-var http = require('./utils/http_utils')
-var files = require('./utils/get_files')
-
-var DIR = __dirname + '/files/'
+var should  = require('should');
+var Lactate = require('../lib/lactate');
+var http    = require('./utils/http_utils');
+var files   = require('./utils/get_files');
 
 describe('File', function() {
 
+  const DIR = __dirname + '/files/';
+
   afterEach(http.stopServer);
 
-  describe('#file(jquery.min.js)', function() {
+  describe('#file(index.html)', function() {
+    const file = 'index.html';
+    const size = files[file];
+
     it('Should not err', function(done) {
       http.server(function(req, res) {
-        Lactate.file('jquery.min.js', req, res, {
-          root:DIR
-        })
+        Lactate.file(file, req, res, { root:DIR });
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
-        done()
+        should.exist(res);
+        should.exist(data);
+        done();
       })
     })
     it('Should have status 200', function(done) {
       http.server(function(req, res) {
-        Lactate.file('jquery.min.js', req, res, {
-          root:DIR
-        })
+        Lactate.file(file, req, res, { root:DIR });
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
         res.should.have.status(200)
-        done()
+        should.exist(res);
+        should.exist(data);
+        done();
       })
     })
     it('Should have content-type header', function(done) {
       http.server(function(req, res) {
-        Lactate.file('jquery.min.js', req, res, {
-          root:DIR
-        })
+        Lactate.file(file, req, res, { root:DIR });
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
-        res.headers.should.have.property('content-type')
-        res.headers['content-type'].should.equal('application/javascript')
-        done()
+        should.exist(res);
+        should.exist(data);
+        res.headers.should.have.property('content-type', 'text/html');
+        done();
       })
     })
     it('Should have content-encoding header', function(done) {
       http.server(function(req, res) {
-        Lactate.file('jquery.min.js', req, res, {
-          root:DIR
-        })
+        Lactate.file(file, req, res, { root:DIR });
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
-        res.headers.should.have.property('content-encoding')
-        res.headers['content-encoding'].should.equal('gzip')
-        done()
+        should.exist(res);
+        should.exist(data);
+        res.headers.should.have.property('content-encoding', 'gzip');
+        done();
       })
     })
     it('Should have content-length header', function(done) {
       http.server(function(req, res) {
-        Lactate.file('jquery.min.js', req, res, {
-          root:DIR
-        })
+        Lactate.file(file, req, res, { root:DIR });
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
-        res.headers.should.have.property('content-length')
-        done()
+        should.exist(res);
+        should.exist(data);
+        res.headers.should.have.property('content-length', String(size));
+        done();
       })
     })
     it('Should have date header', function(done) {
       http.server(function(req, res) {
-        Lactate.file('jquery.min.js', req, res, {
-          root:DIR
-        })
+        Lactate.file(file, req, res, { root:DIR });
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
-        res.headers.should.have.property('date')
-        done()
+        should.exist(res);
+        should.exist(data);
+        res.headers.should.have.property('date');
+        done();
       })
     })
     it('Should have last-modified header', function(done) {
       http.server(function(req, res) {
-        Lactate.file('jquery.min.js', req, res, {
-          root:DIR
-        })
+        Lactate.file(file, req, res, { root:DIR });
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
+        should.exist(res);
+        should.exist(data);
         res.headers.should.have.property('last-modified')
-        done()
+        done();
       })
     })
     it('Should have cache-control header', function(done) {
       http.server(function(req, res) {
-        Lactate.file('jquery.min.js', req, res, {
-          root:DIR
-        })
+        Lactate.file(file, req, res, { root:DIR });
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
-        res.headers.should.have.property('cache-control')
-        done()
+        should.exist(res);
+        should.exist(data);
+        res.headers.should.have.property('cache-control');
+        done();
       })
     })
     it('Should serve complete data', function(done) {
       http.server(function(req, res) {
-        Lactate.file('jquery.min.js', req, res, {
-          root:DIR
-        })
+        Lactate.file(file, req, res, { root:DIR });
       })
       http.client('/', function(err, res, data) {
         should.not.exist(err);
-        data.should.equal(files['jquery.min.js'])
-        done()
+        should.exist(res);
+        should.exist(data);
+        data.should.have.property('length', size);
+        done();
       })
     })
   })

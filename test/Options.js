@@ -88,16 +88,7 @@ describe('Options', function() {
       opt.should.equal(false);
     })
   });
-  describe('#header(k, v)', function() {
-    var lactate = Lactate.Lactate()
-    lactate.header('testh', 'testv');
-    it('Should have header property testh', function() {
-      var opt = lactate.get('headers')
-      opt.should.have.property('testh');
-      opt.testh.should.equal('testv');
-    })
-  });
-  describe('#header(k, v)', function() {
+  describe('#header(k, v) --string', function() {
     var lactate = Lactate.Lactate()
     lactate.header('keya', 'vala');
     it('Should have header property keya', function() {
@@ -107,6 +98,16 @@ describe('Options', function() {
     it('Should have header value "vala"', function() {
       var opt = lactate.get('headers')
       opt.keya.should.equal('vala');
+    })
+  });
+  describe('#header(k, v) --function', function() {
+    var lactate = Lactate.Lactate()
+    lactate.header('keya', function(req, res) {
+      return 'vala';
+    });
+    it('Should have dynamic header property keya', function() {
+      var opt = lactate.get('dynamic_headers')
+      opt.should.have.property('keya');
     })
   });
   describe('#headers(object)', function() {
