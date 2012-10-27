@@ -1,3 +1,9 @@
+@font-face {
+  font-family:'Bebas';
+  font-style:normal;
+  font-weight:400;
+  src:url(BebasNeue.otf);
+}
 
 ::selection {
   color: #eee;
@@ -7,17 +13,11 @@
   color: #eee;
   background: #666;
 }
-@font-face {
-  font-family:'Bebas';
-  font-style:normal;
-  font-weight:400;
-  src:url(BebasNeue.otf);
-}
 
 html {
   background:#fafafa;
   color:#666;
-  font-family:arvo;
+  font-family:'Rokkitt';
   padding:0;
   margin:0;
 }
@@ -78,9 +78,30 @@ h1, h2, h3 {
 }
 h1 {
   font-size:4em;
-  font-family:Bebas;
+  font-family:bebas;
   display:inline-block;
   margin:0;
+}
+h2.section_title {
+  margin:20px 0 30px -10px;
+  font-family:'PT Sans Narrow';
+  cursor:pointer;
+  transition:.2s all ease-in-out;
+  -webkit-transition:.2s all ease-in-out;
+  -moz-transition:.2s all ease-in-out;
+}
+h2.section_title a {
+  text-decoration:none;
+  color:#666;
+}
+h2.section_title a:hover {
+  text-decoration:underline;
+  color:#888;
+}
+h3 {
+  margin:20px 0;
+  font-family:helvetica,arial,sans-serif;
+  font-size:16px;
 }
 
 p.headline {
@@ -195,27 +216,6 @@ section ol li {
   font-size:14px;
 }
 
-h2.section_title {
-  margin:20px 0 30px -10px;
-  font-family:bebas;
-  cursor:pointer;
-  transition:.2s all ease-in-out;
-  -webkit-transition:.2s all ease-in-out;
-  -moz-transition:.2s all ease-in-out;
-}
-h2.section_title a {
-  text-decoration:none;
-  color:#666;
-}
-h2.section_title a:hover {
-  text-decoration:underline;
-  color:#888;
-}
-h3 {
-  margin:20px 0;
-  font-family:helvetica,arial,sans-serif;
-  font-size:16px;
-}
 
 table {
   border-spacing:0;
