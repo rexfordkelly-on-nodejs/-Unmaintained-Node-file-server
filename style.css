@@ -212,7 +212,7 @@ section em.code {
 }
 section ol {
   border-left:2px solid #eee;
-  margin-left:8px;
+  margin:20px 0 20px 8px;
 }
 section ol li {
   font-size:14px;
