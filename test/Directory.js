@@ -4,7 +4,7 @@ var Lactate = require('../lib/lactate');
 var http    = require('./utils/http_utils');
 var files   = require('./utils/get_files');
 
-describe('Dir', function() {
+describe('Directory', function() {
 
   const DIR = __dirname + '/files/';
 
