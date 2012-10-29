@@ -4,14 +4,14 @@ var Lactate = require('../lib/lactate');
 var http    = require('./utils/http_utils');
 var files   = require('./utils/get_files');
 
-describe('Dir', function() {
+describe('node-static API', function() {
 
   const DIR = __dirname + '/files/';
 
   afterEach(http.stopServer);
 
   describe('#serve(index.html)', function() {
-    const dir = Lactate.dir(DIR);
+    const dir = new(Lactate.Server)(DIR);
     const file = 'index.html';
     const size = files[file];
     const url = '/' + file;
@@ -108,7 +108,7 @@ describe('Dir', function() {
   })
   
   describe('#serve(index.html) --with-public-dir', function() {
-    const dir = Lactate.dir(DIR, { from:'files' });
+    const dir = new(Lactate.Server)(DIR, { from:'files' });
     const file = 'index.html';
     const size = files[file];
     const url = '/files/' + file;
@@ -204,8 +204,8 @@ describe('Dir', function() {
     })
   })
 
-  describe('#serve(/files/index.html) --no-subdirs', function() {
-    const dir = Lactate.dir(DIR, { subdirs:false });
+  describe('#serve(index.html) --no-subdirs', function() {
+    const dir = new(Lactate.dir)(DIR, { subdirs:false });
     const file = 'index.html';
     const size = files[file];
     const url = '/files/' + file;

@@ -4,20 +4,20 @@ var Lactate = require('../lib/lactate');
 var http    = require('./utils/http_utils');
 var files   = require('./utils/get_files');
 
-describe('Dir', function() {
+describe('express-static-API', function() {
 
   const DIR = __dirname + '/files/';
 
   afterEach(http.stopServer);
 
   describe('#serve(index.html)', function() {
-    const dir = Lactate.dir(DIR);
+    const dir = Lactate.static(DIR);
     const file = 'index.html';
     const size = files[file];
     const url = '/' + file;
 
     it('Should not err', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -26,7 +26,7 @@ describe('Dir', function() {
       })
     })
     it('Should have status 200', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -36,7 +36,7 @@ describe('Dir', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -46,7 +46,7 @@ describe('Dir', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -56,7 +56,7 @@ describe('Dir', function() {
       })
     })
     it('Should have content-length header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -66,7 +66,7 @@ describe('Dir', function() {
       })
     })
     it('Should have date header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -76,7 +76,7 @@ describe('Dir', function() {
       })
     })
     it('Should have last-modified header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -86,7 +86,7 @@ describe('Dir', function() {
       })
     })
     it('Should have cache-control header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -96,7 +96,7 @@ describe('Dir', function() {
       })
     })
     it('Should serve complete data', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -108,13 +108,13 @@ describe('Dir', function() {
   })
   
   describe('#serve(index.html) --with-public-dir', function() {
-    const dir = Lactate.dir(DIR, { from:'files' });
+    const dir = Lactate.static(DIR, { from:'files' });
     const file = 'index.html';
     const size = files[file];
     const url = '/files/' + file;
 
     it('Should not err', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -123,7 +123,7 @@ describe('Dir', function() {
       })
     })
     it('Should have status 200', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -133,7 +133,7 @@ describe('Dir', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -143,7 +143,7 @@ describe('Dir', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -153,7 +153,7 @@ describe('Dir', function() {
       })
     })
     it('Should have content-length header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -163,7 +163,7 @@ describe('Dir', function() {
       })
     })
     it('Should have date header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -173,7 +173,7 @@ describe('Dir', function() {
       })
     })
     it('Should have last-modified header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -183,7 +183,7 @@ describe('Dir', function() {
       })
     })
     it('Should have cache-control header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -193,7 +193,7 @@ describe('Dir', function() {
       })
     })
     it('Should serve complete data', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -204,14 +204,14 @@ describe('Dir', function() {
     })
   })
 
-  describe('#serve(/files/index.html) --no-subdirs', function() {
-    const dir = Lactate.dir(DIR, { subdirs:false });
+  describe('#serve(index.html) --no-subdirs', function() {
+    const dir = Lactate.static(DIR, { subdirs:false });
     const file = 'index.html';
     const size = files[file];
     const url = '/files/' + file;
 
     it('Should not err', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -220,7 +220,7 @@ describe('Dir', function() {
       })
     })
     it('Should have status 403', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -230,7 +230,7 @@ describe('Dir', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -240,7 +240,7 @@ describe('Dir', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
@@ -250,7 +250,7 @@ describe('Dir', function() {
       })
     })
     it('Should have date header', function(done) {
-      http.server(dir.serve.bind(dir));
+      http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);

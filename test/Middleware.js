@@ -203,5 +203,70 @@ describe('Middleware', function() {
       })
     })
   })
+
+  describe('#serve(/files/index.html) --no-subdirs', function() {
+    const dir = Lactate.dir(DIR).toMiddleware({ subdirs:false });
+    const url = '/files/index.html';
+
+    it('Should not err', function(done) {
+      http.server(dir);
+      http.client(url, function(err, res, data) {
+        should.not.exist(err);
+        should.exist(res);
+        should.exist(data);
+        done();
+      })
+    })
+    it('Should have status 403', function(done) {
+      http.server(dir);
+      http.client(url, function(err, res, data) {
+        should.not.exist(err);
+        should.exist(res);
+        should.exist(data);
+        res.should.have.status(403)
+        done();
+      })
+    })
+    it('Should have content-type header', function(done) {
+      http.server(dir);
+      http.client(url, function(err, res, data) {
+        should.not.exist(err);
+        should.exist(res);
+        should.exist(data);
+        res.headers.should.have.property('content-type', 'text/html');
+        done();
+      })
+    })
+    it('Should have content-encoding header', function(done) {
+      http.server(dir);
+      http.client(url, function(err, res, data) {
+        should.not.exist(err);
+        should.exist(res);
+        should.exist(data);
+        res.headers.should.have.property('content-encoding', 'gzip');
+        done();
+      })
+    })
+    it('Should have content-length header', function(done) {
+      http.server(dir);
+      http.client(url, function(err, res, data) {
+        should.not.exist(err);
+        should.exist(res);
+        should.exist(data);
+        res.headers.should.have.property('content-length');
+        done();
+      })
+    })
+    it('Should have date header', function(done) {
+      http.server(dir);
+      http.client(url, function(err, res, data) {
+        should.not.exist(err);
+        should.exist(res);
+        should.exist(data);
+        res.headers.should.have.property('date')
+        done()
+      })
+    })
+  })
 })
 
