@@ -111,31 +111,31 @@ describe('Cache', function() {
       })
     })
   })
-
-  describe('#cache:{redis:true}', function() {
-    it('Should cache file', function(done) {
-      const options = { cache:{ redis:true } };
-      const dir = Lactate.dir(DIR, options);
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/' + file;
-      http.server(dir.serve.bind(dir));
-      http.client(url, 10, function(err, res, data) {
-        should.not.exist(err);
-        should.exist(res);
-        should.exist(data);
-        res.should.have.status(200)
-        res.headers.should.have.property('content-type', 'text/html');
-        res.headers.should.have.property('content-encoding', 'gzip')
-        res.headers.should.have.property('content-length', String(size));
-        res.headers.should.have.property('date')
-        res.headers.should.have.property('last-modified')
-        res.headers.should.have.property('cache-control');
-        data.should.have.property('length', size);
-        done();
-      })
-    })
-  })
+//
+//  describe('#cache:{redis:true}', function() {
+//    it('Should cache file', function(done) {
+//      const options = { cache:{ redis:true } };
+//      const dir = Lactate.dir(DIR, options);
+//      const file = 'index.html';
+//      const size = files[file];
+//      const url = '/' + file;
+//      http.server(dir.serve.bind(dir));
+//      http.client(url, 10, function(err, res, data) {
+//        should.not.exist(err);
+//        should.exist(res);
+//        should.exist(data);
+//        res.should.have.status(200)
+//        res.headers.should.have.property('content-type', 'text/html');
+//        res.headers.should.have.property('content-encoding', 'gzip')
+//        res.headers.should.have.property('content-length', String(size));
+//        res.headers.should.have.property('date')
+//        res.headers.should.have.property('last-modified')
+//        res.headers.should.have.property('cache-control');
+//        data.should.have.property('length', size);
+//        done();
+//      })
+//    })
+//  })
 
 })
 
