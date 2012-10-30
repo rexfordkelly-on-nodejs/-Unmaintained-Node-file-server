@@ -30,7 +30,12 @@ var argv = optimist
   .options('error_pages', {
     describe:'Serve error pages',
     default:true,
-    alias:['error-pages', 'ep']
+    alias:['error-pages']
+  })
+  .options('autoindex', {
+    describe:'Automatically index directories',
+    default:true,
+    alias:'a'
   })
   .options('cache', {
     describe:'Store assets in-memory',
@@ -40,7 +45,7 @@ var argv = optimist
   .options('watch_files', {
     describe:'Watch files for cache update',
     default:true,
-    alias:['watch-files', 'w']
+    alias:['watch-files']
   })
   .options('max_age', {
     describe:'Client-side caching max-age',
