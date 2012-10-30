@@ -44,7 +44,7 @@ var argv = optimist
   })
   .options('redis_cache', {
     describe:'Store assets in-memory using Redis',
-    default:true,
+    default:false,
     alias:'rc'
   })
   .options('watch_files', {
