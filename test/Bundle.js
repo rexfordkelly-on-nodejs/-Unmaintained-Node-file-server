@@ -64,7 +64,7 @@ describe('Bundle', function() {
 
   describe('#bundleCSS()', function() {
     const dir = Lactate.dir(DIR);
-    const fileName = 'common.js';
+    const fileName = 'common.css';
     const filePath = DIR + fileName;
 
     it('Should bundle', function(done) {
