@@ -42,6 +42,11 @@ var argv = optimist
     default:true,
     alias:'c'
   })
+  .options('redis_cache', {
+    describe:'Store assets in-memory using Redis',
+    default:true,
+    alias:'rc'
+  })
   .options('watch_files', {
     describe:'Watch files for cache update',
     default:true,
