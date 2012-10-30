@@ -1,4 +1,4 @@
 test:
-	./node_modules/.bin/mocha --reporter spec --timeout 3000 ./test/*.js
+	./node_modules/.bin/mocha --timeout 3000 ./test/*.js
 
 .PHONY: test
