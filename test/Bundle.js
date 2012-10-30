@@ -38,14 +38,15 @@ describe('Bundle', function() {
 
   describe('#bundleJS()', function() {
     const dir = Lactate.dir(DIR);
-    const file = 'common.js';
+    const fileName = 'common.js';
+    const filePath = DIR + fileName;
 
     it('Should bundle', function(done) {
       http.server(dir.toMiddleware());
-      dir.bundleJS(file, function(err, data) {
+      dir.bundleJS(fileName, function(err, data) {
         should.not.exist(err);
         should.exist(data.toString());
-        http.client('/' + file, 2, function(err, res, data) {
+        http.client('/' + fileName, 2, function(err, res, data) {
           should.not.exist(err);
           should.exist(data);
           res.should.have.status(200);
@@ -55,7 +56,7 @@ describe('Bundle', function() {
           res.headers.should.have.property('date');
           res.headers.should.have.property('last-modified');
           res.headers.should.have.property('cache-control');
-          fs.unlink(DIR + file, done);
+          fs.unlink(filePath, done);
         });
       });
     })
@@ -63,14 +64,15 @@ describe('Bundle', function() {
 
   describe('#bundleCSS()', function() {
     const dir = Lactate.dir(DIR);
-    const file = 'common.css';
+    const fileName = 'common.js';
+    const filePath = DIR + fileName;
 
     it('Should bundle', function(done) {
       http.server(dir.toMiddleware());
-      dir.bundleCSS(file, function(err, data) {
+      dir.bundleCSS(fileName, function(err, data) {
         should.not.exist(err);
         should.exist(data.toString());
-        http.client('/' + file, 2, function(err, res, data) {
+        http.client('/' + fileName, 2, function(err, res, data) {
           should.not.exist(err);
           should.exist(data);
           res.should.have.status(200);
@@ -80,7 +82,7 @@ describe('Bundle', function() {
           res.headers.should.have.property('date');
           res.headers.should.have.property('last-modified');
           res.headers.should.have.property('cache-control');
-          fs.unlink(DIR + file, done);
+          fs.unlink(filePath, done);
         });
       });
     })
