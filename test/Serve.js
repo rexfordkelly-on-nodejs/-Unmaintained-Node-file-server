@@ -11,11 +11,10 @@ describe('Serve', function() {
   afterEach(http.stopServer);
 
   describe('#serve(index.html)', function() {
-    const lactate = Lactate.Lactate({ root:DIR });
-    const file = 'index.html';
-    const size = files[file];
-
     it('Should not err', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       });
@@ -27,6 +26,9 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res)
       })
@@ -39,6 +41,9 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -51,6 +56,9 @@ describe('Serve', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -63,6 +71,9 @@ describe('Serve', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res)
       })
@@ -75,6 +86,9 @@ describe('Serve', function() {
       })
     })
     it('Should have date header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -87,6 +101,9 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -99,6 +116,9 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -111,6 +131,9 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -125,12 +148,11 @@ describe('Serve', function() {
   })
 
   describe('#serve(landing%20page.html)', function() {
-    const lactate = Lactate.Lactate({ root:DIR });
-    const file = 'landing page.html';
-    const size = files[file];
-    const url = '/landing%20page.html';
-
     it('Should not err', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'landing page.html';
+      const size = files[file];
+      const url = '/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       });
@@ -142,6 +164,10 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'landing page.html';
+      const size = files[file];
+      const url = '/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
@@ -154,6 +180,10 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'landing page.html';
+      const size = files[file];
+      const url = '/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -166,6 +196,10 @@ describe('Serve', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'landing page.html';
+      const size = files[file];
+      const url = '/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -178,6 +212,10 @@ describe('Serve', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'landing page.html';
+      const size = files[file];
+      const url = '/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
@@ -190,6 +228,10 @@ describe('Serve', function() {
       })
     })
     it('Should have date header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'landing page.html';
+      const size = files[file];
+      const url = '/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -202,6 +244,10 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'landing page.html';
+      const size = files[file];
+      const url = '/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -214,6 +260,10 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'landing page.html';
+      const size = files[file];
+      const url = '/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -226,6 +276,10 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'landing page.html';
+      const size = files[file];
+      const url = '/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -240,11 +294,10 @@ describe('Serve', function() {
   })
 
   describe('#serve(script.js)', function() {
-    const lactate = Lactate.Lactate({ root:DIR });
-    const file = 'script.js';
-    const size = files[file];
-
     it('Should not err', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'script.js';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       });
@@ -256,6 +309,9 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'script.js';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res)
       })
@@ -268,6 +324,9 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'script.js';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -280,6 +339,9 @@ describe('Serve', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'script.js';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -292,6 +354,9 @@ describe('Serve', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'script.js';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res)
       })
@@ -304,6 +369,9 @@ describe('Serve', function() {
       })
     })
     it('Should have date header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'script.js';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -316,6 +384,9 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'script.js';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -328,6 +399,9 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'script.js';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -340,6 +414,9 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'script.js';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -354,11 +431,10 @@ describe('Serve', function() {
   })
 
   describe('#serve(style.css)', function() {
-    const lactate = Lactate.Lactate({ root:DIR });
-    const file = 'style.css';
-    const size = files[file];
-
     it('Should not err', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'style.css';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -370,6 +446,9 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'style.css';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -382,6 +461,9 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'style.css';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res)
       })
@@ -394,6 +476,9 @@ describe('Serve', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'style.css';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res)
       });
@@ -406,7 +491,9 @@ describe('Serve', function() {
       });
     });
     it('Should have content-length header', function(done) {
-      var file = 'style.css';
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'style.css';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       });
@@ -419,6 +506,9 @@ describe('Serve', function() {
       });
     })
     it('Should have date header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'style.css';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -431,6 +521,9 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'style.css';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -443,6 +536,9 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'style.css';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -455,6 +551,9 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'style.css';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -469,11 +568,10 @@ describe('Serve', function() {
   })
 
   describe('#serve(test.png)', function() {
-    const lactate = Lactate.Lactate({ root:DIR });
-    const file = 'test.png';
-    const size = files[file];
-
     it('Should not err', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'test.png';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res)
       })
@@ -485,6 +583,9 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'test.png';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -497,6 +598,9 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'test.png';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res)
       })
@@ -509,6 +613,9 @@ describe('Serve', function() {
       })
     })
     it('Should not have content-encoding header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'test.png';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -521,6 +628,9 @@ describe('Serve', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'test.png';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -533,6 +643,9 @@ describe('Serve', function() {
       })
     })
     it('Should have date header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'test.png';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -545,6 +658,9 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'test.png';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -557,6 +673,9 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'test.png';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -569,6 +688,9 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR });
+      const file = 'test.png';
+      const size = files[file];
       http.server(function(req, res) {
         lactate.serve(file, req, res)
       })
@@ -583,10 +705,9 @@ describe('Serve', function() {
   })
 
   describe('#serve(invalidpath)', function() {
-    const lactate = Lactate.Lactate({ root:DIR })
-    const file = 'invalidpath';
-
     it('Should not err', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR })
+      const file = 'invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -598,6 +719,8 @@ describe('Serve', function() {
       })
     })
     it('Should have status code 404', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR })
+      const file = 'invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -610,6 +733,8 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR })
+      const file = 'invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -622,6 +747,8 @@ describe('Serve', function() {
       })
     });
     it('Should have content-encoding header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR })
+      const file = 'invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -634,6 +761,8 @@ describe('Serve', function() {
       })
     });
     it('Should have content-length header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR })
+      const file = 'invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -646,6 +775,8 @@ describe('Serve', function() {
       })
     });
     it('Should have date header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR })
+      const file = 'invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -660,10 +791,9 @@ describe('Serve', function() {
   })
 
   describe('#serve(.invalidpath) --no-hidden', function() {
-    const lactate = Lactate.Lactate({ root:DIR, hidden:false })
-    const file = '.invalidpath';
-
     it('Should not err', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      const file = '.invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -675,6 +805,8 @@ describe('Serve', function() {
       })
     })
     it('Should have status 403', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      const file = '.invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -687,6 +819,8 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      const file = '.invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -699,6 +833,8 @@ describe('Serve', function() {
       })
     });
     it('Should have content-encoding header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      const file = '.invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -711,6 +847,8 @@ describe('Serve', function() {
       })
     });
     it('Should have content-length header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      const file = '.invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -723,6 +861,8 @@ describe('Serve', function() {
       })
     });
     it('Should have date header', function(done) {
+      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      const file = '.invalidpath';
       http.server(function(req, res) {
         lactate.serve(file, req, res);
       })
@@ -737,10 +877,9 @@ describe('Serve', function() {
   });
 
   describe('#serve(files/script.js) --no-subdirs', function() {
-    const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
-    const file = '/files/script.js';
-
     it('Should not err', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -752,6 +891,8 @@ describe('Serve', function() {
       })
     })
     it('Should have status 403', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -764,6 +905,8 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -776,6 +919,8 @@ describe('Serve', function() {
       })
     });
     it('Should have content-encoding header', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -786,6 +931,8 @@ describe('Serve', function() {
       })
     });
     it('Should have content-length header', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
@@ -796,6 +943,8 @@ describe('Serve', function() {
       })
     });
     it('Should have date header', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -810,10 +959,9 @@ describe('Serve', function() {
   });
 
   describe('#serve(files/script.js) --using-method-POST', function() {
-    const lactate = Lactate.Lactate({ root:__dirname });
-    const file = '/files/script.js';
-
     it('Should not err', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -825,6 +973,8 @@ describe('Serve', function() {
       })
     })
     it('Should have status 405', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -837,6 +987,8 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -849,6 +1001,8 @@ describe('Serve', function() {
       })
     });
     it('Should have content-encoding header', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -861,6 +1015,8 @@ describe('Serve', function() {
       })
     });
     it('Should have content-length header', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -873,6 +1029,8 @@ describe('Serve', function() {
       })
     });
     it('Should have date header', function(done) {
+      const lactate = Lactate.Lactate({ root:__dirname });
+      const file = '/files/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
