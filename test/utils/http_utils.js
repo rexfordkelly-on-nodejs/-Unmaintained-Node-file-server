@@ -22,9 +22,11 @@ module.exports.client = function(path, cb, times, method) {
   var args = Array.prototype.slice.call(arguments), cb;
   var path = args.shift();
   var lastArg = args[args.length-1];
+
   if (typeof(lastArg) === 'function') {
     cb = args.pop();
   };
+
   var times = args.shift() || 1;
   var method = args.shift() || 'GET';
 
@@ -36,25 +38,8 @@ module.exports.client = function(path, cb, times, method) {
     headers:{}
   };
 
-  var cacheHeaders = [ 
-    'last-modified',
-    'cache-control'
-  ];
-
-  var hasCacheHeaders = function(headers) {
-    return cacheHeaders.every(function(header) {
-      return !!headers[header];
-    });
-  };
-
   ;(function next(i) {
     var req = http.request(options, function(res) {
-      var headers = res.headers;
-      if (hasCacheHeaders(headers)) {
-        var lm = headers['last-modified'];
-        options.headers['if-modified-since'] = lm;
-      };
-
       var suckle = new Suckle(function(data) {
         if (--i) {
           next(i);
