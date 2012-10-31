@@ -12,10 +12,9 @@ describe('Bundle', function() {
   afterEach(http.stopServer);
 
   describe('#bundle(js)', function() {
-    const dir = Lactate.dir(DIR);
-    const file = 'common.js';
-
     it('Should bundle', function(done) {
+      const dir = Lactate.dir(DIR);
+      const file = 'common.js';
       http.server(dir.toMiddleware());
       dir.bundle('js', file, function(err, data) {
         should.not.exist(err);
@@ -37,11 +36,10 @@ describe('Bundle', function() {
   })
 
   describe('#bundleJS()', function() {
-    const dir = Lactate.dir(DIR);
-    const fileName = 'common.js';
-    const filePath = DIR + fileName;
-
     it('Should bundle', function(done) {
+      const dir = Lactate.dir(DIR);
+      const fileName = 'common.js';
+      const filePath = DIR + fileName;
       http.server(dir.toMiddleware());
       dir.bundleJS(fileName, function(err, data) {
         should.not.exist(err);
@@ -63,11 +61,10 @@ describe('Bundle', function() {
   })
 
   describe('#bundleCSS()', function() {
-    const dir = Lactate.dir(DIR);
-    const fileName = 'common.css';
-    const filePath = DIR + fileName;
-
     it('Should bundle', function(done) {
+      const dir = Lactate.dir(DIR);
+      const fileName = 'common.css';
+      const filePath = DIR + fileName;
       http.server(dir.toMiddleware());
       dir.bundleCSS(fileName, function(err, data) {
         should.not.exist(err);

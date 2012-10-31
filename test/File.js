@@ -11,10 +11,9 @@ describe('File', function() {
   afterEach(http.stopServer);
 
   describe('#file(index.html)', function() {
-    const file = 'index.html';
-    const size = files[file];
-
     it('Should not err', function(done) {
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         Lactate.file(file, req, res, { root:DIR });
       })
@@ -26,6 +25,8 @@ describe('File', function() {
       })
     })
     it('Should have status 200', function(done) {
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         Lactate.file(file, req, res, { root:DIR });
       })
@@ -38,6 +39,8 @@ describe('File', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         Lactate.file(file, req, res, { root:DIR });
       })
@@ -50,6 +53,8 @@ describe('File', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         Lactate.file(file, req, res, { root:DIR });
       })
@@ -62,6 +67,8 @@ describe('File', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         Lactate.file(file, req, res, { root:DIR });
       })
@@ -74,6 +81,8 @@ describe('File', function() {
       })
     })
     it('Should have date header', function(done) {
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         Lactate.file(file, req, res, { root:DIR });
       })
@@ -86,6 +95,8 @@ describe('File', function() {
       })
     })
     it('Should have last-modified header', function(done) {
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         Lactate.file(file, req, res, { root:DIR });
       })
@@ -98,6 +109,8 @@ describe('File', function() {
       })
     })
     it('Should have cache-control header', function(done) {
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         Lactate.file(file, req, res, { root:DIR });
       })
@@ -110,6 +123,8 @@ describe('File', function() {
       })
     })
     it('Should serve complete data', function(done) {
+      const file = 'index.html';
+      const size = files[file];
       http.server(function(req, res) {
         Lactate.file(file, req, res, { root:DIR });
       })

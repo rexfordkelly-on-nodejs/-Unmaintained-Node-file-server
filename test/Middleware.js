@@ -11,12 +11,11 @@ describe('Middleware', function() {
   afterEach(http.stopServer);
 
   describe('#serve(index.html)', function() {
-    const dir = Lactate.dir(DIR).toMiddleware();
-    const file = 'index.html';
-    const size = files[file];
-    const url = '/' + file;
-
     it('Should not err', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware();
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -26,6 +25,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have status 200', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware();
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -36,6 +39,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware();
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -46,6 +53,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware();
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -56,6 +67,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware();
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -66,6 +81,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have date header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware();
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -76,6 +95,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have last-modified header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware();
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -86,6 +109,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have cache-control header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware();
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -96,6 +123,10 @@ describe('Middleware', function() {
       })
     })
     it('Should serve complete data', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware();
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -108,12 +139,11 @@ describe('Middleware', function() {
   })
 
   describe('#serve(index.html) --with-public-dir', function() {
-    const dir = Lactate.dir(DIR).toMiddleware({ from:'files' });
-    const file = 'index.html';
-    const size = files[file];
-    const url = '/files/index.html';
-
     it('Should not err', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -123,6 +153,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have status 200', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -133,6 +167,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -143,6 +181,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -153,6 +195,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -163,6 +209,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have date header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -173,6 +223,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have last-modified header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -183,6 +237,10 @@ describe('Middleware', function() {
       })
     })
     it('Should have cache-control header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -193,6 +251,10 @@ describe('Middleware', function() {
       })
     })
     it('Should serve complete data', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -205,10 +267,9 @@ describe('Middleware', function() {
   })
 
   describe('#serve(/files/index.html) --no-subdirs', function() {
-    const dir = Lactate.dir(DIR).toMiddleware({ subdirs:false });
-    const url = '/files/index.html';
-
     it('Should not err', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ subdirs:false });
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -218,6 +279,8 @@ describe('Middleware', function() {
       })
     })
     it('Should have status 403', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ subdirs:false });
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -228,6 +291,8 @@ describe('Middleware', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ subdirs:false });
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -238,6 +303,8 @@ describe('Middleware', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ subdirs:false });
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -248,6 +315,8 @@ describe('Middleware', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ subdirs:false });
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -258,6 +327,8 @@ describe('Middleware', function() {
       })
     })
     it('Should have date header', function(done) {
+      const dir = Lactate.dir(DIR).toMiddleware({ subdirs:false });
+      const url = '/files/index.html';
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);

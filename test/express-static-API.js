@@ -11,12 +11,11 @@ describe('express-static-API', function() {
   afterEach(http.stopServer);
 
   describe('#serve(index.html)', function() {
-    const dir = Lactate.static(DIR);
-    const file = 'index.html';
-    const size = files[file];
-    const url = '/' + file;
-
     it('Should not err', function(done) {
+      const dir = Lactate.static(DIR);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -26,6 +25,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have status 200', function(done) {
+      const dir = Lactate.static(DIR);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -36,6 +39,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const dir = Lactate.static(DIR);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -46,6 +53,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const dir = Lactate.static(DIR);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -56,6 +67,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const dir = Lactate.static(DIR);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -66,6 +81,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have date header', function(done) {
+      const dir = Lactate.static(DIR);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -76,6 +95,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have last-modified header', function(done) {
+      const dir = Lactate.static(DIR);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -86,6 +109,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have cache-control header', function(done) {
+      const dir = Lactate.static(DIR);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -96,6 +123,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should serve complete data', function(done) {
+      const dir = Lactate.static(DIR);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -108,12 +139,11 @@ describe('express-static-API', function() {
   })
   
   describe('#serve(index.html) --with-public-dir', function() {
-    const dir = Lactate.static(DIR, { from:'files' });
-    const file = 'index.html';
-    const size = files[file];
-    const url = '/files/' + file;
-
     it('Should not err', function(done) {
+      const dir = Lactate.static(DIR, { from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -123,6 +153,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have status 200', function(done) {
+      const dir = Lactate.static(DIR, { from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -133,6 +167,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const dir = Lactate.static(DIR, { from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -143,6 +181,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const dir = Lactate.static(DIR, { from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -153,6 +195,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const dir = Lactate.static(DIR, { from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -163,6 +209,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have date header', function(done) {
+      const dir = Lactate.static(DIR, { from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -173,6 +223,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have last-modified header', function(done) {
+      const dir = Lactate.static(DIR, { from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -183,6 +237,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have cache-control header', function(done) {
+      const dir = Lactate.static(DIR, { from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -193,6 +251,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should serve complete data', function(done) {
+      const dir = Lactate.static(DIR, { from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -205,12 +267,11 @@ describe('express-static-API', function() {
   })
 
   describe('#serve(index.html) --no-subdirs', function() {
-    const dir = Lactate.static(DIR, { subdirs:false });
-    const file = 'index.html';
-    const size = files[file];
-    const url = '/files/' + file;
-
     it('Should not err', function(done) {
+      const dir = Lactate.static(DIR, { subdirs:false });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -220,6 +281,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have status 403', function(done) {
+      const dir = Lactate.static(DIR, { subdirs:false });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -230,6 +295,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const dir = Lactate.static(DIR, { subdirs:false });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -240,6 +309,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const dir = Lactate.static(DIR, { subdirs:false });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -250,6 +323,10 @@ describe('express-static-API', function() {
       })
     })
     it('Should have date header', function(done) {
+      const dir = Lactate.static(DIR, { subdirs:false });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
       http.server(dir);
       http.client(url, function(err, res, data) {
         should.not.exist(err);

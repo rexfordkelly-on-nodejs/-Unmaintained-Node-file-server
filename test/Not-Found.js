@@ -11,10 +11,9 @@ describe('Custom 404 Handlers', function() {
   afterEach(http.stopServer);
 
   describe('#set(not_found) --string', function() {
-    const dir = Lactate.dir(DIR);
-    dir.set('not_found', DIR + '404.html');
-
     it('Should not err', function(done) {
+      const dir = Lactate.dir(DIR);
+      dir.set('not_found', DIR + '404.html');
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -24,6 +23,8 @@ describe('Custom 404 Handlers', function() {
       })
     })
     it('Should have status 404', function(done) {
+      const dir = Lactate.dir(DIR);
+      dir.set('not_found', DIR + '404.html');
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -34,6 +35,8 @@ describe('Custom 404 Handlers', function() {
       })
     })
     it('Should have content-type header', function(done) {
+      const dir = Lactate.dir(DIR);
+      dir.set('not_found', DIR + '404.html');
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -44,6 +47,8 @@ describe('Custom 404 Handlers', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
+      const dir = Lactate.dir(DIR);
+      dir.set('not_found', DIR + '404.html');
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -54,6 +59,8 @@ describe('Custom 404 Handlers', function() {
       })
     })
     it('Should have content-length header', function(done) {
+      const dir = Lactate.dir(DIR);
+      dir.set('not_found', DIR + '404.html');
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -64,6 +71,8 @@ describe('Custom 404 Handlers', function() {
       })
     })
     it('Should have date header', function(done) {
+      const dir = Lactate.dir(DIR);
+      dir.set('not_found', DIR + '404.html');
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -76,10 +85,9 @@ describe('Custom 404 Handlers', function() {
   })
 
   describe('#set(not_found) --string --non-existent', function() {
-    var dir = Lactate.dir(DIR);
-    dir.set('not_found', 'invalidpath');
-
     it('Should not err', function(done) {
+      var dir = Lactate.dir(DIR);
+      dir.set('not_found', 'invalidpath');
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -89,6 +97,8 @@ describe('Custom 404 Handlers', function() {
       })
     })
     it('Should have status 404', function(done) {
+      var dir = Lactate.dir(DIR);
+      dir.set('not_found', 'invalidpath');
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -99,6 +109,8 @@ describe('Custom 404 Handlers', function() {
       })
     })
     it('Should respond with no data', function(done) {
+      var dir = Lactate.dir(DIR);
+      dir.set('not_found', 'invalidpath');
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -111,13 +123,12 @@ describe('Custom 404 Handlers', function() {
   })
 
   describe('#set(not_found) --function', function() {
-    const dir = Lactate.dir(DIR);
-    dir.set('not_found', function(req, res) {
-      res.writeHead(404);
-      res.end('test');
-    });
-
     it('Should not err', function(done) {
+      const dir = Lactate.dir(DIR);
+      dir.set('not_found', function(req, res) {
+        res.writeHead(404);
+        res.end('test');
+      });
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -127,6 +138,11 @@ describe('Custom 404 Handlers', function() {
       })
     })
     it('Should have status 404', function(done) {
+      const dir = Lactate.dir(DIR);
+      dir.set('not_found', function(req, res) {
+        res.writeHead(404);
+        res.end('test');
+      });
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);
@@ -137,6 +153,11 @@ describe('Custom 404 Handlers', function() {
       })
     })
     it('Should respond with test string', function(done) {
+      const dir = Lactate.dir(DIR);
+      dir.set('not_found', function(req, res) {
+        res.writeHead(404);
+        res.end('test');
+      });
       http.server(dir.toMiddleware());
       http.client('/', function(err, res, data) {
         should.not.exist(err);

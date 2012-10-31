@@ -11,16 +11,15 @@ describe('Custom Response Headers', function() {
   afterEach(http.stopServer);
 
   describe('#header(string, function)', function() {
-    const dir = Lactate.dir(DIR, { from:'files' });
-    const file = 'index.html';
-    const size = files[file];
-    const url = '/files/' + file;
-
-    dir.header('testk', function(req, res) {
-      return 'testv';
-    });
-
     it('Should have test header', function(done) {
+      const dir = Lactate.dir(DIR, { from:'files' });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/files/' + file;
+
+      dir.header('testk', function(req, res) {
+        return 'testv';
+      });
       http.server(dir.serve.bind(dir));
       http.client(url, function(err, res, data) {
         should.not.exist(err);
@@ -33,12 +32,11 @@ describe('Custom Response Headers', function() {
   })
 
   describe('#header(string, string)', function() {
-    const dir = Lactate.dir(DIR, { headers: { testk: 'testv' } });
-    const file = 'index.html';
-    const size = files[file];
-    const url = '/' + file;
-
     it('Should have test header', function(done) {
+      const dir = Lactate.dir(DIR, { headers: { testk: 'testv' } });
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir.serve.bind(dir));
       http.client(url, 10, function(err, res, data) {
         should.not.exist(err);

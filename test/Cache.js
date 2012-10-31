@@ -11,13 +11,12 @@ describe('Cache', function() {
   afterEach(http.stopServer);
 
   describe('#cache:{}', function() {
-    const options = { cache:{} };
-    const dir = Lactate.dir(DIR, options);
-    const file = 'index.html';
-    const size = files[file];
-    const url = '/' + file;
-
     it('Should cache file', function(done) {
+      const options = { cache:{} };
+      const dir = Lactate.dir(DIR, options);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir.serve.bind(dir));
       http.client(url, 10, function(err, res, data) {
         should.not.exist(err);
@@ -37,13 +36,12 @@ describe('Cache', function() {
   })
   
   describe('#cache:{expire:0}', function() {
-    const options = { cache:{ expire:0 } };
-    const dir = Lactate.dir(DIR, options);
-    const file = 'index.html';
-    const size = files[file];
-    const url = '/' + file;
-
     it('Should cache file', function(done) {
+      const options = { cache:{ expire:0 } };
+      const dir = Lactate.dir(DIR, options);
+      const file = 'index.html';
+      const size = files[file];
+      const url = '/' + file;
       http.server(dir.serve.bind(dir));
       http.client(url, 10, function(err, res, data) {
         should.not.exist(err);
@@ -111,7 +109,9 @@ describe('Cache', function() {
       })
     })
   })
-//
+
+// Run redis-server and uncomment
+  
 //  describe('#cache:{redis:true}', function() {
 //    it('Should cache file', function(done) {
 //      const options = { cache:{ redis:true } };
