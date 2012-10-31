@@ -7,6 +7,7 @@ An exceedingly fast static file handler, with a few electives.
 ### Features
 
 * In-memory caching
+* Redis caching
 * Robust cache-control setting
 * Automatic gzipping
 * Automatic minification
@@ -14,23 +15,13 @@ An exceedingly fast static file handler, with a few electives.
 * Custom response headers
 * Asset bundling and minification
 * Middleware export
-* Express.static replacement
 * Default error pages
 * on(status) listeners
 * Colored log output
 * Global executable
-
-### Comparison
-
-Lactate caches files in memory without hitting the file system for each request, watches files for efficient udpates, and streams gzipped files directly to the response. Preliminary benchmarks show that Lactate has a significant advantage over most worthy competitors on the [node modules wiki](https://github.com/joyent/node/wiki/Modules#wiki-web-frameworks-static).
-
-![Bench](http://i.imgur.com/b3xJU.jpg)
-
-* `ab -c 100 -n 10000`
-* `node` v0.8.7
-* `jquery.min.js` ~100kb
-
-*See /benchmark for details*
+* Directory indexing
+* Express.static API compatibility
+* node-static API compatibility
 
 ## Using Lactate
 
@@ -39,23 +30,28 @@ Lactate caches files in memory without hitting the file system for each request,
 If installed globally with `npm install -g lactate`, you will have the `lactate` command at your disposal. This will run lactate static file server in the current working directory, utilizing the `cluster` module for multiple CPU cores. All [options](https://github.com/Weltschmerz/Lactate#options) are available.
 
 ```code
-wltsmrz@home:~$ lactate --help
+$ lactate --help
 Usage: lactate [options]
 
 Options:
---from, -f                        Public path                   [default: ""]
---cache, -c                       Store assets in-memory        [default: true]
---watch_files, --watch-files, -w  Watch files for cache update  [default: true]
---subdirs, -s                     Serve subdirectories          [default: true]
---hidden, -h                      Serve hidden files            [default: false]
---max_age, --max-age, -M          Client-side caching max-age   [default: 172800]
---gzip, -g                        Gzip text assets              [default: true]
---minify, -m                      Minify text assets            [default: false]
---bundle, -b                      Bundle text assets            [default: false]
---rebundle, -r                    Rebundle assets if modified   [default: true]
---headers, -H                     Custom response headers       [default: ""]
---debug, -d                       Log HTTP info                 [default: true]
---quiet, -q                       Prevent all log output        [default: false]
+--root, -r                    Local path                          [default: ""]
+--from, -f                    Public path                         [default: ""]
+--subdirs, -s                 Serve subdirectories                [default: true]
+--hidden, -h                  Serve hidden files                  [default: false]
+--error_pages, --error-pages  Serve error pages                   [default: true]
+--autoindex, -a               Automatically index directories     [default: true]
+--cache, -c                   Store assets in-memory              [default: true]
+--redis_cache, --rc           Store assets in-memory using Redis  [default: true]
+--watch_files, --watch-files  Watch files for cache update        [default: true]
+--max_age, --max-age, -M      Client-side caching max-age         [default: 172800]
+--gzip, -g                    Gzip text assets                    [default: true]
+--minify, -m                  Minify text assets                  [default: false]
+--bundle, -b                  Bundle text assets                  [default: false]
+--rebundle, --rb              Rebundle assets if modified         [default: true]
+--headers, -H                 Custom response headers             [default: ""]
+--debug, -d                   Log HTTP info                       [default: true]
+--quiet, -q                   Prevent all log output              [default: false]
+
 ```
 
 ### Programmatic lactating
@@ -78,161 +74,194 @@ If installed locally (without -g flag to npm install):
 2. `npm install ./` to install devDependencies
 3. `make test` to run mocha test
 
-If installed globally, simply run `npm test lactate`.
-
 ##The varieties of Lactate experience
 
-In the general case, the `Lactate` method returns an object with the methods `serve` `set` and `get`, importantly. However, there are more convenient methods exported by Lactate. They follow.
+###Creating a Lactate server
+
+```js
+var lactate = require('lactate'); 
+var options = {root:'files'}; 
+var server = lactate.createServer(options); 
+
+server.listen(8080);
+```
+
+###Creating a directory handler
+
+```js
+var lactate = require('lactate');
+var options = {from:'public/path/to/files'};
+var files = lactate.dir('files', options);
+
+var http = require('http');
+var server = new http.Server;
+
+server.addListener('request', function(req, res) {
+  files.serve(req, res);
+});
+
+server.listen(8080);
+```
+
+###Using directory middleware
+
+```js
+var lactate = require('lactate');
+var files = lactate.dir('files', options);
+
+var http = require('http');
+var server = new http.Server;
+
+server.addListener('request', files.toMiddleware());
+server.listen(8080);
+```
+
+###Integrating with Express
+
+```js
+var lactate = require('lactate');
+var files = lactate.dir('files', options);
+
+var express = require('express');
+var app = express();
+
+app.use(files.toMiddleware());
+app.listen(8080);
+```
+
+###Using Express.static API
+
+```js
+var lactate = require('lactate');
+var express = require('express');
+var app = express();
+
+app.use(lactate.static(__dirname + '/files'));
+app.listen(8000);
+```
+
+###Using node-static API
+
+```js
+var lactate = require('lactate');
+var files = new(lactate.Server)('./files');
+
+var http = require('http');
+var server = new http.Server;
+
+// You could also pass a .toMiddleware()'d function
+
+server.addListener('request', function(req, res) {
+  files.serve(req, res);
+});
+
+server.listen(8000);
+```
 
 ###Serving individual files
 
-To serve an individual file, use the `file` method.
-
 ```js
+var lactate = require('lactate');
 
-app.get('/', function(req, res) {
-  Lactate.file('land.html', req, res)
-})
-```
+var fileOptions = {from:'public/directory'};
+var files = lactate.dir('files', fileOptions);
 
-An optional fourth argument is for Lactate settings.
+var pageOptions = {};
+var pages = lactate.dir('pages');
 
-```js
-var options = {
-  max_age:'two days',
-  minify:true,
-  from:'scripts'
-}
+var http = require('http');
+var server = new http.Server;
 
-app.get('/', function(req, res) {
-  Lactate.file('land.html', req, res, options);
-})
-```
-
-###Serving directories
-
-The `dir` method allows you to namespace a directory, for convenience.
-
-```js
-var images = Lactate.dir('images');
-
-app.get('/images/:image', function(req, res) {
-  images.serve(req.params.image, req, res)
-})
-```
-
-Pass a second argument to `dir` for options:
-
-```js
-var options = { cache:false };
-var images = Lactate.dir('assets/images', options);
-images.maxAge('five days');
-```
-
-###Middleware export
-
-For maximum convenience, you may use the `toMiddleware` method on directories.
-
-```js
-var images = Lactate.dir('images', {
-  from:'images',
-  cache:false,
-  max_age:'two years',
-  debug:true
-}).toMiddleware()
-
-app.use(images) //That's it!
-```
-
-You may also pass additional options to the `toMiddleware` function.
-
-```js
-var images = Lactate.dir('images');
-images.set('cache', false);
-
-var middleware = images.toMiddleware({
-  from:'images'
-})
-
-app.use(middleware)
-```
-
-###Custom 404 pages
-
-Use the `not_found` option for defining custom 404 pages or handler functions.
-
-Strings will be treated as ordinary file paths, and as such will abide rules for gzipping and in-memory caching. Note that `notFound` paths will be relative to the `root` setting (by default `process.cwd()`).
-
-```js
-var lactate = Lactate.Lactate({
-    not_found:'pages/404.html'
-})
-
-lactate.set('not_found', 'pages/not_found.html');
-```
-
-Functions allow you to fully customize your 404 handling.
-
-```js
-var lactate = Lactate.Lactate({
-  not_found:function(req, res) { }
+server.addListener('request', function(req, res) {
+  if (req.url === '/') {
+    pages.serve('index.html', req, res);
+  } else {
+    files.serve(req, res);
+  };
 });
 ```
 
-A special configuration method is provided:
+###Setting options
 
 ```js
-lactate.notFound(function(req, res) {
-    res.writeHead(404)
-    res.end('My custom 404 thingy')
-})
-```
+var lactate = require('lactate');
 
-###Custom response headers
-
-Extend response headers with `headers` option.
-
-```js
-var options = {
-    headers: {
-        server:'Lactate'
-    }
+var fileOptions = {
+  from:'public'
 };
 
-lactate.set(options);
-lactate.set('headers', options.headers);
-lactate.headers(options.headers);
-lactate.setHeader('server', options.headers.server);
+var files = lactate.dir('files', fileOptions);
 
-app.get('/', function(req, res) {
-    lactate.serve('pages/land.html', req, res);
-});
-```
+files.set('cache', false);
+files.disable('gzip');
+files.maxAge('ten days');
 
-You may also use a function for dynamic header setting:
-
-```js
-lactate.setHeader('server', function(req, res) {
-  return 'lactate';
-});
+var express = require('express');
+var app = express():
+  
+app.get('/public/*', files.toMiddleware());
+app.listen(8080);
 ```
 
 ###Bundling assets
 
-Lactate directories have an additional method for combining and minifying text assets, to reduce the number and size of requests.
-
 ```js
-var assets = lactate.dir('assets', {
-    from:'assets'
+var lactate = require('lactate');
+var options = {
+  from:'files'
+};
+
+var files = lactate.dir('files', options);
+
+// Combine and minify all scripts to 'common.js'
+files.bundle('js', 'common.js', function(err, data) {
+// Handle errors
 });
 
-assets.bundle('js', 'common.js', function(err, data) { });
-//assets.bundleJS('common.js', function(){});
-assets.bundleCSS('common.css');
-app.use(assets.toMiddleware());
+// Combine and minify all CSS to 'common.css'
+files.bundleCSS('common.css');
+
+var express = require('express');
+var app = express();
+
+app.use(files.toMiddleware());
+app.listen(8000);
 ```
 
-Now, requesting `/assets/common.js` will result with a combined and minified (and by default gzipped) script of all the scripts contained in that directory. This function does actually write the bundled files to disk.
+###Using custom 404 pages
+
+```js
+var lactate = require('lactate');
+var files = lactate.dir('files');
+
+files.notFound('path/to/404/page.html');
+
+files.notFound(function(req, res) {
+  res.writeHead(404);
+  res.end('Woops, 404');
+});
+
+var express = require('express');
+var app = express();
+
+app.use(files.toMiddleware());
+app.listen(8000);
+```
+
+###Using custom response headers
+
+```js
+var lactate = require('lactate');
+var files = lactate.dir('files');
+
+files.setHeader('x-powered-by', 'Lactate');
+files.header('x-timestamp', function(req, res) {
+  return new Date().toUTCString();
+});
+
+var headers = {};
+files.headers(headers);
+```
 
 ###Status listeners
 
@@ -248,13 +277,13 @@ Lactate extends EventEmitter for emitting status code events. Codes Lactate is a
 
 Callbacks are given an object which has the following properties:
 
-* `url`
-* `method`
-* `headers`
-* `address`
-* `port`
-* `path`
-* `msg`
+* `url` The requested URL
+* `method` The request method (GET, HEAD)
+* `headers` Request headers
+* `address` Request IP address
+* `port` Request port
+* `path` Absolute file path to the requested file, if it exists
+* `msg` HTTP satus message
 
 ```js
 var files = lactate.dir('files', {});
@@ -304,7 +333,12 @@ is equivalent to:
 lactate.set('max_age', 'two days');
 ```
 
-Similarly, the `headers` method is for setting custom response headers.
+Similarly, the `headers` method is for setting custom response headers. Use spaces instead of underscores if you prefer:
+
+```js
+lactate.disable('max age');
+lactate.enable('watch files');
+```
 
 ### Options available
 
@@ -324,6 +358,14 @@ By default subdirectories are served. To disable this, set `subdirs` to false.
 
 Whether or not to serve hidden files. Default is false.
 
++ `error pages` **boolean**
+
+Enabled by default. When disabled, Lactate will not serve error pages for 404 resposes, etc..
+
++ `autoindex` **boolean**
+
+Automatically display directory indexes. Disabled by default.
+
 + `cache` **boolean** or **object**
 
 Keep files in-memory. Enabled by default. For caching options and more information about caching strategy, see [Caching Options](https://github.com/Weltschmerz/Lactate#caching-options).
@@ -336,7 +378,7 @@ If false, disables automatic gzipping for text files (HTML, JS, CSS). Enabled by
 
 If true, will automatically minify JavaScript and CSS using [Abridge](https://github.com/Weltschmerz/Abridge). Disabled by default.
 
-+ `watch_files` **boolean**
++ `watch files` **boolean**
 
 Determines whether Lactate will watch files to update its cache. If this is disabled, then your file cache will not update automatically as files are modified on the server.
 
@@ -344,7 +386,7 @@ Determines whether Lactate will watch files to update its cache. If this is disa
 
 Sets custom response headers. If the option value is a function, it is a callback which is give (req, res) arguments. This function should return the header value; it is a mapping function.
 
-+ `max_age` **number** or **string**
++ `max age` **number** or **string**
 
 Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
 
@@ -359,7 +401,7 @@ lactate.set('max_age', 'one year and 2 months and seven weeks and 16 seconds')
 //41050028 seconds
 ```
 
-+ `not_found` **string** or **function**
++ `not found` **string** or **function**
 
 For custom 404 handling. Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
 
@@ -372,9 +414,9 @@ Colored status / msg / path logging, for debugging purposes.
 Pass an object to the `cache` option setting. The following fields are accepted and optional:
 
 * `expire` Seconds expiration for cache keys. Keys expire after they are untouched for x-seconds. Default is `15min`.
-* `max_keys` Maximum number of keys to keep in memory. Default is `1000`.
-* `max_size` Maximum size in MB to keep in cache. Default is `100mb`.
-* `seg_threshold` Determines the threshold after which to segment a file for streaming instead of traditional writing. Default is `200kb`.
+* `max keys` Maximum number of keys to keep in memory. Default is `1000`.
+* `max size` Maximum size in MB to keep in cache. Default is `100mb`.
+* `seg threshold` Determines the threshold after which to segment a file for streaming instead of traditional writing. Default is `200kb`.
 
 
 ## License
