@@ -17,7 +17,7 @@
 html {
   background:#fafafa;
   color:#666;
-  font-family:'Rokkitt';
+  font-family:arvo;
   padding:0;
   margin:0;
 }
@@ -85,6 +85,7 @@ h1 {
 h2.section_title {
   margin:0 0 30px -10px;
   font-family:'PT Sans Narrow';
+  letter-spacing:-1px;
   cursor:pointer;
   transition:.2s all ease-in-out;
   -webkit-transition:.2s all ease-in-out;
