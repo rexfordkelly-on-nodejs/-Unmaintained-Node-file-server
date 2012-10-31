@@ -6,7 +6,7 @@ var files = require('./utils/get_files');
 
 describe('Serve', function() {
 
-  const DIR = __dirname + '/files/';
+  const DIR = __dirname;
 
   afterEach(http.stopServer);
 
@@ -15,10 +15,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'index.html';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       });
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -29,10 +30,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'index.html';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res)
+        lactate.serve(req, res)
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -44,10 +46,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'index.html';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -59,10 +62,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'index.html';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -74,10 +78,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'index.html';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res)
+        lactate.serve(req, res)
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -89,10 +94,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'index.html';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -104,10 +110,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'index.html';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -119,10 +126,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'index.html';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -134,10 +142,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'index.html';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -152,7 +161,7 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'landing page.html';
       const size = files[file];
-      const url = '/landing%20page.html';
+      const url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       });
@@ -167,7 +176,7 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'landing page.html';
       const size = files[file];
-      const url = '/landing%20page.html';
+      const url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
@@ -183,7 +192,7 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'landing page.html';
       const size = files[file];
-      const url = '/landing%20page.html';
+      const url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -199,7 +208,7 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'landing page.html';
       const size = files[file];
-      const url = '/landing%20page.html';
+      const url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -215,7 +224,7 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'landing page.html';
       const size = files[file];
-      const url = '/landing%20page.html';
+      const url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
@@ -231,7 +240,7 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'landing page.html';
       const size = files[file];
-      const url = '/landing%20page.html';
+      const url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -247,7 +256,7 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'landing page.html';
       const size = files[file];
-      const url = '/landing%20page.html';
+      const url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -263,7 +272,7 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'landing page.html';
       const size = files[file];
-      const url = '/landing%20page.html';
+      const url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -279,7 +288,7 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'landing page.html';
       const size = files[file];
-      const url = '/landing%20page.html';
+      const url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
@@ -298,10 +307,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'script.js';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       });
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -312,10 +322,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'script.js';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res)
+        lactate.serve(req, res)
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -327,10 +338,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'script.js';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -342,10 +354,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'script.js';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -357,10 +370,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'script.js';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res)
+        lactate.serve(req, res)
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -372,10 +386,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'script.js';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -387,10 +402,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'script.js';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -402,10 +418,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'script.js';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -417,10 +434,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'script.js';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -435,10 +453,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'style.css';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -449,10 +468,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'style.css';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -464,10 +484,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'style.css';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res)
+        lactate.serve(req, res)
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -479,10 +500,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'style.css';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res)
+        lactate.serve(req, res)
       });
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -494,10 +516,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'style.css';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       });
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -509,10 +532,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'style.css';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -524,10 +548,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'style.css';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -539,10 +564,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'style.css';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -554,10 +580,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'style.css';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -572,10 +599,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'test.png';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res)
+        lactate.serve(req, res)
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -586,10 +614,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'test.png';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -601,10 +630,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'test.png';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res)
+        lactate.serve(req, res)
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -616,10 +646,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'test.png';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -631,10 +662,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'test.png';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -646,10 +678,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'test.png';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -661,10 +694,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'test.png';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -676,10 +710,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'test.png';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -691,10 +726,11 @@ describe('Serve', function() {
       const lactate = Lactate.Lactate({ root:DIR });
       const file = 'test.png';
       const size = files[file];
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res)
+        lactate.serve(req, res)
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -708,10 +744,11 @@ describe('Serve', function() {
     it('Should not err', function(done) {
       const lactate = Lactate.Lactate({ root:DIR })
       const file = 'invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -721,10 +758,11 @@ describe('Serve', function() {
     it('Should have status code 404', function(done) {
       const lactate = Lactate.Lactate({ root:DIR })
       const file = 'invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -735,10 +773,11 @@ describe('Serve', function() {
     it('Should have content-type header', function(done) {
       const lactate = Lactate.Lactate({ root:DIR })
       const file = 'invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -749,10 +788,11 @@ describe('Serve', function() {
     it('Should have content-encoding header', function(done) {
       const lactate = Lactate.Lactate({ root:DIR })
       const file = 'invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -763,10 +803,11 @@ describe('Serve', function() {
     it('Should have content-length header', function(done) {
       const lactate = Lactate.Lactate({ root:DIR })
       const file = 'invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -777,10 +818,11 @@ describe('Serve', function() {
     it('Should have date header', function(done) {
       const lactate = Lactate.Lactate({ root:DIR })
       const file = 'invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -794,10 +836,11 @@ describe('Serve', function() {
     it('Should not err', function(done) {
       const lactate = Lactate.Lactate({ root:DIR, hidden:false })
       const file = '.invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -807,10 +850,11 @@ describe('Serve', function() {
     it('Should have status 403', function(done) {
       const lactate = Lactate.Lactate({ root:DIR, hidden:false })
       const file = '.invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -821,10 +865,11 @@ describe('Serve', function() {
     it('Should have content-type header', function(done) {
       const lactate = Lactate.Lactate({ root:DIR, hidden:false })
       const file = '.invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -835,10 +880,11 @@ describe('Serve', function() {
     it('Should have content-encoding header', function(done) {
       const lactate = Lactate.Lactate({ root:DIR, hidden:false })
       const file = '.invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -849,10 +895,11 @@ describe('Serve', function() {
     it('Should have content-length header', function(done) {
       const lactate = Lactate.Lactate({ root:DIR, hidden:false })
       const file = '.invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -863,10 +910,11 @@ describe('Serve', function() {
     it('Should have date header', function(done) {
       const lactate = Lactate.Lactate({ root:DIR, hidden:false })
       const file = '.invalidpath';
+      const url = '/files/' + file;
       http.server(function(req, res) {
-        lactate.serve(file, req, res);
+        lactate.serve(req, res);
       })
-      http.client('/', function(err, res, data) {
+      http.client(url, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
