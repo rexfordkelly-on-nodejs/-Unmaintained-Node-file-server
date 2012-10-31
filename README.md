@@ -333,7 +333,11 @@ is equivalent to:
 lactate.set('max_age', 'two days');
 ```
 
-Similarly, the `headers` method is for setting custom response headers. Use spaces instead of underscores if you prefer:
+Similarly, the `headers` method is for setting custom response headers. 
+
+**Underscores or spaces**
+
+Use spaces instead of underscores if you prefer:
 
 ```js
 lactate.disable('max age');
