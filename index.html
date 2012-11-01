@@ -217,8 +217,8 @@
         <ol class='notes'>
           <li><em>max size</em> the maximum size in megabytes to store in-memory. Adding items always works; old items will be pruned instead.
           <li><em>max keys</em> the maximum number of file paths to keep track of.
-          <li><em>expirationa</em> duration in seconds to keep a file in memory. When a file is touched, the clock is reset.
-          <li><em>segmentation threshold</em> this option refers to file size in <em>kb</em>. After this threshold is reached, Lactate will use a separate strategy for serving the cached file; relying on multiple writes wrapped in <em>process.nextTick()</em> instead of a single call to <em>.write()</em>. This is a safeguard against slow clients and large files.
+          <li><em>expiration</em> duration in seconds to keep a file in memory. When a file is touched, the clock is reset.
+          <li><em>segment</em> this option refers to file size in <em>kb</em>. After this threshold is reached, Lactate will use a separate strategy for serving the cached file; relying on multiple writes wrapped in <em>process.nextTick()</em> instead of a single call to <em>.write()</em>. This is a safeguard against slow clients and large files.
         </ol>
         </p>
         <script src="https://gist.github.com/3955285.js?file=server.js"></script>
