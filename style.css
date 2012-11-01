@@ -102,7 +102,7 @@ ul.feature_list {
   background:#fff;
   padding:0 0 0 2px;
   margin:40px 0;
-  border-top:2px solid #666;
+  border-top:1px solid #666;
 }
 ul.sticky {
   position:fixed;
@@ -140,8 +140,6 @@ ul.feature_list li {
   transition:.2s all ease-in-out;
   -webkit-transition:.2s all ease-in-out;
   -moz-transition:.2s all ease-in-out;
-  border-bottom-left-radius:2px;
-  border-bottom-right-radius:2px;
   text-shadow:none;
   user-select:none;
   -webkit-user-select:none;
@@ -219,9 +217,9 @@ th, td {
 }
 
 th {
-  width:60px;
+  width:70px;
   font-size:16px;
-  font-weight:normal;
+  font-weight:bold;
   color:#fafafa;
   background:#666;
   background-image:linear-gradient(top, #777, #555);
