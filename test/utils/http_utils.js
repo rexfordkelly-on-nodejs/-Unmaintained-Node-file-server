@@ -40,6 +40,7 @@ module.exports.client = function(path, cb, times, method) {
 
   ;(function next(i) {
     var req = http.request(options, function(res) {
+
       var suckle = new Suckle(function(data) {
         if (--i) {
           next(i);
