@@ -6,17 +6,23 @@
     <meta charset = 'utf-8'/>
     <link href='polymerase.png' rel='icon'/>
     <link href='style.css' rel='stylesheet'/>
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='font-awesome/css/font-awesome.css' rel='stylesheet'/>
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Arvo:400,400italic' rel='stylesheet' type='text/css'>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   </head>
   <body>
     <div id='container'>
+      <div id='gh' class='icon-github'>
+        <a href='https://github.com/Weltschmerz'></a>
+      </div>
+
       <hgroup>
-        <h1>Lactate</h1>
+        <h1><a href='https://github.com/Weltschmerz/Lactate'>Lactate</a></h1>
       </hgroup>
 
-      <p class='headline'>A simple yet featureful static file server for Node.js</p>
+      <p class='headline'>* noun. A featureful static file server for Node.js</p>
 
       <ul class='feature_list'>
         <li data-name='overview' class='selected'><a href='/#overview'>overview</a>
@@ -32,7 +38,7 @@
           <a href='#overview'>Overview</a>
         </h2>
         <p>
-        Lactate is a static file handler for node. It integrates with basic node HTTP server, Express, and theoretically any framework on top of Node that adheres to the <em>req > res</em> pattern. It was designed with performance in-mind, and outperforms most other solutions out of the box. Lactate uses streams wherever possible, gzips when it can, handles client-side expiration, caches files in memory, and watches files for updates. To learn more about Lactate's features, see the <a href='#features'>features</a> section.
+        Lactate is a static file handler for node. It integrates with basic node HTTP server, Express, and theoretically any framework on top of Node that adheres to the <em>req > res</em> pattern. It was designed with performance in-mind, and outperforms most other solutions out of the box. Lactate uses streams wherever possible, gzips when it can, handles client-side expiration, caches files in memory, and watches files for efficient updates. To learn more about Lactate's features, see the <a href='#features'>features</a> section.
         </p>
         <h3>Why</h3>
         <p>
@@ -53,14 +59,17 @@
           <li>Automatic gzipping
           <li>Automatic CSS / JS minification
           <li>Asset bundling (combining and minifying scripts / styles)
-          <li>Custom 404 pages and functions
-          <li>Custom response headers
+          <li>Custom 404 pages and function handlers
+          <li>Custom response headers, dynamic or static
+          <li>Automatic directory indexing
+          <li>Redis caching
           <li>Connect middleware export
           <li>Drop-in replacement for <em>Express.static</em>
           <li>Default error pages for <em>Not Found</em>, <em>Forbidden</em> and <em>Internal Error</em> responses
-          <li>on(<em>status</em>) response code listeners
+          <li>on(<i>status</i>) response code listeners
           <li>Colored <a href='http://i.imgur.com/Gpztu.png'>log output</a>
           <li>Global executable with full options, using <em>cluster</em> for utilization of all CPU cores
+          <li>And more!
         </ul>
       </section>
 
@@ -125,8 +134,8 @@
           </tbody>
         </table>
         <H3>Notes</h3>
-        <ol>
-          <li><i>Hits fs per request</i> means that the filesystem will be hit for each new client requesting a file. All of the solutions comprehend client-side caching, so multiple requests from the same client would not usually cause another hit. If you have <em>n(<i>unique client requests</i>)</em>, that means <em>n(<i>filesystem hits</i>)</em>, usually in the form of <em>fs.stat()</em> or <em>fs.exists()</em>, unless you are using Lactate.
+        <ol class='notes'>
+          <li><i>Hits fs per request</i> means that the filesystem will be hit for each new client requesting a file. All of the solutions comprehend client-side caching, so multiple requests from the same client would not usually cause another hit. If you have <em>n</em> unique client requests, that means <em>n</em> filesystem hits, usually in the form of <em>fs.stat()</em> or <em>fs.exists()</em>, unless you are using Lactate.
           <li>Of the tested modules, Lactate is the only one that comprehends <em>gzip</em> response encoding, despite widespread support.
           <li>Though <em>node-static</em> uses <em>fs.createReadStream()</em>, it does not actually write any data until the file is fully read. It <a href='https://github.com/cloudhead/node-static/blob/master/lib/node-static.js#L243-268'>behaves</a> identically to callback-oriented design.
           <li>node-static caches files in-memory so that they don't need to be fully read for every request; however, each request <a href='https://github.com/cloudhead/node-static/blob/master/lib/node-static.js#L88'>will call</a> <em>fs.stat()</em>. It does this to compare mtimes, to determine whether to send a <em>304 Not Modified</em> response. Lactate <a href='https://github.com/Weltschmerz/Lactate/blob/master/lib/lactate.js#L152-159'>avoids</a> this issue by watching files for modifications, and updating the in-memory cache. If a file exists in Lactate's cache, it is fresh.
@@ -138,7 +147,7 @@
         <em class='code'>ab -n 10000 -c 100 http://localhost:8080/jquery.min.js</em>
         <img src='rps_plot.png'/>
         <h3>Notes</h3>
-        <ol>
+        <ol class='notes'>
           <li>Latest version of each module as of <em>Thu Oct 25 15:26:04 CDT 2012</em>
           <li>Requested file is <em>jquery.min.js</em>
           <li>File size is <em>~96kb</em>
@@ -205,7 +214,7 @@
         <p>
         Lactate's in-memory cache has the following limitations:
         </p>
-        <ol>
+        <ol class='notes'>
           <li><em>max size</em> the maximum size in megabytes to store in-memory. Adding items always works; old items will be pruned instead.
           <li><em>max keys</em> the maximum number of file paths to keep track of.
           <li><em>expirationa</em> duration in seconds to keep a file in memory. When a file is touched, the clock is reset.
@@ -220,17 +229,13 @@
           <a href='#caveats'>Caveats</a>
         </h2>
         <p>In no particular order, caveats:</p>
-        <ol>
+        <ol class='notes'>
           <li>Lactate delivers reasonably fast performance with cached files. With caching disabled, Lactate can be slower than some modules without caching ability. Assuming that you have a caching mechanism such as Varnish, which is the assumption that connect makes by default, you shouldn't suffer much from disabled caching using either Lactate or connect. The point here is that you have nothing to lose, but something to gain, as all of Lactate's extra abilities are disable-able.
           <li>Minification is achieved with child processes piped to either YUICompressor or Uglifyjs. It's quite slow and consumptive, so it would be advisable to pre-bundle your styles and scripts using <em>dir.bundle(type, name, callback)</em>. Another option is to enable <em>minify</em>. This will automatically minify scripts and styles as they are requested. With caching enabled, this means only the first request will take ages, as subsequent requests will simply access the already minified script or style. Minification and gzipping are not mutually exclusive; you may use either or both. Of course, you needn't use Lactate at all for minification or bundling.
           <li>Lactate comprehends gzip, but doesn't care for deflate compression. This is because of gzip's widespread and long history of support. Pretty much anything will accept gzip encoding. There is no risk to enabling <em>gzip</em> option; it will only gzip with appropriate <em>accept-encoding</em> request headers. Lactate does not re-gzip; it stores the fully mangled files in its cache.
         </ol>
       </section>
 
-    </div>
-
-    <div id='forkme'>
-      <a href='https://github.com/Weltschmerz/Lactate'>Fork me on GitHub</a>
     </div>
 
     <script src='waypoints/waypoints.min.js'></script>

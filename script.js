@@ -139,7 +139,6 @@ var module = new (function() {
     };
   };
 
-
   this.init = function() {
     var container = self.container = $('#container');
     var sections = self.sections = $('section');
@@ -157,6 +156,14 @@ var module = new (function() {
     $(sections).each(createWaypoint);
 
     checkHash();
+
+    var gh = $('#gh');
+    $(gh).css('right', $(container).offset().left + 10);
+    $(gh).click(function(e) {
+      var href = $(this).find('a').attr('href');
+      window.open(href);
+    });
+
   };
 });
 
