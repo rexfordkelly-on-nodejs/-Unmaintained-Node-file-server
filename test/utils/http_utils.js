@@ -35,7 +35,9 @@ module.exports.client = function(path, cb, times, method) {
     port:port,
     path:path,
     method:method,
-    headers:{}
+    headers:{
+      'accept-encoding':'gzip'
+    }
   };
 
   ;(function next(i) {
