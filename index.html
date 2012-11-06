@@ -40,7 +40,6 @@
         <p>
         Lactate is a static file handler for node. It integrates with basic node HTTP server, Express, and theoretically any framework on top of Node that adheres to the <em>req > res</em> pattern. It was designed with performance in-mind, and outperforms most other solutions out of the box. Lactate uses streams wherever possible, gzips when it can, handles client-side expiration, caches files in memory, and watches files for efficient updates. To learn more about Lactate's features, see the <a href='#features'>features</a> section.
         </p>
-        <h3>Why</h3>
         <p>
         Lactate began its existence in a pet project whose requirements were not met by the available options. After much research it was decided that your author would feel more comfortable knowing precisely what's under the hood. If that is your interest, go for it. Otherwise, <a href='https://github.com/Weltschmerz/Lactate/issues'>notify Weltschmerz</a> of any feature requests or issues and he will rapidly fix any overthought to save himself further embarrassment.</p>
         <p>
@@ -145,9 +144,6 @@
         <h3>Performance</h3>
         <p>Despite its features, Lactate does not suffer a performance hit. In fact it is faster than popular solutions. The following plot was generated using the <em>R</em> statistical programming environment. It represents three runs of <em>Apache Bench</em>. 
         <em class='code'>ab -n 10000 -c 100 http://localhost:8080/jquery.min.js</em>
-        <p>One core</p>
-        <img src='rps_plot.png'/>
-        <p>Two cores</p>
         <img src='cluster_rps_plot.png'/>
         <h3>Notes</h3>
         <ol class='notes'>
@@ -156,7 +152,7 @@
           <li>File size is <em>~96kb</em>
           <li>Node version is <em>v0.8.14</em>
           <li><em>ab</em> is run with <em>10,000</em> requests, <em>100</em> concurrent
-          <li>Intel core i5 sandy bridge @ 2.3ghz
+          <li>Using two cores of an Intel core i5 sandy bridge @ 2.3ghz
           <li>The disparity between connect and node-static exists because connect does not cache files. This behavior is problematic for benchmarking, but in practice you might use a more highly-performing caching layer between connect et al and the client. The point here is that if you are expecting performance out of a pure-Node static file server, <em>connect</em> AKA <em>Express.static</em> is not a good idea.
         </ol>
       </section>
