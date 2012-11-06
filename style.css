@@ -89,7 +89,7 @@ h3 {
   padding:6px 0;
   font-family:helvetica,arial,sans-serif;
   font-size:16px;
-  border-bottom:2px dashed #888;
+  border-bottom:1px dotted #888;
 }
 
 p.headline {

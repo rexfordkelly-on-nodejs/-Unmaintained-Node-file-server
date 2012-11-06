@@ -145,10 +145,10 @@
         <h3>Performance</h3>
         <p>Despite its features, Lactate does not suffer a performance hit. In fact it is faster than popular solutions. The following plot was generated using the <em>R</em> statistical programming environment. It represents three runs of <em>Apache Bench</em>. 
         <em class='code'>ab -n 10000 -c 100 http://localhost:8080/jquery.min.js</em>
+        <p>One core</p>
         <img src='rps_plot.png'/>
-        <i>Non-clustered</i>
+        <p>Two cores</p>
         <img src='cluster_rps_plot.png'/>
-        <i>Clustered - two cores</i>
         <h3>Notes</h3>
         <ol class='notes'>
           <li>Latest version of each module as of <em>Tue Nov  6 04:53:48 CST 2012</em>
