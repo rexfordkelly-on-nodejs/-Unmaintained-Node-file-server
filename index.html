@@ -146,14 +146,17 @@
         <p>Despite its features, Lactate does not suffer a performance hit. In fact it is faster than popular solutions. The following plot was generated using the <em>R</em> statistical programming environment. It represents three runs of <em>Apache Bench</em>. 
         <em class='code'>ab -n 10000 -c 100 http://localhost:8080/jquery.min.js</em>
         <img src='rps_plot.png'/>
+        <i>Non-clustered</i>
+        <img src='cluster_rps_plot.png'/>
+        <i>Clustered - two cores</i>
         <h3>Notes</h3>
         <ol class='notes'>
-          <li>Latest version of each module as of <em>Thu Oct 25 15:26:04 CDT 2012</em>
+          <li>Latest version of each module as of <em>Tue Nov  6 04:53:48 CST 2012</em>
           <li>Requested file is <em>jquery.min.js</em>
           <li>File size is <em>~96kb</em>
-          <li>Node version is <em>v0.8.10</em>
+          <li>Node version is <em>v0.8.14</em>
           <li><em>ab</em> is run with <em>10,000</em> requests, <em>100</em> concurrent
-          <li>These tests utilize one CPU core of an Intel core i5 sandy bridge @ 2.3ghz
+          <li>Intel core i5 sandy bridge @ 2.3ghz
           <li>The disparity between connect and node-static exists because connect does not cache files. This behavior is problematic for benchmarking, but in practice you might use a more highly-performing caching layer between connect et al and the client. The point here is that if you are expecting performance out of a pure-Node static file server, <em>connect</em> AKA <em>Express.static</em> is not a good idea.
         </ol>
       </section>
