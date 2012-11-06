@@ -86,8 +86,10 @@ h2.section_title a:hover {
 }
 h3 {
   margin:20px 0;
+  padding:6px 0;
   font-family:helvetica,arial,sans-serif;
   font-size:16px;
+  border-bottom:2px dashsed #888;
 }
 
 p.headline {
