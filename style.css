@@ -286,6 +286,7 @@ div.gist-syntax {
   display:inline-block;
   position:absolute;
   top:60px;
+  right:0;
   font-size:36px;
   opacity:.4;
   cursor:pointer;
