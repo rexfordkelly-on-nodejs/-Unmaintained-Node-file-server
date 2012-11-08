@@ -34,7 +34,7 @@ var argv = optimist
   })
   .options('autoindex', {
     describe:'Automatically index directories',
-    default:true,
+    default:false,
     alias:'a'
   })
   .options('cache', {
