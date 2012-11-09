@@ -418,9 +418,26 @@ Colored status / msg / path logging, for debugging purposes.
 Pass an object to the `cache` option setting. The following fields are accepted and optional:
 
 * `expire` Seconds expiration for cache keys. Keys expire after they are untouched for x-seconds. Default is `15min`.
-* `max keys` Maximum number of keys to keep in memory. Default is `1000`.
+* `max keys` Maximum number of keys to keep in memory. Default is `Infinity`.
 * `max size` Maximum size in MB to keep in cache. Default is `100mb`.
 * `segment` Determines the threshold after which to segment a file for streaming instead of traditional writing. Default is `200kb`.
+
+```js
+  var options = {};
+  
+  options.cache = {
+    expire:5,
+    max_keys:200,
+    max_size:2,
+    segment:100
+  };
+
+  var files = lactate.static('files', options);
+
+  // Or use a string representation. Same as setting for max-age.
+  options.cache.expire = 'fifteen minutes';
+  files.set('cache', options.cache);
+```
 
 
 ## License
