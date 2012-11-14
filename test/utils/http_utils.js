@@ -18,7 +18,7 @@ module.exports.server = function(cb) {
   _server.listen(port);
 };
 
-module.exports.client = function(path, cb, times, method) {
+module.exports.client = function(path, times, method, range) {
   var args = Array.prototype.slice.call(arguments), cb;
   var path = args.shift();
   var lastArg = args[args.length-1];
@@ -29,15 +29,16 @@ module.exports.client = function(path, cb, times, method) {
 
   var times = args.shift() || 1;
   var method = args.shift() || 'GET';
+  var headers = args.shift() || {};
+
+  headers['accept-encoding'] = 'gzip';
 
   var options = {
     host:'localhost',
     port:port,
     path:path,
     method:method,
-    headers:{
-      'accept-encoding':'gzip'
-    }
+    headers:headers
   };
 
   ;(function next(i) {
