@@ -18,7 +18,7 @@
     "abridge":"latest",
     "fraction":"latest",
     "optimist":"0.3.5",
-    "redis":"0.8.1"
+    "redis":"0.8.2"
   },
   "devDependencies": {
     "mocha": "1.7.0",
