@@ -179,6 +179,7 @@ server.addListener('request', function(req, res) {
     files.serve(req, res);
   };
 });
+server.listen(8000);
 ```
 
 ###Setting options
