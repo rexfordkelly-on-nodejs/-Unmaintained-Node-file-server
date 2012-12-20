@@ -278,10 +278,6 @@ td span {
   left:4px;
 }
 
-div.gist-syntax {
-  background:#fafafa !important;
-}
-
 #gh {
   display:inline-block;
   position:absolute;
