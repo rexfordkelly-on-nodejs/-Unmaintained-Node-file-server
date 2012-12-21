@@ -13,6 +13,7 @@ An exceedingly fast static file handler, with a few electives.
 * Automatic minification
 * Custom 404 pages
 * Custom response headers
+* Custom gzip patterns
 * Asset bundling and minification
 * Middleware export
 * Default error pages
@@ -409,6 +410,21 @@ lactate.set('max_age', 'one year and 2 months and seven weeks and 16 seconds')
 + `not found` **string** or **function**
 
 For custom 404 handling. Functions are supplied the response for 100% custom response handling. Otherwise, if set to a string, this option will be treated as an ordinary file path and abide rules for gzipping / in-memory cache.
+
++ `gzip patterns` **array**
+
+Set custom gzip RegExp patterns. The patterns are matched with mime types. E.g. `/(\+|\/)xml$/` may be used for matching XML documents for gzipping. You may either use:
+
+```js
+lactate.set('gzip patterns', []);
+```
+
+Or perhaps more conveniently:
+
+```js
+//Accepts RegExp or String
+lactate.gzip(/pattern/, ...);
+```
 
 + `debug` **boolean**
 
