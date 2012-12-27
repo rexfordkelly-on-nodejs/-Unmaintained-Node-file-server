@@ -267,28 +267,10 @@ files.headers(headers);
 
 ###Status listeners
 
-Lactate extends EventEmitter for emitting status code events. Codes Lactate is aware of are:
-
-* `200` *OK*
-* `304` *Not Modified*
-* `400` *Bad Request*
-* `403` *Forbidden*
-* `404` *Not Found*
-* `405` *Method Not Allowed*
-* `500` *Internal Error*
-
-Callbacks are given an object which has the following properties:
-
-* `url` The requested URL
-* `method` The request method (GET, HEAD)
-* `headers` Request headers
-* `address` Request IP address
-* `port` Request port
-* `path` Absolute file path to the requested file, if it exists
-* `msg` HTTP satus message
+Lactate extends EventEmitter for emitting status code events.
 
 ```js
-var files = lactate.dir('files', {});
+var files = lactate.dir('files');
 files.on('404', function(req) {
   console.log('404', req.url);
 });
