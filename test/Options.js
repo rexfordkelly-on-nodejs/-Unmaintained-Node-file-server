@@ -25,7 +25,7 @@ describe('Options', function() {
     })
     it('Should have from option "files"', function() {
       var opt = lactate.get('from')
-      opt.should.equal('files')
+      opt.should.equal('/files')
     })
     it('Should have subdirs option false', function() {
       var opt = lactate.get('subdirs')
