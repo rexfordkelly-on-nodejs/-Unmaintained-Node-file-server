@@ -1,6 +1,11 @@
 
 ##History
 
+**v0.13.3**
+
+* Added Lactate.define(extension, mimeType). Accepts an object or key/value for defining custom mime types.
+* Added new option `charset`. Lactate.enable('charset') for automatically setting charset using `node-mime`, or define a custom charset using Lactate.set('charset', <charset>)
+
 **v0.13.2**
 
 * No API removals
