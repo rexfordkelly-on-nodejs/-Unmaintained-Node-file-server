@@ -13,6 +13,7 @@ An exceedingly fast static file handler, with a few electives.
 * Automatic minification
 * Custom 404 pages
 * Custom response headers
+* Custom / automatic charset headers
 * Custom gzip patterns
 * Asset bundling and minification
 * Middleware export
@@ -305,7 +306,7 @@ lactate.enable('minify');
 
 **Special options methods**
 
-Lactate has some special methods to reduce visual clutter:
+Lactate has some special methods to reduce visual clutter. For setting client-side expiration use `maxAge`
 
 ```js
 lactate.maxAge('two days');
@@ -314,10 +315,37 @@ lactate.maxAge('two days');
 is equivalent to:
 
 ```js
-lactate.set('max_age', 'two days');
+lactate.set('max age', 'two days');
 ```
 
-Similarly, the `headers` method is for setting custom response headers. 
+For setting `custom headers` you may use `setHeader`
+
+```js
+lactate.setHeader('x-powered-by', 'Rodent exercise');
+```
+
+You can also use a function with `setHeader` for added variance:
+
+```js
+lactate.setHeader('x-id', function(req, res) {
+  return Math.random().toString(36).substring(2);
+}):
+```
+
+For defining `charsets`, you may use `Lactate.define`
+
+```js
+lactate.define('js', 'application/javascript');
+```
+
+or with an object
+
+```js
+lactate.define({
+  'html': 'text/html; charset=utf-8',
+  'js': 'application/javascript'
+});
+```
 
 **Underscores or spaces**
 
@@ -406,6 +434,20 @@ Or perhaps more conveniently:
 ```js
 //Accepts RegExp or String
 lactate.gzip(/pattern/, ...);
+```
+
++ `charset` **boolean** or **string**
+
+Set custom response charset, or automatically detect charset using `node-mime`.
+
+```js
+lactate.enable('charset');
+// Content-Type: text/html; charset=UTF-8
+```
+
+```js
+lactate.set('charset', 'utf-8');
+// Content-Type: text/html; charset=UTF-8
 ```
 
 + `debug` **boolean**
