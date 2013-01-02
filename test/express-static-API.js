@@ -48,7 +48,7 @@ describe('express-static-API', function() {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
-        res.headers.should.have.property('content-type', 'text/html');
+        res.headers.should.have.property('content-type', 'text/html; charset=UTF-8');
         done();
       })
     })
@@ -176,7 +176,7 @@ describe('express-static-API', function() {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
-        res.headers.should.have.property('content-type', 'text/html');
+        res.headers.should.have.property('content-type', 'text/html; charset=UTF-8');
         done();
       })
     })
@@ -304,7 +304,7 @@ describe('express-static-API', function() {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
-        res.headers.should.have.property('content-type', 'text/html');
+        res.headers.should.have.property('content-type', 'text/html; charset=UTF-8');
         done();
       })
     })

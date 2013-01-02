@@ -23,7 +23,7 @@ describe('Cache', function() {
         should.exist(res);
         should.exist(data);
         res.should.have.status(200)
-        res.headers.should.have.property('content-type', 'text/html');
+        res.headers.should.have.property('content-type', 'text/html; charset=UTF-8');
         res.headers.should.have.property('content-encoding', 'gzip')
         res.headers.should.have.property('content-length', String(size));
         res.headers.should.have.property('date')
@@ -48,7 +48,7 @@ describe('Cache', function() {
         should.exist(res);
         should.exist(data);
         res.should.have.status(200)
-        res.headers.should.have.property('content-type', 'text/html');
+        res.headers.should.have.property('content-type', 'text/html; charset=UTF-8');
         res.headers.should.have.property('content-encoding', 'gzip')
         res.headers.should.have.property('content-length', String(size));
         res.headers.should.have.property('date')
@@ -73,7 +73,7 @@ describe('Cache', function() {
         should.exist(res);
         should.exist(data);
         res.should.have.status(200)
-        res.headers.should.have.property('content-type', 'text/html');
+        res.headers.should.have.property('content-type', 'text/html; charset=UTF-8');
         res.headers.should.have.property('content-encoding', 'gzip')
         res.headers.should.have.property('content-length', String(size));
         res.headers.should.have.property('date')
@@ -98,7 +98,7 @@ describe('Cache', function() {
         should.exist(res);
         should.exist(data);
         res.should.have.status(200)
-        res.headers.should.have.property('content-type', 'text/html');
+        res.headers.should.have.property('content-type', 'text/html; charset=UTF-8');
         res.headers.should.have.property('content-encoding', 'gzip')
         res.headers.should.have.property('content-length', String(size));
         res.headers.should.have.property('date')
@@ -125,7 +125,7 @@ describe('Cache', function() {
 //        should.exist(res);
 //        should.exist(data);
 //        res.should.have.status(200)
-//        res.headers.should.have.property('content-type', 'text/html');
+//        res.headers.should.have.property('content-type', 'text/html; charset=UTF-8');
 //        res.headers.should.have.property('content-encoding', 'gzip')
 //        res.headers.should.have.property('content-length', String(size));
 //        res.headers.should.have.property('date')
