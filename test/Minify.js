@@ -14,7 +14,7 @@ describe('Minify', function() {
   const size = files['script.min.js'];
   const url = '/script.js';
 
-  describe('#serve(index.html)', function() {
+  describe('#serve(script.js)', function() {
     it('Should not err', function(done) {
       http.server(dir.serve.bind(dir));
       http.client(url, function(err, res, data) {
