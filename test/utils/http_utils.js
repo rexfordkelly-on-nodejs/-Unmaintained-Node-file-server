@@ -5,16 +5,12 @@ var port = 7279
 var _server = null
 
 module.exports.stopServer = function(cb) {
-  if (_server) {
-    _server.close(cb);
-  }else {
-    cb();
-  };
+  _server ? _server.close(cb) : cb();
 };
 
 module.exports.server = function(cb) {
-  _server = new http.Server();
-  _server.addListener('request', cb);
+  _server = new http.Server;
+  _server = http.createServer(cb);
   _server.listen(port);
 };
 
