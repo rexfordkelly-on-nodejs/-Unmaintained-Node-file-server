@@ -13,6 +13,7 @@ module.exports = (function getFiles() {
     'index.html.gz',
     'landing page.html.gz',
     'script.js.gz',
+    'script.min.js.gz',
     'style.css.gz',
     'test.png'
   ];
