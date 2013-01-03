@@ -1,6 +1,12 @@
 
 ##History
 
+**v0.13.6**
+
+* Lactate now sets charsets by default
+* Added a test for minification (Note: would prefer faster minification without use of child process)
+* Significant refactor
+
 **v0.13.3**
 
 * Added Lactate.define(extension, mimeType). Accepts an object or key/value for defining custom mime types.
