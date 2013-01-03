@@ -6,20 +6,20 @@ var files = require('./utils/get_files');
 
 describe('Serve', function() {
 
-  const DIR = __dirname;
+  var DIR = __dirname;
 
   afterEach(http.stopServer);
 
   describe('#serve(index.html)', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       });
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -27,14 +27,14 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -43,14 +43,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -59,14 +59,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -75,14 +75,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -91,14 +91,14 @@ describe('Serve', function() {
       })
     })
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -107,14 +107,14 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -123,14 +123,14 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -139,14 +139,14 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -158,14 +158,14 @@ describe('Serve', function() {
 
   describe('#serve(script.js)', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'script.js';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'script.js';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       });
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -173,14 +173,14 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'script.js';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'script.js';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -189,14 +189,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'script.js';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'script.js';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -205,14 +205,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'script.js';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'script.js';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -221,14 +221,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'script.js';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'script.js';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -237,14 +237,14 @@ describe('Serve', function() {
       })
     })
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'script.js';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'script.js';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -253,14 +253,14 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'script.js';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'script.js';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -269,14 +269,14 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'script.js';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'script.js';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -285,14 +285,14 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'script.js';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'script.js';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -304,14 +304,14 @@ describe('Serve', function() {
 
   describe('#serve(style.css)', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'style.css';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'style.css';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -319,14 +319,14 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'style.css';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'style.css';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -335,14 +335,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'style.css';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'style.css';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -351,14 +351,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'style.css';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'style.css';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       });
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -367,14 +367,14 @@ describe('Serve', function() {
       });
     });
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'style.css';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'style.css';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       });
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -383,14 +383,14 @@ describe('Serve', function() {
       });
     })
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'style.css';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'style.css';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -399,14 +399,14 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'style.css';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'style.css';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -415,14 +415,14 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'style.css';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'style.css';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -431,14 +431,14 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'style.css';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'style.css';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -450,14 +450,14 @@ describe('Serve', function() {
 
   describe('#serve(test.png)', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'test.png';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'test.png';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -465,14 +465,14 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'test.png';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'test.png';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -481,14 +481,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'test.png';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'test.png';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -497,14 +497,14 @@ describe('Serve', function() {
       })
     })
     it('Should not have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'test.png';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'test.png';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -513,14 +513,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'test.png';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'test.png';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -529,14 +529,14 @@ describe('Serve', function() {
       })
     })
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'test.png';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'test.png';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -545,14 +545,14 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'test.png';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'test.png';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -561,14 +561,14 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'test.png';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'test.png';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -577,14 +577,14 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'test.png';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'test.png';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -596,14 +596,14 @@ describe('Serve', function() {
 
   describe('#serve(landing%20page.html)', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'landing page.html';
-      const size = files[file];
-      const url = '/files/landing%20page.html';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'landing page.html';
+      var size = files[file];
+      var url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       });
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -611,14 +611,14 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'landing page.html';
-      const size = files[file];
-      const url = '/files/landing%20page.html';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'landing page.html';
+      var size = files[file];
+      var url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -627,14 +627,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'landing page.html';
-      const size = files[file];
-      const url = '/files/landing%20page.html';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'landing page.html';
+      var size = files[file];
+      var url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -643,14 +643,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'landing page.html';
-      const size = files[file];
-      const url = '/files/landing%20page.html';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'landing page.html';
+      var size = files[file];
+      var url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -659,14 +659,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'landing page.html';
-      const size = files[file];
-      const url = '/files/landing%20page.html';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'landing page.html';
+      var size = files[file];
+      var url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -675,14 +675,14 @@ describe('Serve', function() {
       })
     })
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'landing page.html';
-      const size = files[file];
-      const url = '/files/landing%20page.html';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'landing page.html';
+      var size = files[file];
+      var url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -691,14 +691,14 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'landing page.html';
-      const size = files[file];
-      const url = '/files/landing%20page.html';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'landing page.html';
+      var size = files[file];
+      var url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -707,14 +707,14 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'landing page.html';
-      const size = files[file];
-      const url = '/files/landing%20page.html';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'landing page.html';
+      var size = files[file];
+      var url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -723,14 +723,14 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'landing page.html';
-      const size = files[file];
-      const url = '/files/landing%20page.html';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'landing page.html';
+      var size = files[file];
+      var url = '/files/landing%20page.html';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -742,14 +742,14 @@ describe('Serve', function() {
 
   describe('#serve(index.html?v=3)', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/index.html?v=3';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/index.html?v=3';
       http.server(function(req, res) {
         lactate.serve(req, res);
       });
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -757,14 +757,14 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/index.html?v=3';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/index.html?v=3';
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -773,14 +773,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/index.html?v=3';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/index.html?v=3';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -789,14 +789,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/index.html?v=3';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/index.html?v=3';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -805,14 +805,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/index.html?v=3';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/index.html?v=3';
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -821,14 +821,14 @@ describe('Serve', function() {
       })
     })
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/index.html?v=3';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/index.html?v=3';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -837,14 +837,14 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/index.html?v=3';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/index.html?v=3';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -853,14 +853,14 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/index.html?v=3';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/index.html?v=3';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -869,14 +869,14 @@ describe('Serve', function() {
       })
     })
     it('Should serve complete data', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/index.html?v=3';
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/index.html?v=3';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -888,13 +888,13 @@ describe('Serve', function() {
 
   describe('#serve(invalidpath)', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR })
-      const file = 'invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR })
+      var file = 'invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -902,13 +902,13 @@ describe('Serve', function() {
       })
     })
     it('Should have status code 404', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR })
-      const file = 'invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR })
+      var file = 'invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -917,13 +917,13 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR })
-      const file = 'invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR })
+      var file = 'invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -932,13 +932,13 @@ describe('Serve', function() {
       })
     });
     it('Should have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR })
-      const file = 'invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR })
+      var file = 'invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -947,13 +947,13 @@ describe('Serve', function() {
       })
     });
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR })
-      const file = 'invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR })
+      var file = 'invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -962,13 +962,13 @@ describe('Serve', function() {
       })
     });
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR })
-      const file = 'invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR })
+      var file = 'invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -980,13 +980,13 @@ describe('Serve', function() {
 
   describe('#serve(.invalidpath) --no-hidden', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
-      const file = '.invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      var file = '.invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -994,13 +994,13 @@ describe('Serve', function() {
       })
     })
     it('Should have status 403', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
-      const file = '.invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      var file = '.invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1009,13 +1009,13 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
-      const file = '.invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      var file = '.invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1024,13 +1024,13 @@ describe('Serve', function() {
       })
     });
     it('Should have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
-      const file = '.invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      var file = '.invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1039,13 +1039,13 @@ describe('Serve', function() {
       })
     });
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
-      const file = '.invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      var file = '.invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1054,13 +1054,13 @@ describe('Serve', function() {
       })
     });
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR, hidden:false })
-      const file = '.invalidpath';
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR, hidden:false })
+      var file = '.invalidpath';
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1072,12 +1072,12 @@ describe('Serve', function() {
 
   describe('#serve(files/script.js) --no-subdirs', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1085,12 +1085,12 @@ describe('Serve', function() {
       })
     })
     it('Should have status 403', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1099,12 +1099,12 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1113,36 +1113,36 @@ describe('Serve', function() {
       })
     });
     it('Should have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         res.headers.should.have.property('content-encoding', 'gzip');
         done();
       })
     });
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(file, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         res.headers.should.have.property('content-length');
         done();
       })
     });
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname, subdirs:false });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1154,12 +1154,12 @@ describe('Serve', function() {
 
   describe('#serve(files/script.js) --using-method-POST', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, 1, 'POST', function(err, res, data) {
+      http.client(url, 2, 'POST', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1167,12 +1167,12 @@ describe('Serve', function() {
       })
     })
     it('Should have status 405', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, 1, 'POST', function(err, res, data) {
+      http.client(url, 2, 'POST', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1181,12 +1181,12 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, 1, 'POST', function(err, res, data) {
+      http.client(url, 2, 'POST', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1195,12 +1195,12 @@ describe('Serve', function() {
       })
     });
     it('Should have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, 1, 'POST', function(err, res, data) {
+      http.client(url, 2, 'POST', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1209,12 +1209,12 @@ describe('Serve', function() {
       })
     });
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, 1, 'POST', function(err, res, data) {
+      http.client(url, 2, 'POST', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1223,12 +1223,12 @@ describe('Serve', function() {
       })
     });
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:__dirname });
-      const file = '/files/script.js';
+      var lactate = Lactate.Lactate({ root:__dirname });
+      var url = '/urls/script.js';
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(file, 1, 'POST', function(err, res, data) {
+      http.client(url, 2, 'POST', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1240,14 +1240,14 @@ describe('Serve', function() {
 
   describe('#serve(index.html) --using-method-HEAD', function() {
     it('Should not err', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       });
-      http.client(url, 1, 'HEAD', function(err, res, data) {
+      http.client(url, 2, 'HEAD', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1255,14 +1255,14 @@ describe('Serve', function() {
       })
     })
     it('Should have status 200', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, 1, 'HEAD', function(err, res, data) {
+      http.client(url, 2, 'HEAD', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1271,14 +1271,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-type header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, 1, 'HEAD', function(err, res, data) {
+      http.client(url, 2, 'HEAD', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1287,14 +1287,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-encoding header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, 1, 'HEAD', function(err, res, data) {
+      http.client(url, 2, 'HEAD', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1303,14 +1303,14 @@ describe('Serve', function() {
       })
     })
     it('Should have content-length header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res)
       })
-      http.client(url, 1, 'HEAD', function(err, res, data) {
+      http.client(url, 2, 'HEAD', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1319,14 +1319,14 @@ describe('Serve', function() {
       })
     })
     it('Should have date header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, 1, 'HEAD', function(err, res, data) {
+      http.client(url, 2, 'HEAD', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1335,14 +1335,14 @@ describe('Serve', function() {
       })
     })
     it('Should have last-modified header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, 1, 'HEAD', function(err, res, data) {
+      http.client(url, 2, 'HEAD', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -1351,14 +1351,14 @@ describe('Serve', function() {
       })
     })
     it('Should have cache-control header', function(done) {
-      const lactate = Lactate.Lactate({ root:DIR });
-      const file = 'index.html';
-      const size = files[file];
-      const url = '/files/' + file;
+      var lactate = Lactate.Lactate({ root:DIR });
+      var file = 'index.html';
+      var size = files[file];
+      var url = '/files/' + file;
       http.server(function(req, res) {
         lactate.serve(req, res);
       })
-      http.client(url, 1, 'HEAD', function(err, res, data) {
+      http.client(url, 2, 'HEAD', function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
