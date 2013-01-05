@@ -15,8 +15,6 @@ describe('Options', function() {
       'max_age':'one hour',
       'gzip':false,
       'minify':true,
-      'bundle':true,
-      'rebundle':false,
       'debug':true
     })
     it('Should have root option "files"', function() {
@@ -46,12 +44,6 @@ describe('Options', function() {
     it('Should have max_age option 3600', function() {
       var opt = lactate.get('max_age')
       opt.should.equal(3600)
-    })
-    it('Should have created common.js bundle', function(done) {
-      fs.unlink('common.js', done);
-    })
-    it('Should have created common.css bundle', function(done) {
-      fs.unlink('common.css', done);
     })
   })
   describe('#set(object)', function() {
