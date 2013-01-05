@@ -1,6 +1,11 @@
 
 ##History
 
+**v0.13.7**
+
+* No API modifications
+* Minification and bundling will now use version 0.5.1 of Abridge. This version removes Java dependencies and no longer spawns child processes. It's much faster. 
+
 **v0.13.6**
 
 * Lactate now sets charsets by default
