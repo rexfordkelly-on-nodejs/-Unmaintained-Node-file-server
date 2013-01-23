@@ -7,6 +7,11 @@ var optimist = require('optimist')
 optimist.usage('Usage: $0 [options]');
 
 var argv = optimist
+  .options('port', {
+    describe:'Server port',
+    default:8080,
+    alias:'p'
+  })
   .options('root', {
     describe:'Local path',
     default:process.cwd(),
