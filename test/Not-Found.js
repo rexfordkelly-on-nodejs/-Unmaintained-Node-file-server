@@ -62,7 +62,7 @@ describe('Custom 404 Handlers', function() {
       const dir = Lactate.dir(DIR);
       dir.set('not_found', DIR + '404.html');
       http.server(dir.toMiddleware());
-      http.client('/', function(err, res, data) {
+      http.client('/', 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);

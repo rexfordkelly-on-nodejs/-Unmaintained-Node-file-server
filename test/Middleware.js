@@ -72,7 +72,7 @@ describe('Middleware', function() {
       var size = files[file];
       var url = '/' + file;
       http.server(dir);
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -200,7 +200,7 @@ describe('Middleware', function() {
       var size = files[file];
       var url = '/files/index.html';
       http.server(dir);
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -318,7 +318,7 @@ describe('Middleware', function() {
       var dir = Lactate.dir(DIR).toMiddleware({ subdirs:false });
       var url = '/files/index.html';
       http.server(dir);
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -402,7 +402,7 @@ describe('Middleware', function() {
       var size = files[file];
       var url = '/landing%20page.html';
       http.server(dir);
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -530,7 +530,7 @@ describe('Middleware', function() {
       var size = files[file];
       var url = '/index.html?v=3';
       http.server(dir);
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);

@@ -66,20 +66,6 @@ describe('File', function() {
         done();
       })
     })
-    it('Should have content-length header', function(done) {
-      const file = 'index.html';
-      const size = files[file];
-      http.server(function(req, res) {
-        Lactate.file(file, req, res, { root:DIR });
-      })
-      http.client('/', function(err, res, data) {
-        should.not.exist(err);
-        should.exist(res);
-        should.exist(data);
-        res.headers.should.have.property('content-length', String(size));
-        done();
-      })
-    })
     it('Should have date header', function(done) {
       const file = 'index.html';
       const size = files[file];

@@ -72,7 +72,7 @@ describe('node-static API', function() {
       const size = files[file];
       const url = '/' + file;
       http.server(dir.serve.bind(dir));
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
@@ -200,7 +200,7 @@ describe('node-static API', function() {
       const size = files[file];
       const url = '/files/' + file;
       http.server(dir.serve.bind(dir));
-      http.client(url, function(err, res, data) {
+      http.client(url, 2, function(err, res, data) {
         should.not.exist(err);
         should.exist(res);
         should.exist(data);
