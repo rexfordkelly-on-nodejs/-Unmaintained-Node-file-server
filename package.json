@@ -12,7 +12,7 @@
   "repository": "git://github.com/Weltschmerz/Lactate.git",
   "author": "Weltschmerz <wltsmrz@gmail.com>",
   "dependencies": {
-    "mime": "1.2.7",
+    "mime": "1.2.9",
     "suckle": "latest",
     "expire": "latest",
     "abridge": "latest",
@@ -20,7 +20,7 @@
     "optimist": "0.3.5"
   },
   "devDependencies": {
-    "mocha": "1.7.4",
+    "mocha": "1.8.1",
     "should": "1.2.1"
   },
   "main": "index.js",
