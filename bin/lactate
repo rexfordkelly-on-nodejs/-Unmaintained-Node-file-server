@@ -47,20 +47,15 @@ var argv = optimist
     default:true,
     alias:'c'
   })
-  .options('redis_cache', {
-    describe:'Store assets in-memory using Redis',
-    default:false,
-    alias:'rc'
-  })
   .options('watch_files', {
     describe:'Watch files for cache update',
     default:true,
     alias:['watch-files']
   })
-  .options('max_age', {
+  .options('client_cache', {
     describe:'Client-side caching max-age',
     default:172800,
-    alias:['max-age', 'M']
+    alias:['client-cache']
   })
   .options('gzip', {
     describe:'Gzip text assets',
@@ -141,5 +136,3 @@ cluster.on('listening', function(worker, address) {
 cluster.on('exit', function(worker, code, signal) {
   console.log('worker ' + worker.process.pid + ' died');
 });
-
-
