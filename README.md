@@ -36,23 +36,22 @@ $ lactate --help
 Usage: lactate [options]
 
 Options:
---root, -r                    Local path                          [default: ""]
---from, -f                    Public path                         [default: ""]
---subdirs, -s                 Serve subdirectories                [default: true]
---hidden, -h                  Serve hidden files                  [default: false]
---error_pages, --error-pages  Serve error pages                   [default: true]
---autoindex, -a               Automatically index directories     [default: true]
---cache, -c                   Store assets in-memory              [default: true]
---redis_cache, --rc           Store assets in-memory using Redis  [default: true]
---watch_files, --watch-files  Watch files for cache update        [default: true]
---max_age, --max-age, -M      Client-side caching max-age         [default: 172800]
---gzip, -g                    Gzip text assets                    [default: true]
---minify, -m                  Minify text assets                  [default: false]
---bundle, -b                  Bundle text assets                  [default: false]
---rebundle, --rb              Rebundle assets if modified         [default: true]
---headers, -H                 Custom response headers             [default: ""]
---debug, -d                   Log HTTP info                       [default: true]
---quiet, -q                   Prevent all log output              [default: false]
+--root, -r          Local path                          [default: ""]
+--from, -f          Public path                         [default: ""]
+--subdirs, -s       Serve subdirectories                [default: true]
+--hidden, -h        Serve hidden files                  [default: false]
+--error-pages       Serve error pages                   [default: true]
+--autoindex, -a     Automatically index directories     [default: true]
+--cache, -c         Store assets in-memory              [default: true]
+--watch-files       Watch files for cache update        [default: true]
+--client-cache      Client-side caching max-age         [default: 172800]
+--gzip, -g          Gzip text assets                    [default: true]
+--minify, -m        Minify text assets                  [default: false]
+--bundle, -b        Bundle text assets                  [default: false]
+--rebundle, --rb    Rebundle assets if modified         [default: true]
+--headers, -H       Custom response headers             [default: ""]
+--debug, -d         Log HTTP info                       [default: true]
+--quiet, -q         Prevent all log output              [default: false]
 
 ```
 
@@ -64,7 +63,7 @@ Lactate can be used with either plain node, or with Express. With Express, Lacta
 var lactate = require('lactate');
 var express = require('express');
 
-var app = express.createServer();
+var app = express();
 app.use(lactate.static(__dirname + '/files'));
 ```
 
