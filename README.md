@@ -29,7 +29,7 @@ An exceedingly fast static file handler, with a few electives.
 
 ### Global executable
 
-If installed globally with `npm install -g lactate`, you will have the `lactate` command at your disposal. This will run lactate static file server in the current working directory, utilizing the `cluster` module for multiple CPU cores. All [options](https://github.com/Weltschmerz/Lactate#options) are available.
+If installed globally with `npm install -g lactate`, you will have the `lactate` command at your disposal. This will run lactate static file server in the current working directory, utilizing the `cluster` module for multiple CPU cores. All [options](https://github.com/wltsmrz/Lactate#options) are available.
 
 ```code
 $ lactate --help
@@ -57,7 +57,7 @@ Options:
 
 ### Programmatic lactating
 
-Lactate can be used with either plain node, or with Express. With Express, Lactate is a drop-in replacement for `static` middleware, but with far more ability. The examples below use Express 2.x API for simplicity. See the [examples](https://github.com/Weltschmerz/Lactate/tree/master/example) for various examples.
+Lactate can be used with either plain node, or with Express. With Express, Lactate is a drop-in replacement for `static` middleware, but with far more ability. The examples below use Express 2.x API for simplicity. See the [examples](https://github.com/wltsmrz/Lactate/tree/master/example) for various examples.
 
 ```js
 var lactate = require('lactate');
@@ -383,7 +383,7 @@ Automatically display directory indexes. Disabled by default.
 
 + `cache` **boolean** or **object**
 
-Keep files in-memory. Enabled by default. For caching options and more information about caching strategy, see [Caching Options](https://github.com/Weltschmerz/Lactate#caching-options).
+Keep files in-memory. Enabled by default. For caching options and more information about caching strategy, see [Caching Options](https://github.com/wltsmrz/Lactate#caching-options).
 
 + `gzip` **boolean**
 
@@ -391,7 +391,7 @@ If false, disables automatic gzipping for text files (HTML, JS, CSS). Enabled by
 
 + `minify` **boolean**
 
-If true, will automatically minify JavaScript and CSS using [Abridge](https://github.com/Weltschmerz/Abridge). Disabled by default.
+If true, will automatically minify JavaScript and CSS using [Abridge](https://github.com/wltsmrz/Abridge). Disabled by default.
 
 + `watch files` **boolean**
 
@@ -403,7 +403,7 @@ Sets custom response headers. If the option value is a function, it is a callbac
 
 + `max age` **number** or **string**
 
-Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
+Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/wltsmrz/Expire) for details.
 
 ```js
 lactate.set('max_age', 87500)
