@@ -8,7 +8,7 @@
 ::selection {
   color: #eee;
   background: #666;
-} 
+}
 ::-moz-selection {
   color: #eee;
   background: #666;
@@ -212,7 +212,10 @@ table {
 }
 th, td {
   padding:10px;
-  text-align:center;
+}
+
+.feature-table th, .feature-table td {
+  text-align: center;
 }
 
 th {
@@ -228,7 +231,7 @@ th {
   border-right:1px solid #444;
 }
 
-td {
+.feature-table td {
   font-size:14px;
   color:#fefefe;
   font-family:helvetica,arial,sans-serif;
